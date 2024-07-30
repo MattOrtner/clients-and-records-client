@@ -22,9 +22,7 @@ export async function action({ request, params }) {
     }
     case "POST": {
       const sessionId = await createSession(params.contactId);
-      return redirect(
-        `/contacts/${params.contactId}/create-session/${sessionId}`
-      );
+      return redirect(`/contacts/${params.contactId}/create-session`);
     }
     default: {
       throw new Response("", { status: 405 });
@@ -32,7 +30,6 @@ export async function action({ request, params }) {
   }
 }
 
-//
 export default function Contact() {
   const { contact } = useLoaderData();
 

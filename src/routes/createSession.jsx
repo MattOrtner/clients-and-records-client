@@ -1,11 +1,21 @@
 import { Form, redirect, useLoaderData, useNavigate } from "react-router-dom";
-import { getSession, updateSession } from "../sessions";
+import { createSession, getSession, updateSession } from "../sessions";
 
 export async function action({ request, params }) {
-  const formData = await request.formData();
-  const updates = Object.fromEntries(formData);
-  await updateSession(params.contactId, params.sessionId, updates);
-  return redirect(`/contacts/${params.contactId}`);
+  switch (request.name) {
+    case "save": {
+      const formData = await request.formData();
+      const sessionInfo = Object.fromEntries(formData);
+      await createSession(params.contactId, sessionInfo);
+      return redirect(`/contacts/${params.contactId}`);
+    }
+    case "cancelle": {
+      return redirect(`/contacts/${params.contactId}`);
+    }
+    default: {
+      throw new Response("", { status: 405 });
+    }
+  }
 }
 
 export async function loader({ params }) {
@@ -15,11 +25,6 @@ export async function loader({ params }) {
 
 export default function CreateSession() {
   const { session } = useLoaderData();
-  const navigate = useNavigate();
-
-  function handleCancelle() {
-    navigate(-1);
-  }
 
   return (
     <div className="w-full h-full flex justify-center items-center gap-8">
@@ -34,7 +39,6 @@ export default function CreateSession() {
             defaultValue={new Date().toISOString().split("T")[0]}
           />
           <span className="text-xl">Time</span>
-
           <input type="time" name="time" aria-label="time of day" />
           <label>
             <div className="flex gap-4 w-[50%]">
@@ -52,13 +56,11 @@ export default function CreateSession() {
           <button
             className=" flex-1 bg-red-400 text-white items-center"
             type="submit"
-            onClick={() => {
-              handleCancelle();
-            }}
+            name="cancelle"
           >
             Cancelle
           </button>
-          <button className="flex-1" type="submit">
+          <button className="flex-1" name="save" type="submit">
             Save
           </button>
         </div>

@@ -9,6 +9,7 @@ export async function action({ request, params }) {
     await updateContact(params.contactId, updates);
     return redirect(`/contacts/${params.contactId}`);
   } else {
+    console.log("deleting contact in action and not route");
     await deleteContact(params.contactId);
     return redirect(`/`);
   }
