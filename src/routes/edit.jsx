@@ -14,6 +14,7 @@ export async function action({ request, params }) {
     return redirect(`/`);
   }
 }
+
 export default function EditContact() {
   const { contact } = useLoaderData();
   return (
@@ -82,7 +83,7 @@ export default function EditContact() {
         </p>
         <p className="font-light">
           <label className="flex gap-2 font-light">
-            <span className="text-2xl pt-4">Emergency Contact</span>
+            {/* <span className="text-2xl pt-4">Emergency Contact</span>
             <span>Name</span>
             <input
               placeholder="First"
@@ -97,8 +98,8 @@ export default function EditContact() {
               type="text"
               name="emergencyContact.last"
               defaultValue={contact.emergencyContact.last}
-            />
-            <label>
+            /> */}
+            {/* <label>
               <span>Phone Number</span>
               <input
                 aria-label="phone number"
@@ -107,7 +108,7 @@ export default function EditContact() {
                 name="phoneNumber"
                 defaultValue={contact.emergencyContact.phoneNumber}
               />
-            </label>
+            </label> */}
           </label>
         </p>
         <p>

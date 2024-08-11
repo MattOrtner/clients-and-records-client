@@ -16,6 +16,11 @@ import Contact, {
 
 import EditContact, { action as editAction } from "./routes/edit";
 
+import ContactList, {
+  loader as contactListLoader,
+  action as contactListAction,
+} from "./routes/contactList";
+
 import ErrorPage from "./routes/error-page";
 
 import Profile, {
@@ -23,73 +28,87 @@ import Profile, {
   action as profileAction,
 } from "./routes/profile";
 
-import SessionPage, { loader as sessionPageLoader } from "./routes/sessionPage";
-
-import { action as deleteContact } from "./routes/deleteContact";
-import { action as deleteSession } from "./routes/deleteSession";
-
 import CreateSession, {
   action as saveSession,
   loader as sessionLoader,
 } from "./routes/createSession";
 
+import SessionPage, { loader as sessionPageLoader } from "./routes/sessionPage";
+
+import { action as deleteContact } from "./routes/deleteContact";
+import { action as deleteSession } from "./routes/deleteSession";
+
 import Login from "./routes/login";
+import Landing from "./routes/landing";
 
 const router = createBrowserRouter([
-  {
-    path: "/login",
-    element: <Login />,
-  },
   {
     path: "/",
     element: <Root />,
     errorElement: <ErrorPage />,
-    loader: rootLoader,
-    action: rootAction,
-  },
+    // loader: rootLoader,
+    // action: rootAction,
+    children: [
+      {
+        path: "/",
+        index: true,
+        element: <Landing />,
+      },
+      {
+        path: "contacts",
+        element: <ContactList />,
+        loader: contactListLoader,
+        action: contactListAction,
+      },
 
-  {
-    path: "contacts/:contactId",
-    element: <Contact />,
-    loader: contactLoader,
-    action: createAction,
-  },
-  {
-    path: "contacts/:contactId/edit",
-    element: <EditContact />,
-    loader: contactLoader,
-    action: editAction,
-  },
-  {
-    path: "contacts/:contactId/create-session",
-    element: <CreateSession />,
-    loader: sessionLoader,
-    action: saveSession,
-  },
-  {
-    path: "contacts/:contactId/sessions/:sessionId",
-    element: <SessionPage />,
-    loader: sessionPageLoader,
-    // action: deleteSession,
-  },
-  {
-    path: "contacts/:contactId/profile",
-    element: <Profile />,
-    loader: profileLoader,
-    action: profileAction,
-  },
-  {
-    path: "contacts/:contactId/profile/delete",
-    action: deleteContact,
-  },
-  {
-    path: "contacts/:contactId/sessions/:sessionId/delete",
-    action: deleteSession,
-  },
-  {
-    // create a error boundary route for all routes that do not match
-    // path: "*",
-    // element: <ErrorPage />,
+      {
+        path: "contacts/:contactId",
+        element: <Contact />,
+        loader: contactLoader,
+        action: createAction,
+      },
+      {
+        path: "contacts/:contactId/edit",
+        element: <EditContact />,
+        loader: contactLoader,
+        action: editAction,
+      },
+      {
+        path: "contacts/:contactId/create-session/:sessionId",
+        element: <CreateSession />,
+        loader: sessionLoader,
+        action: saveSession,
+      },
+      {
+        path: "contacts/:contactId/sessions/:sessionId",
+        element: <SessionPage />,
+        loader: sessionPageLoader,
+        // action: deleteSession,
+      },
+      {
+        path: "contacts/:contactId/profile",
+        element: <Profile />,
+        loader: profileLoader,
+        action: profileAction,
+      },
+      {
+        path: "contacts/:contactId/profile/delete",
+        action: deleteContact,
+      },
+      {
+        path: "contacts/:contactId/sessions/:sessionId/delete",
+        action: deleteSession,
+      },
+      {
+        // create a error boundary route for all routes that do not match
+        path: "*",
+        element: <ErrorPage />,
+      },
+      // {
+      //   path: "/login",
+      //   element: <Login />,
+      // },
+    ],
   },
 ]);
 

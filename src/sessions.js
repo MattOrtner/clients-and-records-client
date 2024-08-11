@@ -1,7 +1,6 @@
 import localforage from "localforage";
 
-export async function createSession(contactId, sessionInfo) {
-  // await fakeNetwork();
+export async function createSession(contactId) {
   let contacts = await localforage.getItem("contacts");
   let contact = contacts.find((contact) => contact.id === contactId);
   if (!contact) throw new Error("No contact found for", contactId);
@@ -20,7 +19,6 @@ export async function createSession(contactId, sessionInfo) {
 
 export async function getSession(params) {
   let { contactId, sessionId } = params;
-  // await fakeNetwork();
   const contacts = await localforage.getItem("contacts");
   const contact = contacts.find((contact) => contact.id === contactId);
   if (!contact) throw new Error("No contact found for", contactId);
@@ -29,7 +27,6 @@ export async function getSession(params) {
 
 export async function deleteSession(params) {
   let { contactId, sessionId } = params;
-  // await fakeNetwork();
   let contacts = await localforage.getItem("contacts");
   let contact = contacts.find((contact) => contact.id === contactId);
   let index = contact.sessions.findIndex((session) => session.id === sessionId);
@@ -44,14 +41,14 @@ export async function deleteSession(params) {
 }
 
 export async function getSessions(id) {
-  // await fakeNetwork(`contact:${id}`);
   let contacts = await localforage.getItem("contacts");
   let contact = contacts.find((contact) => contact.id === id);
   return contact.sessions ?? null;
 }
 
 export async function updateSession(contactId, sessionId, updates) {
-  // await fakeNetwork();
+  // sessionId undefined!!!
+  console.log("contactId, sessionId, updates:", contactId, sessionId, updates);
   let contacts = await localforage.getItem("contacts");
   let contact = contacts.find((contact) => contact.id === contactId);
   let session = contact.sessions.find((session) => session.id === sessionId);

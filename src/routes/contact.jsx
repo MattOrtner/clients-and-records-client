@@ -6,12 +6,11 @@ import {
   mdiAlphaXCircleOutline,
 } from "@mdi/js";
 import { Form, NavLink, redirect, useLoaderData } from "react-router-dom";
-import { getInfoForContactPage } from "../contacts";
+import { getContact } from "../contacts";
 import { createSession } from "../sessions";
-import NavigateHomeButton from "../navigation";
 
 export async function loader({ params }) {
-  const contact = await getInfoForContactPage(params.contactId);
+  const contact = await getContact(params.contactId);
   return { contact };
 }
 
@@ -22,7 +21,9 @@ export async function action({ request, params }) {
     }
     case "POST": {
       const sessionId = await createSession(params.contactId);
-      return redirect(`/contacts/${params.contactId}/create-session`);
+      return redirect(
+        `/contacts/${params.contactId}/create-session/${sessionId}`
+      );
     }
     default: {
       throw new Response("", { status: 405 });
@@ -35,9 +36,9 @@ export default function Contact() {
 
   return (
     <div id="contact">
-      <div>
-        <NavigateHomeButton />
-        <div className="flex justify-center items-center gap-4 my-16 ml-4">
+      <div className="flex flex-col justify-center items-center gap-4 my-8">
+        <div className="flex w-full justify-center items-center gap-4">
+          <ClientProfileNavLink contactId={contact.id} />
           {contact.first || contact.last ? (
             <>
               <h1>
@@ -47,36 +48,35 @@ export default function Contact() {
           ) : (
             <i>No Name</i>
           )}
-          <ClientProfile contactId={contact.id} />
         </div>
-        <div className="flex flex-col w-full mt-4 gap-4">
-          {contact.sessions.length ? (
-            contact.sessions.map((session) => (
-              <Session
-                key={session.id}
-                session={session}
-                contactId={contact.id}
-              />
-            ))
-          ) : (
-            <div className="flex items-center m-auto">
-              <div className="text-2xl pt-10">Schedule a session.</div>
-            </div>
-          )}
-        </div>
-        <div className="fixed bottom-9 w-[90%] flex justify-end pr-8">
+        <div className="flex w-full justify-end mr-4">
           <Form method="POST">
             <button style={{ borderRadius: 50 }} type="submit">
-              <Icon path={mdiPlusCircleOutline} size={1.5} />
+              <Icon path={mdiPlusCircleOutline} size={1.4} />
             </button>
           </Form>
         </div>
+      </div>
+      <div className="flex flex-col w-full mt-4 gap-4">
+        {contact.sessions.length ? (
+          contact.sessions.map((session) => (
+            <Session
+              key={session.id}
+              session={session}
+              contactId={contact.id}
+            />
+          ))
+        ) : (
+          <div className="flex items-center m-auto">
+            <div className="text-2xl pt-10">Schedule a session.</div>
+          </div>
+        )}
       </div>
     </div>
   );
 }
 
-function ClientProfile({ contactId }) {
+function ClientProfileNavLink({ contactId }) {
   return (
     <NavLink to={`/contacts/${contactId}/profile`}>
       <button
@@ -84,7 +84,7 @@ function ClientProfile({ contactId }) {
         aria-label="client-profile"
         style={{ borderRadius: 50 }}
       >
-        <Icon path={mdiAccountCircleOutline} size={1.25} />
+        <Icon path={mdiAccountCircleOutline} size={1.4} />
       </button>
     </NavLink>
   );

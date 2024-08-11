@@ -1,91 +1,52 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { Outlet, NavLink } from "react-router-dom";
+
+import Icon from "@mdi/react";
 import {
-  Outlet,
-  NavLink,
-  useLoaderData,
-  Form,
-  redirect,
-  useSubmit,
-  useNavigate,
-} from "react-router-dom";
+  mdiSpaceInvaders,
+  mdiCalendarMultiselectOutline,
+  mdiCurrencyUsd,
+  mdiHomeOutline,
+} from "@mdi/js";
 
-import { getContacts, createContact } from "../contacts";
-import { hasLocalPassord } from "../auth";
-
-export async function action() {
-  const contact = await createContact();
-  return redirect(`/contacts/${contact.id}/edit`);
+export function action() {
+  return null;
 }
-
-export async function loader({ request }) {
-  const url = new URL(request.url);
-  const q = url.searchParams.get("q");
-  const contacts = await getContacts(q);
-  return { contacts, q };
+export async function loader() {
+  return null;
 }
-
 export default function Root() {
-  const { contacts, q } = useLoaderData();
-  // const [isLoggedIn, setIsLoggedIn] = useState(false);
-  // const [isPass, setIsPass] = useState();
-  const navigate = useNavigate();
+  const [isSignedIn, setIsSignedIn] = useState(false);
 
-  const submit = useSubmit();
-  useEffect(() => {
-    document.getElementById("q").value = q;
-  }, [q]);
   return (
-    <>
-      <div id="sidebar">
-        <span className="flex w-full justify-center gap-2 pt-2">
-          <Form id="search-form" role="search">
-            <input
-              id="q"
-              aria-label="Search contacts"
-              placeholder="Search"
-              type="search"
-              name="q"
-              autoComplete="off"
-              defaultValue={q}
-              onChange={(event) => {
-                const isFirstSearch = q == null;
-                submit(event.currentTarget.form, { replace: !isFirstSearch });
-              }}
-            />
-          </Form>
-        </span>
-        <nav>
-          {contacts.length ? (
-            <ul>
-              {contacts.map((contact) => (
-                <li key={contact.id}>
-                  <NavLink to={`/contacts/${contact.id}`}>
-                    {contact.first || contact.last ? (
-                      <div className="text-xl">
-                        {contact.first} {contact.last}
-                      </div>
-                    ) : (
-                      <i>No Name</i>
-                    )}
-                  </NavLink>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p>No contacts</p>
-          )}
-        </nav>
-        <div className="fixed bottom-12 h-9 right-10 min-w-[50%]">
-          <Form method="post">
-            <button
-              className="w-[100%] bg-blue-500 text-white text-lg p-3"
-              type="submit"
-            >
-              New
-            </button>
-          </Form>
-        </div>
+    <div className="flex flex-col items-center bg-gray-400 h-full w-full">
+      <Outlet />
+      <div className="fixed bottom-0 flex w-full">
+        <NavLink
+          to={`/`}
+          className="border-2 border-black flex-1 flex justify-center rounded-md p-2"
+        >
+          <Icon path={mdiHomeOutline} size={2} />
+        </NavLink>
+        <NavLink
+          to={`contacts`}
+          className="border-2 border-black flex-1 flex justify-center rounded-md p-2"
+        >
+          <Icon path={mdiSpaceInvaders} size={2} />
+        </NavLink>
+        <NavLink
+          to=""
+          className="border-2 border-black flex-1 flex justify-center rounded-md p-2"
+        >
+          <Icon path={mdiCalendarMultiselectOutline} size={2} />
+        </NavLink>
+        <NavLink
+          to=""
+          className="border-2 border-black flex-1 flex justify-center rounded-md p-2"
+        >
+          <Icon path={mdiCurrencyUsd} size={2} />
+        </NavLink>
       </div>
-    </>
+    </div>
   );
 }

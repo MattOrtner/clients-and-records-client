@@ -22,7 +22,7 @@ export default function Profile() {
 
   const handlePhoneBlur = () => {
     setIsBlurPhone((isBlur) =>
-      isBlur === "blur-sm" ? "blur-none" : "blur-sm"
+      isBlur === "blur-[3px]" ? "blur-none" : "blur-[3px]"
     );
   };
 
@@ -58,7 +58,7 @@ export default function Profile() {
         </div>
       )}
       <Form method="delete" action="delete">
-        <button type="submit" className="fixed bottom-12 delete-button">
+        <button type="submit" className="delete-button">
           Delete Contact
         </button>
       </Form>

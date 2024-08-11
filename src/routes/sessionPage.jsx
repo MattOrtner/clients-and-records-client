@@ -2,7 +2,6 @@ import { redirect, Form, useLoaderData } from "react-router-dom";
 import { getSession, deleteSession } from "../sessions";
 import Icon from "@mdi/react";
 import { mdiCheckCircleOutline, mdiAlphaXCircleOutline } from "@mdi/js";
-import NavigateHomeButton from "../navigation";
 import { useState } from "react";
 
 export async function loader({ params }) {
@@ -25,8 +24,8 @@ export default function SessionPage() {
   /* <button type="submit" intent="save">Save</button> */
 
   return (
-    <div className="flex w-full h-full flex-col m-8">
-      <NavigateHomeButton />
+    // <div className="flex w-full h-full flex-col m-8">
+    <div>
       <div className="flex flex-col gap-8 mt-8 h-full">
         <div className="flex flex-col w-full items-end text-xl gap-2">
           <div className=" flex gap-2">
@@ -36,7 +35,6 @@ export default function SessionPage() {
             <h2>Time:</h2>
             <p>{time}</p>
           </div>
-
           <div className="flex gap-2">
             <h2 className="text-xl">Paid:</h2>
             {paid ? (

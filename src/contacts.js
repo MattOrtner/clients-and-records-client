@@ -15,7 +15,13 @@ export async function getContacts(query) {
 export async function createContact() {
   // await fakeNetwork();
   let id = Math.random().toString(36).substring(2, 9);
-  let contact = { id, createdAt: Date.now(), sessions: [] };
+  let contact = {
+    id,
+    createdAt: Date.now(),
+    first: "",
+    last: "",
+    sessions: [],
+  };
   let contacts = await getContacts();
   contacts.unshift(contact);
   await set(contacts);
@@ -48,7 +54,11 @@ export async function getInfoForContactPage(id) {
     id: contact.id,
     first: contact.first,
     last: contact.last,
-    emergencyContact: { first: "", last: "", phoneNumber: "" },
+    emergencyContact: {
+      first: contact.emergencyContact.first,
+      last: contact.emergencyContact.last,
+      phoneNumber: contact.emergencyContact.phoneNumber,
+    },
     sessions: contact.sessions ?? [],
   };
   return necessaryData ?? null;
