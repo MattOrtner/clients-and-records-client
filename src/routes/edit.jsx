@@ -18,72 +18,71 @@ export async function action({ request, params }) {
 export default function EditContact() {
   const { contact } = useLoaderData();
   return (
-    <>
-      <Form method="post" id="contact-form">
-        <p className="flex flex-col gap-2 font-light">
-          <span className="text-2xl">New Client</span>
-          <span>Name</span>
+    <Form method="post" id="contact-form">
+      <p className="flex flex-col gap-2 font-light">
+        <span className="text-2xl">New Client</span>
+        <span>Name</span>
+        <input
+          placeholder="First"
+          aria-label="First name"
+          type="text"
+          name="first"
+          defaultValue={contact.first}
+        />
+        <input
+          placeholder="Last"
+          aria-label="Last name"
+          type="text"
+          name="last"
+          defaultValue={contact.last}
+        />
+        <label>
+          <span>Email</span>
           <input
-            placeholder="First"
-            aria-label="First name"
-            type="text"
-            name="first"
-            defaultValue={contact.first}
+            placeholder="someone@somewhere.com"
+            aria-label="email"
+            type="email"
+            name="email"
+            defaultValue={contact.email}
           />
+        </label>
+        <label>
+          <span>Phone Number</span>
           <input
-            placeholder="Last"
-            aria-label="Last name"
-            type="text"
-            name="last"
-            defaultValue={contact.last}
+            aria-label="phone number"
+            placeholder="000-000-0000"
+            type="phone"
+            name="phoneNumber"
+            defaultValue={contact.phoneNumber}
           />
-          <label>
-            <span>Email</span>
+        </label>
+        <label>
+          <span>Rate</span>
+          <div className="flex gap-2 items-center">
+            $
             <input
-              placeholder="someone@somewhere.com"
-              aria-label="email"
-              type="email"
-              name="email"
-              defaultValue={contact.email}
+              aria-label="rate"
+              placeholder="75"
+              type="number"
+              name="rate"
+              defaultValue={contact.rate}
             />
-          </label>
-          <label>
-            <span>Phone Number</span>
-            <input
-              aria-label="phone number"
-              placeholder="000-000-0000"
-              type="phone"
-              name="phoneNumber"
-              defaultValue={contact.phoneNumber}
-            />
-          </label>
-          <label>
-            <span>Rate</span>
-            <div className="flex gap-2 items-center">
-              $
-              <input
-                aria-label="rate"
-                placeholder="75"
-                type="number"
-                name="rate"
-                defaultValue={contact.rate}
-              />
-            </div>
-          </label>
-          <label>
-            <span>Occurance</span>
-            <input
-              aria-label="occurance"
-              placeholder="1"
-              type="text"
-              name="occurance"
-              defaultValue="1"
-            />
-          </label>
-        </p>
-        <p className="font-light">
-          <label className="flex gap-2 font-light">
-            {/* <span className="text-2xl pt-4">Emergency Contact</span>
+          </div>
+        </label>
+        <label>
+          <span>Occurance</span>
+          <input
+            aria-label="occurance"
+            placeholder="1"
+            type="text"
+            name="occurance"
+            defaultValue="1"
+          />
+        </label>
+      </p>
+      <p className="font-light">
+        <label className="flex gap-2 font-light">
+          {/* <span className="text-2xl pt-4">Emergency Contact</span>
             <span>Name</span>
             <input
               placeholder="First"
@@ -99,7 +98,7 @@ export default function EditContact() {
               name="emergencyContact.last"
               defaultValue={contact.emergencyContact.last}
             /> */}
-            {/* <label>
+          {/* <label>
               <span>Phone Number</span>
               <input
                 aria-label="phone number"
@@ -109,17 +108,16 @@ export default function EditContact() {
                 defaultValue={contact.emergencyContact.phoneNumber}
               />
             </label> */}
-          </label>
-        </p>
-        <p>
-          <button type="submit" name="intent" value="cancel">
-            Cancel
-          </button>
-          <button type="submit" name="intent" value="save">
-            Save
-          </button>
-        </p>
-      </Form>
-    </>
+        </label>
+      </p>
+      <p>
+        <button type="submit" name="intent" value="cancel">
+          Cancel
+        </button>
+        <button type="submit" name="intent" value="save">
+          Save
+        </button>
+      </p>
+    </Form>
   );
 }

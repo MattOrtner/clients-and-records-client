@@ -11,14 +11,15 @@ import { mdiPlus } from "@mdi/js";
 import { getContacts, createContact } from "../contacts";
 import { hasLocalPassord } from "../auth";
 
-export async function loader(query) {
-  const contacts = await getContacts();
+export async function loader({ request }) {
+  const url = new URL(request.url);
+  const q = url.searchParams.get("q");
+  const contacts = await getContacts(q);
   console.log("contacts", contacts);
-  return { contacts };
+  return { contacts, q };
 }
 export async function action() {
   const contact = await createContact();
-  // return { contact };
   return redirect(`/contacts/${contact.id}/edit`);
 }
 export default function ContactList() {
@@ -32,7 +33,7 @@ export default function ContactList() {
   return (
     <>
       <div id="contacts-page">
-        <span className="flex w-full justify-center pt-2">
+        <span className="flex w-full p-2">
           <Form id="search-form" role="search">
             <input
               id="q"
