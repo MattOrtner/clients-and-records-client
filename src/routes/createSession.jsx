@@ -9,15 +9,13 @@ import { createSession, getSession, updateSession } from "../sessions";
 
 export async function action({ request, params }) {
   // contact and session used similar switch statements, check git diff
+  console.log("params", params);
+  const { sessionId, contactId } = params;
   const formData = await request.formData();
   const sessionInfo = Object.fromEntries(formData);
-  const session = await updateSession(
-    params.contactId,
-    params.sessionId,
-    sessionInfo
-  );
+  const session = await updateSession(contactId, sessionId, sessionInfo);
   console.log("session:", session);
-  return redirect(`/contacts`);
+  return redirect(`/contacts/${contactId}`);
 }
 
 function useCancelleForm() {

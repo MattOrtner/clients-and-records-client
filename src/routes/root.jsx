@@ -19,7 +19,7 @@ export default function Root() {
   const [isSignedIn, setIsSignedIn] = useState(false);
 
   return (
-    <div className="flex flex-col items-center bg-gray-400 h-full w-full">
+    <div className="flex flex-col items-center h-full w-full">
       <Outlet />
       <div className="fixed bottom-0 flex w-full">
         <NavLink
