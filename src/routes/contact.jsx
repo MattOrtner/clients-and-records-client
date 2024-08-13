@@ -4,7 +4,14 @@ import {
   mdiCheckCircleOutline,
   mdiPlusCircleOutline,
   mdiAlphaXCircleOutline,
+  mdiEmoticonFrownOutline,
+  mdiAccountMultipleOutline,
+  mdiPhone,
+  mdiPhoneOff,
+  mdiEmailOutline,
+  mdiEmailOffOutline,
 } from "@mdi/js";
+
 import { Form, NavLink, redirect, useLoaderData } from "react-router-dom";
 import { getContact } from "../contacts";
 import { createSession } from "../sessions";
@@ -37,8 +44,7 @@ export default function Contact() {
   return (
     <div id="contact">
       <div className="flex flex-col justify-center items-center gap-4 my-8">
-        <div className="flex w-full justify-center items-center gap-4">
-          <ClientProfileNavLink contactId={contact.id} />
+        <div className="mb-4">
           {contact.first || contact.last ? (
             <>
               <h1>
@@ -49,15 +55,33 @@ export default function Contact() {
             <i>No Name</i>
           )}
         </div>
-        <div className="flex w-full justify-end mr-4">
-          <Form method="POST">
-            <button style={{ borderRadius: 50 }} type="submit">
-              <Icon path={mdiPlusCircleOutline} size={1.4} />
+        <div className="flex w-full  justify-center gap-6 items-center mb-4">
+          {contact.phoneNumber ? (
+            <a href={`tel:${contact.phoneNumber}`}>
+              <button>
+                <Icon path={mdiPhone} color="gray" size={1.4} />
+              </button>
+            </a>
+          ) : (
+            <button>
+              <Icon path={mdiPhoneOff} color="gray" size={1.4} />
             </button>
-          </Form>
+          )}
+          {contact.email ? (
+            <a href={`mailto:${contact.email}`}>
+              <button>
+                <Icon path={mdiEmailOutline} color="gray" size={1.4} />
+              </button>
+            </a>
+          ) : (
+            <button>
+              <Icon path={mdiEmailOffOutline} color="gray" size={1.4} />
+            </button>
+          )}
+          <ClientProfileNavLink contactId={contact.id} size={1.4} />
         </div>
       </div>
-      <div className="flex flex-col w-full mt-4 gap-4">
+      <div className="flex flex-col items-center w-full mt-4 gap-4">
         {contact.sessions.length ? (
           contact.sessions.map((session) => (
             <Session
@@ -72,39 +96,55 @@ export default function Contact() {
           </div>
         )}
       </div>
+      <Form method="POST">
+        <button className="fixed bottom-16 right-4 font-light" type="submit">
+          <Icon path={mdiPlusCircleOutline} color="gray" size={2} />
+        </button>
+      </Form>
     </div>
   );
 }
 
-function ClientProfileNavLink({ contactId }) {
+function ClientProfileNavLink({ contactId, size }) {
   return (
     <NavLink to={`/contacts/${contactId}/profile`}>
       <button
         name="client-profile"
         aria-label="client-profile"
-        style={{ borderRadius: 50 }}
+        className="flex justify-center items-center"
       >
-        <Icon path={mdiAccountCircleOutline} size={1.4} />
+        <Icon path={mdiAccountCircleOutline} color="gray" size={size} />
       </button>
     </NavLink>
   );
 }
 
+function reverseDate(date) {
+  if (date) {
+    const year = date.slice(0, 4);
+    const monthDay = date.slice(5);
+    return `${monthDay}-${year}`;
+  }
+}
+
 function Session({ session, contactId }) {
+  const reversedDate = reverseDate(session.date);
+
   const sessionId = session.id;
   return (
     <NavLink
       to={`/contacts/${contactId}/sessions/${sessionId}`}
-      className="flex justify-evenly items-center w-full h-12 rounded-md gap-4"
+      className="flex justify-evenly items-center w-[90%]
+      h-12 rounded-md border border-gray-300 gap-4 font-verdana"
     >
-      <div className="py-2 px-4 rounded-md border border-sky-300">
-        <p>{session.date}</p>
+      <div className="py-2 px-4 rounded-md">
+        <p>{reversedDate}</p>
       </div>
       <p>
         {session.paid ? (
           <Icon path={mdiCheckCircleOutline} size={1.25} color="green" />
         ) : (
-          <Icon path={mdiAlphaXCircleOutline} size={1.25} color="red" />
+          <Icon path={mdiEmoticonFrownOutline} size={1.25} color="red" />
         )}
       </p>
     </NavLink>

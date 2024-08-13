@@ -4,6 +4,8 @@ import { Outlet, NavLink } from "react-router-dom";
 import Icon from "@mdi/react";
 import {
   mdiSpaceInvaders,
+  mdiAccountOutline,
+  mdiAccountMultipleOutline,
   mdiCalendarMultiselectOutline,
   mdiCurrencyUsd,
   mdiHomeOutline,
@@ -24,27 +26,27 @@ export default function Root() {
       <div className="fixed bottom-0 flex w-full">
         <NavLink
           to={`/`}
-          className="border-2 border-black flex-1 flex justify-center rounded-md p-2"
+          className="border-2 flex-1 flex justify-center rounded-md p-2"
         >
-          <Icon path={mdiHomeOutline} size={2} />
+          <Icon path={mdiHomeOutline} size={1.25} />
         </NavLink>
         <NavLink
           to={`contacts`}
-          className="border-2 border-black flex-1 flex justify-center rounded-md p-2"
+          className="border-2 flex-1 flex justify-center rounded-md p-2"
         >
-          <Icon path={mdiSpaceInvaders} size={2} />
+          <Icon path={mdiAccountMultipleOutline} size={1.25} />
         </NavLink>
         <NavLink
-          to=""
-          className="border-2 border-black flex-1 flex justify-center rounded-md p-2"
+          to="calendar"
+          className="border-2 flex-1 flex justify-center rounded-md p-2"
         >
-          <Icon path={mdiCalendarMultiselectOutline} size={2} />
+          <Icon path={mdiCalendarMultiselectOutline} size={1.25} />
         </NavLink>
         <NavLink
-          to=""
-          className="border-2 border-black flex-1 flex justify-center rounded-md p-2"
+          to="payments"
+          className="border-2 flex-1 flex justify-center rounded-md p-2"
         >
-          <Icon path={mdiCurrencyUsd} size={2} />
+          <Icon path={mdiCurrencyUsd} size={1.25} />
         </NavLink>
       </div>
     </div>

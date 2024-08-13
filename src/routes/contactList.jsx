@@ -55,14 +55,17 @@ export default function ContactList() {
             </button>
           </Form>
         </span>
-        <nav>
+        <nav className="w-full">
           {contacts.length ? (
             <ul>
               {contacts.map((contact) => (
                 <li key={contact.id}>
-                  <NavLink to={`${contact.id}`}>
+                  <NavLink
+                    to={`${contact.id}`}
+                    className="flex flex-col justify-center items-center "
+                  >
                     {contact.first || contact.last ? (
-                      <div className="text-xl">
+                      <div className="text-xl w-[90%] text-center border-gray-200 border-2 rounded-lg py-1 mb-1">
                         {contact.first} {contact.last}
                       </div>
                     ) : (

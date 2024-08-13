@@ -8,6 +8,16 @@
   padding: 0;
 }
 
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+body {
+  margin: 0;
+  overflow: hidden;
+}
+
 html {
   box-sizing: border-box;
 }
@@ -50,10 +60,10 @@ button {
   line-height: 1.5;
   margin: 0;
 }
-button {
+/* button {
   color: #3992ff;
   font-weight: 500;
-}
+} */
 
 textarea:hover,
 input:hover,
@@ -121,18 +131,18 @@ form[action$="delete"] button {
 }
 
 /* NavLinks */
-#sidebar nav a {
+/* #sidebar nav a {
   padding: 0.75rem;
 }
 
 #sidebar nav a.active {
   background: hsl(224, 98%, 58%);
   color: white;
-}
+} */
 
-#sidebar nav a.pending {
+/* #sidebar nav a.pending {
   color: hsl(224, 98%, 58%);
-}
+} */
 
 .delete-button {
   /* 248 113 113 */

@@ -55,6 +55,14 @@ const router = createBrowserRouter([
         element: <Landing />,
       },
       {
+        path: "calendar",
+        element: <div>Calendar!</div>,
+      },
+      {
+        path: "payments",
+        element: <div>Payments!</div>,
+      },
+      {
         path: "contacts",
         element: <ContactList />,
         loader: contactListLoader,
