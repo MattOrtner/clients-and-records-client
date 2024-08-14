@@ -3,9 +3,7 @@ import {
   mdiAccountCircleOutline,
   mdiCheckCircleOutline,
   mdiPlusCircleOutline,
-  mdiAlphaXCircleOutline,
   mdiEmoticonFrownOutline,
-  mdiAccountMultipleOutline,
   mdiPhone,
   mdiPhoneOff,
   mdiEmailOutline,
@@ -15,6 +13,8 @@ import {
 import { Form, NavLink, redirect, useLoaderData } from "react-router-dom";
 import { getContact } from "../contacts";
 import { createSession } from "../sessions";
+
+import reverseDate from "../reverseDate";
 
 export async function loader({ params }) {
   const contact = await getContact(params.contactId);
@@ -55,11 +55,11 @@ export default function Contact() {
             <i>No Name</i>
           )}
         </div>
-        <div className="flex w-full  justify-center gap-6 items-center mb-4">
+        <div className="flex w-full  justify-center gap-6 items-center mb-2">
           {contact.phoneNumber ? (
             <a href={`tel:${contact.phoneNumber}`}>
               <button>
-                <Icon path={mdiPhone} color="gray" size={1.4} />
+                <Icon path={mdiPhone} color="rgb(59 130 246)" size={1.4} />
               </button>
             </a>
           ) : (
@@ -70,7 +70,11 @@ export default function Contact() {
           {contact.email ? (
             <a href={`mailto:${contact.email}`}>
               <button>
-                <Icon path={mdiEmailOutline} color="gray" size={1.4} />
+                <Icon
+                  path={mdiEmailOutline}
+                  color="rgb(59 130 246)"
+                  size={1.4}
+                />
               </button>
             </a>
           ) : (
@@ -78,10 +82,10 @@ export default function Contact() {
               <Icon path={mdiEmailOffOutline} color="gray" size={1.4} />
             </button>
           )}
-          <ClientProfileNavLink contactId={contact.id} size={1.4} />
+          <ConcactProfileNavLink contactId={contact.id} size={1.4} />
         </div>
       </div>
-      <div className="flex flex-col items-center w-full mt-4 gap-4">
+      <div className="flex flex-col items-center w-full h-[560px] gap-4 overflow-scroll">
         {contact.sessions.length ? (
           contact.sessions.map((session) => (
             <Session
@@ -108,7 +112,7 @@ export default function Contact() {
   );
 }
 
-function ClientProfileNavLink({ contactId, size }) {
+function ConcactProfileNavLink({ contactId, size }) {
   return (
     <NavLink to={`/contacts/${contactId}/profile`}>
       <button
@@ -122,17 +126,8 @@ function ClientProfileNavLink({ contactId, size }) {
   );
 }
 
-function reverseDate(date) {
-  if (date) {
-    const year = date.slice(0, 4);
-    const monthDay = date.slice(5);
-    return `${monthDay}-${year}`;
-  }
-}
-
 function Session({ session, contactId }) {
   const reversedDate = reverseDate(session.date);
-
   const sessionId = session.id;
   return (
     <NavLink
