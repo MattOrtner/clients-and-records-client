@@ -97,8 +97,11 @@ export default function Contact() {
         )}
       </div>
       <Form method="POST">
-        <button className="fixed bottom-16 right-4 font-light" type="submit">
-          <Icon path={mdiPlusCircleOutline} color="gray" size={2} />
+        <button
+          className="fixed bottom-24 right-4  bg-blue-200 rounded-full"
+          type="submit"
+        >
+          <Icon path={mdiPlusCircleOutline} color="black" size={2} />
         </button>
       </Form>
     </div>
