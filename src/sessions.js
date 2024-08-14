@@ -30,7 +30,7 @@ export async function deleteSession(params) {
   let contacts = await localforage.getItem("contacts");
   let contact = contacts.find((contact) => contact.id === contactId);
   let index = contact.sessions.findIndex((session) => session.id === sessionId);
-  console.log("cancele session");
+  console.log("deleted session");
   if (index > -1) {
     contact.sessions.splice(index, 1);
     await set(contacts);

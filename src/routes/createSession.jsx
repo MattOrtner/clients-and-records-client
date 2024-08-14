@@ -5,21 +5,26 @@ import {
   useNavigate,
   useParams,
 } from "react-router-dom";
-import { createSession, getSession, updateSession } from "../sessions";
+import {
+  createSession,
+  deleteSession,
+  getSession,
+  updateSession,
+} from "../sessions";
 
 export async function action({ request, params }) {
-  // contact and session used similar switch statements, check git diff
-  console.log("params", params);
   const { sessionId, contactId } = params;
   const formData = await request.formData();
-  const sessionInfo = Object.fromEntries(formData);
-  const session = await updateSession(contactId, sessionId, sessionInfo);
-  console.log("session:", session);
-  return redirect(`/contacts/${contactId}`);
-}
+  let intent = formData.get("intent");
 
-function useCancelleForm() {
-  // return redirect(`/contacts/${contactId}`);
+  if (intent === "cancel") {
+    await deleteSession(params);
+    return redirect(`/contacts/${contactId}`);
+  } else {
+    const sessionInfo = Object.fromEntries(formData);
+    await updateSession(contactId, sessionId, sessionInfo);
+    return redirect(`/contacts/${contactId}`);
+  }
 }
 
 export async function loader({ params }) {
@@ -31,11 +36,10 @@ export default function CreateSession() {
   const { session } = useLoaderData();
 
   return (
-    // <div className="w-full h-full flex justify-center items-center gap-8">
-    <div className="w-[85%] h-full flex flex-col justify-center mt-10 gap-8">
-      <Form method="post">
+    <div className="w-[85%] h-full flex flex-col justify-center">
+      <div className="text-3xl font-light mb-28">New Session</div>
+      <Form method="POST">
         <p className="flex flex-col gap-4 font-light">
-          <span className="text-2xl">New Session</span>
           <span className="text-xl">Date</span>
           <input
             aria-label="date"
@@ -46,7 +50,7 @@ export default function CreateSession() {
           <span className="text-xl">Time</span>
           <input type="time" name="time" aria-label="time of day" />
           <label>
-            <div className="flex justify-center items-center gap-4 ">
+            <div className="flex justify-center items-center gap-4 pt-8">
               <label className="text-xl">Paid</label>
               <input
                 className="h-6 w-6"
@@ -57,17 +61,21 @@ export default function CreateSession() {
             </div>
           </label>
         </p>
-        <div className="flex gap-2 pt-4">
-          <button
-            className=" bg-red-400 text-white items-center"
-            name="cancelle"
-            // onClick={useCancelleForm}
-          >
-            Cancelle
-          </button>
-          <button className="flex-1" type="submit">
-            Save
-          </button>
+        <div className="flex w-full gap-2 pt-8">
+          <div className="flex flex-1">
+            <button
+              className="flex-1 items-center"
+              name="intent"
+              value="cancel"
+            >
+              Cancel
+            </button>
+          </div>
+          <div className="flex flex-1">
+            <button className="flex-1 bg-blue-300" type="submit">
+              Save
+            </button>
+          </div>
         </div>
       </Form>
     </div>
