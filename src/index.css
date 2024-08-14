@@ -131,6 +131,16 @@ form[action$="delete"] button {
 }
 
 /* NavLinks */
+#nav-bar {
+  /* fixed bottom-0 flex w-full */
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  width: 100%;
+}
+/* #nav-bar a.active {
+  border-top: 4px rgb(76, 205, 249) solid;
+} */
 /* #sidebar nav a {
   padding: 0.75rem;
 }

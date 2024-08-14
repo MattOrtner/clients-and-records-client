@@ -23,32 +23,80 @@ export default function Root() {
   return (
     <div className="flex flex-col items-center h-full w-full">
       <Outlet />
-      <div className="fixed bottom-0 flex w-full">
+      <nav id="nav-bar">
         <NavLink
           to={`/`}
-          className="border-2 flex-1 flex justify-center rounded-md p-2"
+          className={({ isActive, isPending, isTransitioning }) =>
+            [
+              "border-2",
+              "flex-1",
+              "flex",
+              "justify-center",
+              "rounded-md",
+              "p-2",
+              isPending ? "bg-red-300" : "",
+              isActive ? "border-t-blue-300 border-y-4" : "",
+              isTransitioning ? "bg-green-400 " : "",
+            ].join(" ")
+          }
         >
           <Icon path={mdiHomeOutline} size={1.25} />
         </NavLink>
         <NavLink
           to={`contacts`}
-          className="border-2 flex-1 flex justify-center rounded-md p-2"
+          className={({ isActive, isPending, isTransitioning }) =>
+            [
+              "border-2",
+              "flex-1",
+              "flex",
+              "justify-center",
+              "rounded-md",
+              "p-2",
+              isPending ? "bg-red-400" : "",
+              isActive ? "border-t-blue-300 border-y-4" : "",
+              isTransitioning ? "bg-green-400" : "",
+            ].join(" ")
+          }
         >
           <Icon path={mdiAccountMultipleOutline} size={1.25} />
         </NavLink>
         <NavLink
           to="calendar"
-          className="border-2 flex-1 flex justify-center rounded-md p-2"
+          className={({ isActive, isPending, isTransitioning }) =>
+            [
+              "border-2",
+              "flex-1",
+              "flex",
+              "justify-center",
+              "rounded-md",
+              "p-2",
+              isPending ? "bg-red-400" : "",
+              isActive ? "border-t-blue-300 border-y-4" : "",
+              isTransitioning ? "bg-green-400" : "",
+            ].join(" ")
+          }
         >
           <Icon path={mdiCalendarMultiselectOutline} size={1.25} />
         </NavLink>
         <NavLink
           to="payments"
-          className="border-2 flex-1 flex justify-center rounded-md p-2"
+          className={({ isActive, isPending, isTransitioning }) =>
+            [
+              "border-2",
+              "flex-1",
+              "flex",
+              "justify-center",
+              "rounded-md",
+              "p-2",
+              isPending ? "bg-red-400" : "",
+              isActive ? "border-t-blue-300 border-y-4" : "",
+              isTransitioning ? "bg-green-400" : "",
+            ].join(" ")
+          }
         >
           <Icon path={mdiCurrencyUsd} size={1.25} />
         </NavLink>
-      </div>
+      </nav>
     </div>
   );
 }
