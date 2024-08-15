@@ -47,7 +47,22 @@ body {
   line-height: 1.5;
   color: #121212;
 }
-textarea,
+
+textarea {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  font-size: 1rem;
+  font-family: inherit;
+  box-shadow: 2px 2px 2px hsla(0, 0%, 0%, 0.2), 0 1px 2px hsla(0, 0%, 0%, 0.2);
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
 input,
 button {
   font-size: 1rem;
@@ -55,8 +70,8 @@ button {
   border: none;
   border-radius: 8px;
   padding: 0.5rem 0.75rem;
-  box-shadow: 0 0px 1px hsla(0, 0%, 0%, 0.2), 0 1px 2px hsla(0, 0%, 0%, 0.2);
-  /* background-color: white; */
+  box-shadow: 2px 2px 2px hsla(0, 0%, 0%, 0.2), 0 1px 2px hsla(0, 0%, 0%, 0.2);
+
   line-height: 1.5;
   margin: 0;
 }

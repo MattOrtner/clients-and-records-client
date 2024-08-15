@@ -33,7 +33,10 @@ import CreateSession, {
   loader as sessionLoader,
 } from "./routes/createSession";
 
-import SessionPage, { loader as sessionPageLoader } from "./routes/sessionPage";
+import SessionPage, {
+  loader as sessionPageLoader,
+  action as updateSession,
+} from "./routes/sessionPage";
 
 import { action as deleteContact } from "./routes/deleteContact";
 import { action as deleteSession } from "./routes/deleteSession";
@@ -91,7 +94,7 @@ const router = createBrowserRouter([
         path: "contacts/:contactId/sessions/:sessionId",
         element: <SessionPage />,
         loader: sessionPageLoader,
-        // action: deleteSession,
+        action: updateSession,
       },
       {
         path: "contacts/:contactId/profile",

@@ -47,8 +47,6 @@ export async function getSessions(id) {
 }
 
 export async function updateSession(contactId, sessionId, updates) {
-  // sessionId undefined!!!
-  console.log("contactId, sessionId, updates:", contactId, sessionId, updates);
   let contacts = await localforage.getItem("contacts");
   let contact = contacts.find((contact) => contact.id === contactId);
   let session = contact.sessions.find((session) => session.id === sessionId);

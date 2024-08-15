@@ -1,5 +1,5 @@
-import { redirect, Form, useLoaderData } from "react-router-dom";
-import { getSession, deleteSession } from "../sessions";
+import { useSubmit, Form, useLoaderData } from "react-router-dom";
+import { getSession, deleteSession, updateSession } from "../sessions";
 import Icon from "@mdi/react";
 import { mdiCheckCircleOutline, mdiAlphaXCircleOutline } from "@mdi/js";
 import { useState } from "react";
@@ -10,20 +10,37 @@ export async function loader({ params }) {
   const session = await getSession(params);
   return { session };
 }
-export async function action({ request, params }) {}
+export async function action({ request, params }) {
+  const { contactId, sessionId } = params;
+  const formData = await request.formData();
+  const updatedNotes = Object.fromEntries(formData);
+  console.log("updatedNotes", updatedNotes);
+  const updatedSession = await updateSession(
+    contactId,
+    sessionId,
+    updatedNotes
+  );
+  console.log("updatedSession", updatedSession);
+  return updatedSession;
+}
 
 export default function SessionPage() {
   const { session } = useLoaderData();
+  const submit = useSubmit();
   const { date, time, paid, notes } = session;
 
   const reversedDate = reverseDate(date);
 
   const [isEditing, setIsEditing] = useState(false);
+  const [sessionNotes, setSessionNotes] = useState(notes);
+
+  // add some cute saved animation
   const handleSave = () => {
+    console.log("awesome?");
     setIsEditing((isEditing) => !isEditing);
+    submit(sessionNotes);
   };
 
-  const [sessionNotes, setSessionNotes] = useState(notes || "Add a note.");
   const handleNotes = (e) => {
     const value = e.target.value;
     setIsEditing(true);
@@ -33,27 +50,24 @@ export default function SessionPage() {
   return (
     <div className="flex flex-col w-full gap-8 mt-8 h-full px-4">
       <InfoCluster reversedDate={reversedDate} time={time} paid={paid} />
-      <div className="flex gap-8">
-        <h1 className="text-3xl">Notes</h1>
-        {isEditing ? (
-          <button onClick={handleSave} className="bg-blue-300">
-            Save
-          </button>
-        ) : (
-          <button>Edit</button>
-        )}
-      </div>
-      <div className="flex flex-col w-full h-1/2  rounded-lg">
-        <Form>
-          <textarea
-            rows="15"
-            cols="39"
-            id="NOTES"
-            value={sessionNotes}
-            onChange={handleNotes}
-          ></textarea>
-        </Form>
-      </div>
+      <Form method="post" className="h-[60%]">
+        <div className="flex gap-8 mb-4">
+          <h1 className="text-3xl">Notes</h1>
+          {isEditing && (
+            <button type="submit" className="bg-blue-300">
+              Save
+            </button>
+          )}
+        </div>
+        <textarea
+          id="NOTES"
+          placeholder="Add some session notes."
+          value={sessionNotes}
+          onChange={handleNotes}
+          name="notes"
+          className="outline-blue-300"
+        ></textarea>
+      </Form>
     </div>
   );
 }
