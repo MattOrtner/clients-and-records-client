@@ -50,15 +50,15 @@ export default function CreateSession() {
           <span className="text-xl">Time</span>
           <input type="time" name="time" aria-label="time of day" />
           <label>
-            <div className="flex justify-center items-center gap-4 pt-8">
-              <label className="text-xl">Paid</label>
+            <label className="text-xl flex justify-center items-center gap-4 pt-8">
+              Paid
               <input
-                className="h-6 w-6"
+                className="h-6 w-6 "
                 aria-label="payment"
                 type="checkbox"
                 name="paid"
               />
-            </div>
+            </label>
           </label>
         </p>
         <div className="flex w-full gap-2 pt-8">
