@@ -1,6 +1,7 @@
-import { Form, redirect, useLoaderData, useNavigate } from "react-router-dom";
+import { Form, useLoaderData } from "react-router-dom";
 import { getContact, deleteContact } from "../contacts";
 import { useState } from "react";
+import NavBackButton from "./components/NavBackButton";
 
 export async function loader({ params }) {
   const contact = await getContact(params.contactId);
@@ -11,7 +12,6 @@ export async function action({ request, params }) {}
 
 export default function Profile() {
   const { contact } = useLoaderData();
-  const navigate = useNavigate();
 
   const [isBlurPhone, setIsBlurPhone] = useState("blur-sm");
 
@@ -27,16 +27,8 @@ export default function Profile() {
   };
 
   return (
-    <div className="flex flex-col m-8 gap-4">
-      <button
-        type="button"
-        onClick={() => {
-          navigate(-1);
-        }}
-      >
-        Back
-      </button>
-
+    <div className="flex flex-col items-center m-8 gap-4 w-full">
+      <NavBackButton />
       <h1 className="text-2xl">
         {first} {last}
       </h1>

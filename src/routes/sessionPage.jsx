@@ -3,7 +3,7 @@ import { getSession, deleteSession, updateSession } from "../sessions";
 import Icon from "@mdi/react";
 import { mdiCheckCircleOutline, mdiMinusCircleOutline } from "@mdi/js";
 import { useState } from "react";
-
+import NavBackButton from "./components/NavBackButton";
 import reverseDate from "../reverseDate";
 import standardTime from "../standardTime";
 
@@ -48,6 +48,7 @@ export default function SessionPage() {
 
   return (
     <div className="flex flex-col w-full gap-8 mt-8 h-full px-4">
+      <NavBackButton />
       <InfoCluster date={date} time={time} paid={paid} />
       <Form method="post" className="h-[60%]">
         <div className="flex gap-8 mb-4">

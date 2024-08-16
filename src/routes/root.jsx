@@ -3,8 +3,6 @@ import { Outlet, NavLink } from "react-router-dom";
 import NavBarTab from "./components/navBarTab";
 
 import {
-  mdiSpaceInvaders,
-  mdiAccountOutline,
   mdiAccountMultipleOutline,
   mdiCalendarMultiselectOutline,
   mdiCurrencyUsd,

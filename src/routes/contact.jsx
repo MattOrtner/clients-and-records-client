@@ -2,7 +2,7 @@ import Icon from "@mdi/react";
 import {
   mdiAccountCircleOutline,
   mdiCheckCircleOutline,
-  mdiPlusCircleOutline,
+  mdiPlus,
   mdiEmoticonFrownOutline,
   mdiPhone,
   mdiPhoneOff,
@@ -13,8 +13,8 @@ import {
 import { Form, NavLink, redirect, useLoaderData } from "react-router-dom";
 import { getContact } from "../contacts";
 import { createSession } from "../sessions";
-
 import reverseDate from "../reverseDate";
+import NavBackButton from "./components/NavBackButton";
 
 export async function loader({ params }) {
   const contact = await getContact(params.contactId);
@@ -44,6 +44,7 @@ export default function Contact() {
   return (
     <div id="contact">
       <div className="flex flex-col justify-center items-center gap-4 my-8">
+        <NavBackButton />
         <div className="mb-4">
           {contact.first || contact.last ? (
             <>
@@ -101,11 +102,8 @@ export default function Contact() {
         )}
       </div>
       <Form method="POST">
-        <button
-          className="fixed bottom-24 right-4  bg-blue-200 rounded-full"
-          type="submit"
-        >
-          <Icon path={mdiPlusCircleOutline} color="black" size={2} />
+        <button className="fixed bottom-24 right-4 rounded-full" type="submit">
+          <Icon path={mdiPlus} color="rgb(59 130 246)" size={2} />
         </button>
       </Form>
     </div>
@@ -120,7 +118,11 @@ function ConcactProfileNavLink({ contactId, size }) {
         aria-label="client-profile"
         className="flex justify-center items-center"
       >
-        <Icon path={mdiAccountCircleOutline} color="gray" size={size} />
+        <Icon
+          path={mdiAccountCircleOutline}
+          color="rgb(59 130 246)"
+          size={size}
+        />
       </button>
     </NavLink>
   );
