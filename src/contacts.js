@@ -67,8 +67,38 @@ export async function getInfoForContactPage(id) {
 // IF FOR IS NOT FULLY FILLED IN THEN IT WONT SAVE ANYTHING BUT EMAIL, RATE, OCCURANCE
 //    CREATE EDIT ROUTE FOR EACH SESSION?
 
+async function createContactAPI(updates) {
+  const { first, last, email, rate, occurrence, phone_number } = updates;
+  const phonenumber = phone_number;
+  fetch("http://localhost:3001/clients", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      first,
+      last,
+      email,
+      rate,
+      occurrence,
+      phonenumber,
+    }),
+  })
+    .then((response) => {
+      console.log("response in createContactAPI", response);
+      return response.text();
+    })
+    .then((data) => {
+      console.log("data: ", data);
+      alert(data);
+      // getMerchant();
+    });
+}
+
 export async function updateContact(id, updates) {
-  // await fakeNetwork();
+  console.log("updates: ", updates);
+  const apiResponse = await createContactAPI(updates);
+  console.log("apiResponse: ", apiResponse);
   let contacts = await localforage.getItem("contacts");
   let contact = contacts.find((contact) => contact.id === id);
 

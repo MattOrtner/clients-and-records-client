@@ -9,6 +9,7 @@ import {
 import Icon from "@mdi/react";
 import { mdiPlus } from "@mdi/js";
 import { getContacts, createContact } from "../contacts";
+
 import { hasLocalPassord } from "../auth";
 
 export async function loader({ request }) {
@@ -30,7 +31,7 @@ export default function ContactList() {
   }, [q]);
   return (
     <>
-      <div id="contacts-page">
+      <div className="w-full">
         <span className="flex w-full p-2">
           <Form id="search-form" role="search">
             <input
@@ -53,17 +54,17 @@ export default function ContactList() {
             </button>
           </Form>
         </span>
-        <nav className="w-full flex justify-center">
+        <nav className="w-full flexflex-col justify-center  gap-4">
           {contacts.length ? (
             <ul>
               {contacts.map((contact) => (
                 <li key={contact.id}>
                   <NavLink
                     to={`${contact.id}`}
-                    className="flex flex-col justify-center items-center "
+                    className="flex justify-center items-center w-full"
                   >
                     {contact.first || contact.last ? (
-                      <div className="text-xl w-[90%] text-center border-gray-200 border-2 rounded-lg py-1 mb-1">
+                      <div className="text-xl w-[90%] text-center border-gray-200 border-2 rounded-lg py-1 mb-2">
                         {contact.first} {contact.last}
                       </div>
                     ) : (

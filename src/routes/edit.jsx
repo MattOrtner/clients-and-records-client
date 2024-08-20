@@ -52,8 +52,8 @@ export default function EditContact() {
             aria-label="phone number"
             placeholder="000-000-0000"
             type="phone"
-            name="phoneNumber"
-            defaultValue={contact.phoneNumber}
+            name="phone_number"
+            defaultValue={contact.phone_number}
           />
         </label>
         <span>Rate</span>
@@ -69,12 +69,12 @@ export default function EditContact() {
           />
         </div>
         <label>
-          <span className="pr-4">Occurance</span>
+          <span className="pr-4">Occurrence</span>
           <input
-            aria-label="occurance"
+            aria-label="occurrence"
             placeholder="1"
             type="text"
-            name="occurance"
+            name="occurrence"
             defaultValue="1"
           />
         </label>
@@ -103,8 +103,8 @@ export default function EditContact() {
                 aria-label="phone number"
                 placeholder="000-000-0000"
                 type="phone"
-                name="phoneNumber"
-                defaultValue={contact.emergencyContact.phoneNumber}
+                name="phone_number"
+                defaultValue={contact.emergencyContact.phone_number}
               />
             </label> */}
         </label>

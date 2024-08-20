@@ -15,8 +15,15 @@ export default function Profile() {
 
   const [isBlurPhone, setIsBlurPhone] = useState("blur-sm");
 
-  const { first, last, email, phoneNumber, occurance, rate, emergencyContact } =
-    contact;
+  const {
+    first,
+    last,
+    email,
+    phone_number,
+    occurance,
+    rate,
+    emergencyContact,
+  } = contact;
 
   const tax = rate * 0.2;
 
@@ -36,7 +43,7 @@ export default function Profile() {
       <div className="flex gap-2 items-center">
         <p className="text-xl">phone:</p>
         <p className={` ${isBlurPhone}`} onClick={handlePhoneBlur}>
-          {phoneNumber}
+          {phone_number}
         </p>
       </div>
       <p className="text-xl">rate: $ {rate}</p>
