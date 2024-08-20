@@ -53,7 +53,7 @@ export default function ContactList() {
             </button>
           </Form>
         </span>
-        <nav className="w-full">
+        <nav className="w-full flex justify-center">
           {contacts.length ? (
             <ul>
               {contacts.map((contact) => (

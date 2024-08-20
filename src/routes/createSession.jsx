@@ -1,16 +1,5 @@
-import {
-  Form,
-  redirect,
-  useLoaderData,
-  useNavigate,
-  useParams,
-} from "react-router-dom";
-import {
-  createSession,
-  deleteSession,
-  getSession,
-  updateSession,
-} from "../sessions";
+import { Form, redirect, useLoaderData } from "react-router-dom";
+import { deleteSession, getSession, updateSession } from "../sessions";
 
 export async function action({ request, params }) {
   const { sessionId, contactId } = params;

@@ -36,7 +36,7 @@ export default function EditContact() {
           name="last"
           defaultValue={contact.last}
         />
-        <label>
+        <label className="flex flex-col">
           <span>Email</span>
           <input
             placeholder="someone@somewhere.com"
@@ -46,7 +46,7 @@ export default function EditContact() {
             defaultValue={contact.email}
           />
         </label>
-        <label>
+        <label className="flex flex-col">
           <span>Phone Number</span>
           <input
             aria-label="phone number"
@@ -56,21 +56,20 @@ export default function EditContact() {
             defaultValue={contact.phoneNumber}
           />
         </label>
+        <span>Rate</span>
+        <div className="flex gap-4 items-center w-full">
+          $
+          <input
+            aria-label="rate"
+            placeholder="75"
+            type="number"
+            name="rate"
+            defaultValue={contact.rate}
+            className="w-full"
+          />
+        </div>
         <label>
-          <span>Rate</span>
-          <div className="flex gap-2 items-center">
-            $
-            <input
-              aria-label="rate"
-              placeholder="75"
-              type="number"
-              name="rate"
-              defaultValue={contact.rate}
-            />
-          </div>
-        </label>
-        <label>
-          <span>Occurance</span>
+          <span className="pr-4">Occurance</span>
           <input
             aria-label="occurance"
             placeholder="1"
@@ -110,7 +109,7 @@ export default function EditContact() {
             </label> */}
         </label>
       </p>
-      <p>
+      <p className="flex gap-4">
         <button type="submit" name="intent" value="cancel">
           Cancel
         </button>
