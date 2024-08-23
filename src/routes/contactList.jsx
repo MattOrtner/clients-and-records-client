@@ -54,7 +54,7 @@ export default function ContactList() {
             </button>
           </Form>
         </span>
-        <nav className="w-full flexflex-col justify-center  gap-4">
+        <nav className="w-full flex flex-col items-center  gap-4">
           {contacts.length ? (
             <ul>
               {contacts.map((contact) => (
@@ -75,7 +75,7 @@ export default function ContactList() {
               ))}
             </ul>
           ) : (
-            <p>No contacts</p>
+            <p className="text-2xl">Add a contact</p>
           )}
         </nav>
       </div>
