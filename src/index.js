@@ -43,6 +43,8 @@ import { action as deleteSession } from "./routes/deleteSession";
 
 import Login from "./routes/login";
 import Landing from "./routes/landing";
+import Calendar from "./routes/calendar";
+import Payments from "./routes/payments";
 
 const router = createBrowserRouter([
   {
@@ -59,11 +61,11 @@ const router = createBrowserRouter([
       },
       {
         path: "calendar",
-        element: <div>Calendar!</div>,
+        element: <Calendar />,
       },
       {
         path: "payments",
-        element: <div>Payments!</div>,
+        element: <Payments />,
       },
       {
         path: "contacts",

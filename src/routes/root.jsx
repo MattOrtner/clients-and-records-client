@@ -22,9 +22,9 @@ export default function Root() {
     <div className="flex flex-col items-center w-full">
       <Outlet />
       <nav id="nav-bar">
-        {/* <NavBarTab route={"/"} svg={mdiHomeOutline} /> */}
+        <NavBarTab route={"/"} svg={mdiHomeOutline} />
         <NavBarTab route={"contacts"} svg={mdiAccountMultipleOutline} />
-        {/* <NavBarTab route={"calendar"} svg={mdiCalendarMulttiselectOutline} /> */}
+        <NavBarTab route={"calendar"} svg={mdiCalendarMultiselectOutline} />
         <NavBarTab route={"payments"} svg={mdiCurrencyUsd} />
       </nav>
     </div>
