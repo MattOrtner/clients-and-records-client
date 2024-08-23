@@ -52,7 +52,7 @@ export default function EditContact() {
             aria-label="phone number"
             placeholder="000-000-0000"
             type="phone"
-            name="phone_number"
+            name="phonenumber"
             defaultValue={contact.phone_number}
           />
         </label>

@@ -15,15 +15,8 @@ export default function Profile() {
 
   const [isBlurPhone, setIsBlurPhone] = useState("blur-sm");
 
-  const {
-    first,
-    last,
-    email,
-    phone_number,
-    occurance,
-    rate,
-    emergencyContact,
-  } = contact;
+  const { first, last, email, phonenumber, occurance, rate, emergencyContact } =
+    contact;
 
   const tax = rate * 0.2;
 
@@ -34,33 +27,38 @@ export default function Profile() {
   };
 
   return (
-    <div className="flex flex-col items-center m-8 gap-4 w-full">
+    <div className="w-full h-full">
       <NavBackButton />
-      <h1 className="text-2xl">
-        {first} {last}
-      </h1>
-      <p className="text-xl">email: {email}</p>
-      <div className="flex gap-2 items-center">
-        <p className="text-xl">phone:</p>
-        <p className={` ${isBlurPhone}`} onClick={handlePhoneBlur}>
-          {phone_number}
-        </p>
-      </div>
-      <p className="text-xl">rate: $ {rate}</p>
-      <p className="text-xl">occurance: {occurance}</p>
-      <p className="text-xl">tax: $ {tax}</p>
-      {emergencyContact && (
-        <div className="flex flex-col gap-4">
-          <h1 className="text-xl">Emergency Contact</h1>
-          <div>First: {emergencyContact.first}</div>
-          <div>Last: {emergencyContact.last}</div>
+
+      <div className="flex flex-col justify-center items-center gap-8 w-full h-full">
+        <div className="flex items-end gap-4">
+          <h1 className="text-2xl">
+            {first} {last}
+          </h1>
+          <Form method="delete" action="delete">
+            <button type="submit" className="delete-button">
+              Delete
+            </button>
+          </Form>
         </div>
-      )}
-      <Form method="delete" action="delete">
-        <button type="submit" className="delete-button">
-          Delete Contact
-        </button>
-      </Form>
+        <p className="text-xl">email: {email}</p>
+        <div className="flex gap-2 items-center">
+          <p className="text-xl">phone:</p>
+          <p className={` ${isBlurPhone}`} onClick={handlePhoneBlur}>
+            {phonenumber}
+          </p>
+        </div>
+        <p className="text-xl">rate: $ {rate}</p>
+        <p className="text-xl">occurance: {occurance}</p>
+        <p className="text-xl">tax: $ {tax}</p>
+        {emergencyContact && (
+          <div className="flex flex-col gap-4">
+            <h1 className="text-xl">Emergency Contact</h1>
+            <div>First: {emergencyContact.first}</div>
+            <div>Last: {emergencyContact.last}</div>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

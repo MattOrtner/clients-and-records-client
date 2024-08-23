@@ -56,12 +56,12 @@ export default function ContactList() {
         </span>
         <nav className="w-full flex flex-col items-center  gap-4">
           {contacts.length ? (
-            <ul>
+            <ul className="w-full">
               {contacts.map((contact) => (
                 <li key={contact.id}>
                   <NavLink
                     to={`${contact.id}`}
-                    className="flex justify-center items-center w-full"
+                    className="flex justify-center items-center w-full rounded-lg"
                   >
                     {contact.first || contact.last ? (
                       <div className="text-xl w-[90%] text-center border-gray-200 border-2 rounded-lg py-1 mb-2">
