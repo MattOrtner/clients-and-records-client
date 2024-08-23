@@ -97,8 +97,8 @@ async function createContactAPI(updates) {
 
 export async function updateContact(id, updates) {
   console.log("updates: ", updates);
-  const apiResponse = await createContactAPI(updates);
-  console.log("apiResponse: ", apiResponse);
+  // const apiResponse = await createContactAPI(updates);
+  // console.log("apiResponse: ", apiResponse);
   let contacts = await localforage.getItem("contacts");
   let contact = contacts.find((contact) => contact.id === id);
 
