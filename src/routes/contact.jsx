@@ -1,19 +1,17 @@
 import Icon from "@mdi/react";
 import {
   mdiAccountCircleOutline,
-  mdiCheckCircleOutline,
   mdiPlus,
-  mdiEmoticonFrownOutline,
   mdiPhone,
   mdiPhoneOff,
   mdiEmailOutline,
   mdiEmailOffOutline,
 } from "@mdi/js";
 
+import Session from "./components/ContactPage/session";
 import { Form, NavLink, redirect, useLoaderData } from "react-router-dom";
 import { getContact } from "../contacts";
 import { createSession } from "../sessions";
-import reverseDate from "../reverseDate";
 import NavBackButton from "./components/NavBackButton";
 
 export async function loader({ params }) {
@@ -124,29 +122,6 @@ function ConcactProfileNavLink({ contactId, size }) {
           size={size}
         />
       </button>
-    </NavLink>
-  );
-}
-
-function Session({ session, contactId }) {
-  const reversedDate = reverseDate(session.date);
-  const sessionId = session.id;
-  return (
-    <NavLink
-      to={`/contacts/${contactId}/sessions/${sessionId}`}
-      className="flex justify-evenly items-center w-[90%]
-      h-12 rounded-md border border-gray-300 gap-4 font-verdana"
-    >
-      <div className="py-2 px-4 rounded-md">
-        <p>{reversedDate}</p>
-      </div>
-      <p>
-        {session.paid ? (
-          <Icon path={mdiCheckCircleOutline} size={1.25} color="green" />
-        ) : (
-          <Icon path={mdiEmoticonFrownOutline} size={1.25} color="red" />
-        )}
-      </p>
     </NavLink>
   );
 }
