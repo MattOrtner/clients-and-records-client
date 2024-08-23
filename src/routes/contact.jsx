@@ -57,8 +57,8 @@ export default function Contact() {
           )}
         </div>
         <div className="flex w-full  justify-center gap-6 items-center mb-2">
-          {contact.phoneNumber ? (
-            <a href={`tel:${contact.phoneNumber}`}>
+          {contact.phonenumber ? (
+            <a href={`tel:${contact.phonenumber}`}>
               <button>
                 <Icon path={mdiPhone} color="rgb(59 130 246)" size={1.4} />
               </button>
