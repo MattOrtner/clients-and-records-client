@@ -43,10 +43,10 @@ export default function Profile() {
       <div className="flex flex-col justify-center items-center gap-4 my-8">
         <NavBackButton />
         <div className="mb-4">
-          {contact.first || contact.last ? (
+          {first || last ? (
             <>
               <h1>
-                {contact.first} {contact.last}
+                {first} {last}
               </h1>
             </>
           ) : (
