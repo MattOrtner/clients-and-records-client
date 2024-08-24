@@ -1,6 +1,5 @@
 import Icon from "@mdi/react";
 import {
-  mdiAccountCircleOutline,
   mdiPlus,
   mdiPhone,
   mdiPhoneOff,
@@ -12,7 +11,9 @@ import Session from "./components/ContactPage/session";
 import { Form, NavLink, redirect, useLoaderData } from "react-router-dom";
 import { getContact } from "../contacts";
 import { createSession } from "../sessions";
+
 import NavBackButton from "./components/NavBackButton";
+import ContactProfileNavButton from "./components/ContactPage/contactProfileNavButton";
 
 export async function loader({ params }) {
   const contact = await getContact(params.contactId);
@@ -81,7 +82,7 @@ export default function Contact() {
               <Icon path={mdiEmailOffOutline} color="gray" size={1.4} />
             </button>
           )}
-          <ConcactProfileNavLink contactId={contact.id} size={1.4} />
+          <ContactProfileNavButton contactId={contact.id} size={1.4} />
         </div>
       </div>
       <div className="flex flex-col items-center w-full h-[560px] gap-4 overflow-scroll">
@@ -105,23 +106,5 @@ export default function Contact() {
         </button>
       </Form>
     </div>
-  );
-}
-
-function ConcactProfileNavLink({ contactId, size }) {
-  return (
-    <NavLink to={`/contacts/${contactId}/profile`}>
-      <button
-        name="client-profile"
-        aria-label="client-profile"
-        className="flex justify-center items-center"
-      >
-        <Icon
-          path={mdiAccountCircleOutline}
-          color="rgb(59 130 246)"
-          size={size}
-        />
-      </button>
-    </NavLink>
   );
 }
