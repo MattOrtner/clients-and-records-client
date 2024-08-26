@@ -1,5 +1,5 @@
 import { useSubmit, Form, useLoaderData } from "react-router-dom";
-import { getSession, deleteSession, updateSession } from "../sessions";
+import { getSession, updateSession } from "../sessions";
 import Icon from "@mdi/react";
 import { mdiCheckCircleOutline, mdiMinusCircleOutline } from "@mdi/js";
 import { useState } from "react";
@@ -35,9 +35,8 @@ export default function SessionPage() {
 
   // add some cute saved animation
   const handleSave = () => {
-    console.log("awesome?");
     setIsEditing((isEditing) => !isEditing);
-    submit(sessionNotes);
+    submit({ notes: sessionNotes }, { method: "post" });
   };
 
   const handleNotes = (e) => {
@@ -49,12 +48,12 @@ export default function SessionPage() {
   return (
     <div className="flex flex-col w-full gap-8 mt-8 h-full px-4">
       <NavBackButton />
-      <InfoCluster date={date} time={time} paid={paid} />
+      <SessionInfoCluster date={date} time={time} paid={paid} />
       <Form method="post" className="h-[60%]">
         <div className="flex gap-8 mb-4">
           <h1 className="text-3xl">Notes</h1>
           {isEditing && (
-            <button type="submit" className="bg-blue-300">
+            <button type="submit" onClick={handleSave} className="bg-blue-300">
               Save
             </button>
           )}
@@ -72,7 +71,7 @@ export default function SessionPage() {
   );
 }
 
-function InfoCluster({ date, time, paid }) {
+function SessionInfoCluster({ date, time, paid }) {
   const reversedDate = reverseDate(date);
   const newTime = standardTime(time);
   return (
