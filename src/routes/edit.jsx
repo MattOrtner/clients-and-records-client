@@ -11,7 +11,7 @@ export async function action({ request, params }) {
   } else {
     console.log("deleting contact in action and not route");
     await deleteContact(params.contactId);
-    return redirect(`/`);
+    return redirect(`/contacts`);
   }
 }
 
