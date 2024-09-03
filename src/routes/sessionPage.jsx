@@ -72,27 +72,24 @@ function SessionInfoCluster({ date, time, paid, handleSave }) {
   const newTime = standardTime(time);
 
   return (
-    <div className="flex flex-col items-end text-xl">
+    <div className="flex flex-col w-full items-end text-xl">
       <Form
         method="post"
         action="update"
-        className="flex flex-col items-end  gap-2"
+        className="flex flex-col items-end gap-2"
       >
-        <div className="flex gap-2">
-          <input
-            type="date"
-            name="date"
-            id="date"
-            value={selectedDate}
-            onChange={(e) => setSelectedDate(e.target.value)}
-            onBlur={() => handleSave({ key: "date", value: selectedDate })}
-          />
-        </div>
+        <input
+          aria-label="date"
+          type="date"
+          name="date"
+          value={selectedDate}
+          onChange={(e) => setSelectedDate(e.target.value)}
+          onBlur={() => handleSave({ key: "date", value: selectedDate })}
+        ></input>
         <div className="flex gap-2 font text-2xl">
           <input
             type="time"
             name="time"
-            id="time"
             value={selectedTime}
             onChange={(e) => setSelectedTime(e.target.value)}
             onBlur={() => handleSave({ key: "time", value: selectedTime })}
