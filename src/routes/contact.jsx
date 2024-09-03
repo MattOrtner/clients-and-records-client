@@ -43,7 +43,7 @@ export default function Contact() {
   return (
     <div id="contact">
       <div className="flex flex-col justify-center items-center gap-4 my-8">
-        <NavBackButton />
+        <NavBackButton route={"/contacts"} />
         <div className="mb-4">
           {contact.first || contact.last ? (
             <>
