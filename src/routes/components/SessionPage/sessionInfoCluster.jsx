@@ -9,6 +9,15 @@ function SessionInfoCluster({ date, time, paid, handleSave }) {
   const [isSessionPaid, setIsSessionPaid] = useState(paid);
   const [isDelete, setisDelete] = useState(false);
 
+  const handlePaid = () => {
+    setIsSessionPaid(!isSessionPaid);
+    if (isSessionPaid) {
+      handleSave({ key: "paid", value: "" });
+    } else {
+      handleSave({ key: "paid", value: "on" });
+    }
+  };
+
   return (
     <div className="flex flex-col w-full items-end text-xl">
       <Form
@@ -36,9 +45,19 @@ function SessionInfoCluster({ date, time, paid, handleSave }) {
         <div className="flex gap-2">
           <h2 className="text-xl">Paid:</h2>
           {isSessionPaid ? (
-            <Icon path={mdiCheckCircleOutline} size={1.25} color="green" />
+            <Icon
+              path={mdiCheckCircleOutline}
+              size={1.25}
+              onClick={handlePaid}
+              color="green"
+            />
           ) : (
-            <Icon path={mdiMinusCircleOutline} size={1.25} color="red" />
+            <Icon
+              path={mdiMinusCircleOutline}
+              onClick={handlePaid}
+              size={1.25}
+              color="red"
+            />
           )}
         </div>
       </Form>
