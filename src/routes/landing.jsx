@@ -18,7 +18,6 @@ const Landing = () => {
     { id: "task-3", content: "Charge my phone" },
     { id: "task-4", content: "Cook dinner" },
   ]);
-  console.log("tasks: ", tasks);
   // const initialData = {
   //   tasks: [
 
@@ -33,8 +32,18 @@ const Landing = () => {
   //   columnOrder: ["column-1"],
   // };
 
+  // [0,1,2,3]
+  // [1,0,2,3] move
+  console.log("tasks out:", tasks);
   const onDragEnd = (result) => {
-    console.log("result: ", result);
+    const { source, destination } = result;
+    // if the task didn't move
+    if (destination.index === source.index) {
+      return;
+    }
+    const removedTask = tasks.splice(source.index, 1);
+    tasks.splice(destination.index, 0, removedTask[0]);
+    setTasks(tasks);
   };
 
   const deleteTask = (taskId) => {

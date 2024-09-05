@@ -5,7 +5,7 @@ const TodoColumn = ({ title, tasks, deleteTask }) => {
   return (
     <div className="m-2 border border-slate-300 rounded-md">
       <h3 className="text-3xl p-2">{title}</h3>
-      <Droppable droppableId="1">
+      <Droppable droppableId="main">
         {(provided) => (
           <div
             className="p-2"
