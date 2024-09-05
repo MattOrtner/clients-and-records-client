@@ -9,4 +9,4 @@ const days = [
 ];
 const day = new Date().getDay();
 
-export default days[day];
+export default days[day - 1];
