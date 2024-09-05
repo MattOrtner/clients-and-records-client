@@ -18,23 +18,7 @@ const Landing = () => {
     { id: "task-3", content: "Charge my phone" },
     { id: "task-4", content: "Cook dinner" },
   ]);
-  // const initialData = {
-  //   tasks: [
 
-  //   ],
-  //   columns: {
-  //     "column-1": {
-  //       id: "column-1",
-  //       title: "To do",
-  //       taskIds: ["task-1", "task-2", "task-3", "task-4"],
-  //     },
-  //   },
-  //   columnOrder: ["column-1"],
-  // };
-
-  // [0,1,2,3]
-  // [1,0,2,3] move
-  console.log("tasks out:", tasks);
   const onDragEnd = (result) => {
     const { source, destination } = result;
     // if the task didn't move

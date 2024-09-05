@@ -11,7 +11,9 @@ const Task = ({ index, task, deleteTask }) => {
           {...provided.dragHandleProps}
         >
           {task.content}
-          <button onClick={() => deleteTask(task.id)}>X</button>
+          <button className="text-red-600" onClick={() => deleteTask(task.id)}>
+            X
+          </button>
         </div>
       )}
     </Draggable>
