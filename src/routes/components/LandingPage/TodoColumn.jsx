@@ -1,10 +1,36 @@
-import Task from "./Task";
 import { Droppable } from "react-beautiful-dnd";
+import Task from "./Task";
+import Icon from "@mdi/react";
+import { mdiPlus } from "@mdi/js";
+import { useState } from "react";
 
-const TodoColumn = ({ title, tasks, deleteTask }) => {
+const TodoColumn = ({ title, tasks, setTasks, deleteTask }) => {
+  const [task, setTask] = useState("");
+  const handleTask = (e) => {
+    e.preventDefault();
+    setTask(e.target.value);
+  };
+  const handleAddTask = (e) => {
+    e.preventDefault();
+    setTasks([...tasks, { id: `task-${tasks.length + 1}`, content: task }]);
+    setTask("");
+  };
   return (
     <div className="m-2 border border-slate-300 rounded-md">
       <h3 className="text-3xl p-2">{title}</h3>
+      <div className="flex space-evenly items-center gap-2 p-2">
+        <input
+          type="text"
+          name="task"
+          placeholder="add task"
+          value={task}
+          onChange={handleTask}
+          className="border border-slate-300 rounded-md p-2 w-full"
+        />
+        <button onClick={handleAddTask}>
+          <Icon path={mdiPlus} color="rgb(59 130 246)" size={1.1} />
+        </button>
+      </div>
       <Droppable droppableId="main">
         {(provided) => (
           <div
