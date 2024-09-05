@@ -40,7 +40,12 @@ const Landing = () => {
     <div className="flex flex-col h-full w-full gap-6 p-4">
       <h1 className="text-5xl">Happy {CurrentDay}</h1>
       <DragDropContext onDragEnd={onDragEnd}>
-        <TodoColumn title="For today" tasks={tasks} deleteTask={deleteTask} />
+        <TodoColumn
+          title="For today"
+          tasks={tasks}
+          setTasks={setTasks}
+          deleteTask={deleteTask}
+        />
       </DragDropContext>
     </div>
   );
