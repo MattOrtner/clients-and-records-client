@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@atlaskit/css-reset": "^6.10.1",
     "@mdi/js": "^7.4.47",
     "@mdi/react": "^1.6.1",
     "@testing-library/jest-dom": "^5.17.0",

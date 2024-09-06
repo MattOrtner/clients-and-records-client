@@ -2,7 +2,6 @@ import { useState } from "react";
 import CurrentDay from "../currentDay";
 import TodoColumn from "./components/LandingPage/TodoColumn";
 import { DragDropContext } from "react-beautiful-dnd";
-import "@atlaskit/css-reset";
 
 export async function loader({ params }) {
   return {};
