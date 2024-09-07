@@ -42,7 +42,7 @@ import { action as deleteContact } from "./routes/deleteContact";
 import { action as deleteSession } from "./routes/deleteSession";
 
 import Login from "./routes/login";
-import Landing from "./routes/landing";
+import Landing, { loader as landingPageLoader } from "./routes/landing";
 import Calendar from "./routes/calendar";
 import Payments from "./routes/payments";
 
@@ -58,6 +58,7 @@ const router = createBrowserRouter([
         path: "/",
         index: true,
         element: <Landing />,
+        loader: landingPageLoader,
       },
       {
         path: "calendar",

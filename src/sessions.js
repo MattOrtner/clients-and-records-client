@@ -1,4 +1,5 @@
 import localforage from "localforage";
+import dateAsString from "../src/currentDateString";
 
 export async function createSession(contactId) {
   let contacts = await localforage.getItem("contacts");
@@ -59,6 +60,22 @@ function set(contacts) {
   return localforage.setItem("contacts", contacts);
 }
 
+export async function getTodaysSessions() {
+  let contacts = await localforage.getItem("contacts");
+  if (contacts) {
+    const todaysSessions = [];
+    for (const contact of contacts) {
+      const { first, last } = contact;
+      for (const session of contact.sessions) {
+        if (session.date === dateAsString) {
+          const { id, time } = session;
+          todaysSessions.push({ id, time, first, last });
+        }
+      }
+    }
+    return todaysSessions;
+  }
+}
 // let fakeCache = {};
 // async function fakeNetwork(key) {
 //   if (!key) {
