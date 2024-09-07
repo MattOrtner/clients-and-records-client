@@ -6,26 +6,35 @@ import { useState } from "react";
 
 const TodoColumn = ({ title, tasks, setTasks, deleteTask }) => {
   const [task, setTask] = useState("");
-  const handleTask = (e) => {
+
+  const handleTaskInput = (e) => {
     e.preventDefault();
     setTask(e.target.value);
   };
+
   const handleAddTask = (e) => {
     e.preventDefault();
-    setTasks([...tasks, { id: `task-${tasks.length + 1}`, content: task }]);
+    setTasks([
+      ...tasks,
+      {
+        id: `task-${tasks.length + Math.round(Math.random() * 8)}`,
+        content: task,
+      },
+    ]);
     setTask("");
   };
+
   return (
-    <div className="m-2 border border-slate-300 rounded-md">
-      <h3 className="text-3xl p-2">{title}</h3>
+    <div className=" border border-slate-400 rounded-md">
+      <h3 className="text-2xl font-mono pl-3 pt-2">{title}</h3>
       <div className="flex space-evenly items-center gap-2 p-2">
         <input
           type="text"
           name="task"
           placeholder="add task"
           value={task}
-          onChange={handleTask}
-          className="border border-slate-300 rounded-md p-2 w-full"
+          onChange={handleTaskInput}
+          className="border border-slate-300 rounded-md w-full"
         />
         <button onClick={handleAddTask}>
           <Icon path={mdiPlus} color="rgb(59 130 246)" size={1.1} />
