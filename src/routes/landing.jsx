@@ -4,9 +4,11 @@ import TodoColumn from "./components/LandingPage/TodoColumn";
 import { DragDropContext } from "react-beautiful-dnd";
 import { getTodaysSessions } from "../sessions";
 import { useLoaderData } from "react-router-dom";
+import standardTime from "../standardTime";
 
 export async function loader({ params }) {
   const sessions = await getTodaysSessions();
+  console.log("sessions: ", sessions);
   return { sessions };
 }
 export async function action({ request, params }) {
@@ -41,21 +43,23 @@ const Landing = () => {
   };
 
   return (
-    <div className="flex flex-col h-full w-full gap-6 p-2">
-      <h1 className="text-4xl font-serif">Happy {CurrentDay}</h1>
+    <div className="flex flex-col h-full w-full gap-10 p-2">
+      <h1 className="text-4xl text-center font-serif">Happy {CurrentDay}</h1>
       <div>
-        <h2 className="text-2xl bg-blue-200 pl-4 pb-2">Agenda:</h2>
+        <h2 className="text-2xl pl-2 pb-2 font-serif">Today's Agenda:</h2>
         <ul className="bg-green">
           {sessions.length &&
             sessions.map((session) => (
               <div
                 key={session.id}
-                className=" flex text-lg justify-between 
-                border border-slate-300 rounded-md pl-2 py-2"
+                className=" flex text-lg justify-between items-center border
+              border-slate-300 rounded-md py-1 m w-full"
               >
-                <div>{session.first}</div>
-                <div>{session.last}</div>
-                <div>{session.time}</div>
+                <div className="pl-2 flex gap-2">
+                  <div>{session.first}</div>
+                  <div>{session.last}</div>
+                </div>
+                <div className="pr-2">{session.time}</div>
               </div>
             ))}
         </ul>
