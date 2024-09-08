@@ -7,6 +7,5 @@ const days = [
   "Saturday",
   "Sunday",
 ];
-const day = new Date().getDay();
-
-export default days[day - 1];
+const today = new Date().getDay();
+export default days[today - 1];
