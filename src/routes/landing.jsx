@@ -48,7 +48,7 @@ const Landing = () => {
       <div>
         <h2 className="text-2xl pl-2 pb-2 font-serif">Today's Agenda:</h2>
         <ul className="bg-green">
-          {sessions.length &&
+          {sessions.length ? (
             sessions.map((session) => (
               <div
                 key={session.id}
@@ -61,7 +61,10 @@ const Landing = () => {
                 </div>
                 <div className="pr-2">{session.time}</div>
               </div>
-            ))}
+            ))
+          ) : (
+            <div className="text-center">No sessions today</div>
+          )}
         </ul>
       </div>
       <DragDropContext onDragEnd={onDragEnd}>
