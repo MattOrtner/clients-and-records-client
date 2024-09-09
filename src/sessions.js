@@ -65,11 +65,12 @@ export async function getTodaysSessions() {
   if (contacts) {
     const todaysSessions = [];
     for (const contact of contacts) {
-      const { first, last } = contact;
+      const { id, first, last } = contact;
+      const contactId = id;
       for (const session of contact.sessions) {
         if (session.date === dateAsString) {
           const { id, time } = session;
-          todaysSessions.push({ id, time, first, last });
+          todaysSessions.push({ id, contactId, time, first, last });
         }
       }
     }
