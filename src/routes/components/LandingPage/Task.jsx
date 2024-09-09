@@ -10,7 +10,7 @@ const Task = ({ index, task, deleteTask }) => {
           {...provided.draggableProps}
           {...provided.dragHandleProps}
         >
-          <div className="pl-2">{task.content}</div>
+          <div className="pl-2 text-wrap">{task.content}</div>
           <div className="flex justify-end">
             <button
               className="text-red-600 w-[45px] rounded-none rounded-r-lg shadow-none"
