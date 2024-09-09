@@ -16,10 +16,10 @@ export async function action({ request, params }) {
 const Landing = () => {
   const { sessions } = useLoaderData();
   const [tasks, setTasks] = useState([
-    { id: "task-1", content: "Take out the garbage" },
-    { id: "task-2", content: "Watch my favorite show" },
-    { id: "task-3", content: "Charge my phone" },
-    { id: "task-4", content: "Cook dinner" },
+    { id: "task-1", content: "Confirm with Michelle about tomorrows session." },
+    { id: "task-2", content: "ORDER LUNCH 🍕" },
+    { id: "task-3", content: "Plan weekend retreat" },
+    { id: "task-4", content: "Call mom 🧓🏼." },
   ]);
 
   const onDragEnd = (result) => {
@@ -43,7 +43,7 @@ const Landing = () => {
       <Agenda sessions={sessions} />
       <DragDropContext onDragEnd={onDragEnd}>
         <TodoColumn
-          title="Up Next"
+          title="Tasks"
           tasks={tasks}
           setTasks={setTasks}
           deleteTask={deleteTask}

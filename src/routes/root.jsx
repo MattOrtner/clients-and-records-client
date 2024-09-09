@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Outlet, NavLink } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import NavBarTab from "./components/navBarTab";
 
 import {
@@ -24,7 +24,7 @@ export default function Root() {
       <nav id="nav-bar">
         <NavBarTab route={"/"} svg={mdiHomeOutline} />
         <NavBarTab route={"contacts"} svg={mdiAccountMultipleOutline} />
-        <NavBarTab route={"calendar"} svg={mdiCalendarMultiselectOutline} />
+        {/* <NavBarTab route={"calendar"} svg={mdiCalendarMultiselectOutline} /> */}
         <NavBarTab route={"payments"} svg={mdiCurrencyUsd} />
       </nav>
     </div>
