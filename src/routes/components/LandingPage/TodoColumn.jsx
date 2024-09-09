@@ -25,9 +25,9 @@ const TodoColumn = ({ title, tasks, setTasks, deleteTask }) => {
   };
 
   return (
-    <div className=" border border-slate-400 rounded-md">
-      <h3 className="text-2xl font-mono pl-3 pt-2">{title}</h3>
-      <div className="flex space-evenly items-center gap-2 p-2">
+    <div className="border-b border-slate-400 p-2 pb-4">
+      <h3 className="text-2xl font-mono pt-2 font-serif">{title}</h3>
+      <div className="flex items-center gap-2">
         <input
           type="text"
           name="task"
@@ -42,11 +42,7 @@ const TodoColumn = ({ title, tasks, setTasks, deleteTask }) => {
       </div>
       <Droppable droppableId="main">
         {(provided) => (
-          <div
-            className="p-2"
-            ref={provided.innerRef}
-            {...provided.droppableProps}
-          >
+          <div ref={provided.innerRef} {...provided.droppableProps}>
             {tasks.map((task, i) => (
               <Task
                 key={task.id}

@@ -47,10 +47,10 @@ const Landing = () => {
       <h1 className="text-4xl text-center font-serif">Happy {CurrentDay}</h1>
       <div>
         <h2 className="text-2xl pl-2 pb-2 font-serif">Today's Agenda:</h2>
-        <ul className="bg-green">
+        <ul className="flex flex-col pl-2">
           {sessions.length ? (
             sessions.map((session) => (
-              <div
+              <li
                 key={session.id}
                 className=" flex text-lg justify-between items-center border
               border-slate-300 rounded-md py-1 m w-full"
@@ -60,10 +60,15 @@ const Landing = () => {
                   <div>{session.last}</div>
                 </div>
                 <div className="pr-2">{session.time}</div>
-              </div>
+              </li>
             ))
           ) : (
-            <div className="text-center">No sessions today</div>
+            <li
+              className=" flex text-lg justify-between items-center border
+              border-slate-300 rounded-md py-1 m w-full"
+            >
+              <div className="pl-2">No sessions today</div>
+            </li>
           )}
         </ul>
       </div>
