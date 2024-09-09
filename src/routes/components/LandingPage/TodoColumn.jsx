@@ -43,14 +43,18 @@ const TodoColumn = ({ title, tasks, setTasks, deleteTask }) => {
       <Droppable droppableId="main">
         {(provided) => (
           <div ref={provided.innerRef} {...provided.droppableProps}>
-            {tasks.map((task, i) => (
-              <Task
-                key={task.id}
-                index={i}
-                task={task}
-                deleteTask={deleteTask}
-              />
-            ))}
+            {tasks.length ? (
+              tasks.map((task, i) => (
+                <Task
+                  key={task.id}
+                  index={i}
+                  task={task}
+                  deleteTask={deleteTask}
+                />
+              ))
+            ) : (
+              <div className="text-center text-slate-400">No tasks</div>
+            )}
             {provided.placeholder}
           </div>
         )}
