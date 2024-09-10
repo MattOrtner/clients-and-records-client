@@ -2,7 +2,7 @@ import CurrentDay from "../../../currentDay";
 import AgendaSession from "./AgendaSession";
 
 const Agenda = ({ sessions }) => {
-  if (!sessions) {
+  if (sessions === undefined) {
     <>
       <h1 className="text-4xl text-center font-serif">Happy {CurrentDay}</h1>
       <div className="p-2">
