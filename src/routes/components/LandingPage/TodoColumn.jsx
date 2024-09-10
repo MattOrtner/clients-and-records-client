@@ -14,6 +14,7 @@ const TodoColumn = ({ title, tasks, setTasks, deleteTask }) => {
 
   const handleAddTask = (e) => {
     e.preventDefault();
+    if (!task) return;
     setTasks([
       ...tasks,
       {
