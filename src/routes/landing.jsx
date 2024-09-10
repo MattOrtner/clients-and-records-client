@@ -16,10 +16,10 @@ export async function action({ request, params }) {
 const Landing = () => {
   const { sessions } = useLoaderData();
   const [tasks, setTasks] = useState([
-    { id: "task-1", content: "Confirm with Michelle about tomorrows session." },
-    { id: "task-2", content: "ORDER LUNCH 🍕" },
+    { id: "task-1", content: "Follow up with Michelle" },
+    { id: "task-2", content: "ORDER LUNCH 🍕🍕🍕" },
     { id: "task-3", content: "Plan weekend retreat" },
-    { id: "task-4", content: "Call mom 🧓🏼." },
+    { id: "task-4", content: "Call mom 💅" },
   ]);
 
   const onDragEnd = (result) => {

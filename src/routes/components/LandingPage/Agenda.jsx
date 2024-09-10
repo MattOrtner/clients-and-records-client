@@ -14,11 +14,10 @@ const Agenda = ({ sessions }) => {
                 <AgendaSession session={session} key={session.id} />
               ))
             ) : (
-              <li
-                className=" flex text-lg justify-between items-center border
-              border-slate-300 rounded-md py-1 m w-full"
-              >
-                <div className="pl-2">No sessions today 🤗</div>
+              <li className=" flex text-lg justify-between items-center rounded-md py-1 m w-full">
+                <div className="pl-2">
+                  Sessions scheduled for today appear here.
+                </div>
               </li>
             )}
           </ul>
