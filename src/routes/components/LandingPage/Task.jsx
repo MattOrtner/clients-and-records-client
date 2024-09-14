@@ -5,23 +5,24 @@ const Task = ({ index, task, deleteTask }) => {
     <Draggable draggableId={task.id} index={index}>
       {(provided) => (
         <div
-          className=" flex text-lg justify-between items-center border border-slate-300 rounded-md my-2 m w-full shadow-md"
+          className="flex justify-between items-center p-4 bg-white border border-slate-200 rounded-lg shadow-sm hover:shadow-md transition-shadow w-full"
           ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
         >
-          <div className="pl-2 text-wrap">{task.content}</div>
-          <div className="flex justify-end">
-            <button
-              className="text-red-600 w-[45px] font-bold bg-red-100 rounded-lg shadow-none border-none"
-              onClick={() => deleteTask(task.id)}
-            >
-              X
-            </button>
+          <div className="text-gray-800 font-medium break-words w-full pr-4">
+            {task.content}
           </div>
+          <button
+            className="bg-red-500 text-white p-2 rounded-lg w-[45px] flex-shrink-0 hover:bg-red-600 transition-colors"
+            onClick={() => deleteTask(task.id)}
+          >
+            X
+          </button>
         </div>
       )}
     </Draggable>
   );
 };
+
 export default Task;
