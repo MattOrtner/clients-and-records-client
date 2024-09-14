@@ -2,47 +2,33 @@ import CurrentDay from "../../../currentDay";
 import AgendaSession from "./AgendaSession";
 
 const Agenda = ({ sessions }) => {
-  if (sessions === undefined) {
-    return (
-      <>
-        <h1 className="text-4xl text-center font-serif">Happy {CurrentDay}</h1>
-        <div className="p-2">
-          <div>
-            <h2 className="text-2xl pb-2 font-serif">Today's Agenda:</h2>
-            <ul className="flex flex-col">
-              <li className=" flex text-lg justify-between items-center rounded-md py-1 m w-full">
-                <div className="pl-2">
-                  Sessions scheduled for today appear here.
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </>
-    );
-  }
   return (
-    <>
-      <h1 className="text-4xl text-center font-serif">Happy {CurrentDay}</h1>
-      <div className="p-2">
-        <div>
-          <h2 className="text-2xl pb-2 font-serif">Today's Agenda:</h2>
-          <ul className="flex flex-col">
-            {sessions.length ? (
-              sessions.map((session) => (
-                <AgendaSession session={session} key={session.id} />
-              ))
-            ) : (
-              <li className=" flex text-lg justify-between items-center rounded-md py-1 m w-full">
-                <div className="pl-2">
-                  Sessions scheduled for today appear here.
-                </div>
-              </li>
-            )}
-          </ul>
-        </div>
+    <div className="bg-white p-6 rounded-lg shadow-md">
+      {/* Title */}
+      <h1 className="text-3xl text-center font-bold text-gray-800 mb-6">
+        Happy {CurrentDay}
+      </h1>
+
+      {/* Agenda Section */}
+      <div>
+        <h2 className="text-xl font-semibold text-gray-700 mb-4">
+          Today's Agenda:
+        </h2>
+
+        <ul className="flex flex-col gap-3">
+          {sessions && sessions.length ? (
+            sessions.map((session) => (
+              <AgendaSession session={session} key={session.id} />
+            ))
+          ) : (
+            <li className="text-gray-500 text-center py-4 bg-gray-100 rounded-lg">
+              No sessions scheduled for today.
+            </li>
+          )}
+        </ul>
       </div>
-    </>
+    </div>
   );
 };
+
 export default Agenda;

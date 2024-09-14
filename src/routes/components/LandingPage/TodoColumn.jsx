@@ -26,24 +26,36 @@ const TodoColumn = ({ title, tasks, setTasks, deleteTask }) => {
   };
 
   return (
-    <div className="border-b border-slate-400 p-2 pb-4">
-      <h3 className="text-2xl font-mono pt-2 font-serif">{title}</h3>
-      <div className="flex items-center gap-2">
+    <div className="p-4 bg-white rounded-lg shadow-md border border-slate-200">
+      {/* Column Header */}
+      <h3 className="text-xl font-semibold text-gray-700 mb-4">{title}</h3>
+
+      {/* Input Form */}
+      <div className="flex items-center gap-2 mb-4">
         <input
           type="text"
           name="task"
-          placeholder="add task"
+          placeholder="Add new task..."
           value={task}
           onChange={handleTaskInput}
-          className="border border-slate-300 rounded-md w-full"
+          className="border border-slate-300 rounded-lg w-full p-2 focus:outline-none focus:ring focus:ring-blue-200 transition-shadow"
         />
-        <button onClick={handleAddTask}>
-          <Icon path={mdiPlus} color="rgb(59 130 246)" size={1.1} />
+        <button
+          onClick={handleAddTask}
+          className="bg-blue-500 hover:bg-blue-600 text-white rounded-md p-2 flex items-center justify-center transition-colors"
+        >
+          <Icon path={mdiPlus} size={1.1} />
         </button>
       </div>
+
+      {/* Task List */}
       <Droppable droppableId="main">
         {(provided) => (
-          <div ref={provided.innerRef} {...provided.droppableProps}>
+          <div
+            ref={provided.innerRef}
+            {...provided.droppableProps}
+            className="space-y-2"
+          >
             {tasks.length ? (
               tasks.map((task, i) => (
                 <Task
@@ -54,7 +66,9 @@ const TodoColumn = ({ title, tasks, setTasks, deleteTask }) => {
                 />
               ))
             ) : (
-              <div className="text-center text-slate-400">No tasks</div>
+              <div className="text-center text-slate-400 font-semibold py-4">
+                No tasks available
+              </div>
             )}
             {provided.placeholder}
           </div>
@@ -63,4 +77,5 @@ const TodoColumn = ({ title, tasks, setTasks, deleteTask }) => {
     </div>
   );
 };
+
 export default TodoColumn;

@@ -9,6 +9,7 @@ export async function loader({ params }) {
   const sessions = await getTodaysSessions();
   return { sessions };
 }
+
 export async function action({ request, params }) {
   return {};
 }
@@ -24,31 +25,33 @@ const Landing = () => {
 
   const onDragEnd = (result) => {
     const { source, destination } = result;
-    if (destination.index === source.index) {
-      return;
-    }
-    const removedTask = tasks.splice(source.index, 1);
-    tasks.splice(destination.index, 0, removedTask[0]);
-    setTasks(tasks);
+    if (!destination) return;
+    if (destination.index === source.index) return;
+    const updatedTasks = Array.from(tasks);
+    const [removedTask] = updatedTasks.splice(source.index, 1);
+    updatedTasks.splice(destination.index, 0, removedTask);
+    setTasks(updatedTasks);
   };
 
   const deleteTask = (taskId) => {
-    const index = tasks.findIndex((task) => task.id === taskId);
-    tasks.splice(index, 1);
-    setTasks([...tasks]);
+    setTasks(tasks.filter((task) => task.id !== taskId));
   };
 
   return (
-    <div className="flex flex-col h-full w-full gap-10 p-2">
-      <Agenda sessions={sessions} />
-      <DragDropContext onDragEnd={onDragEnd}>
-        <TodoColumn
-          title="Tasks"
-          tasks={tasks}
-          setTasks={setTasks}
-          deleteTask={deleteTask}
-        />
-      </DragDropContext>
+    <div className="flex flex-col h-full w-full bg-gray-50 p-4">
+      <div className="sticky top-0 z-10">
+        <Agenda sessions={sessions} />
+      </div>
+      <div className="mt-10 flex-grow overflow-y-auto">
+        <DragDropContext onDragEnd={onDragEnd}>
+          <TodoColumn
+            title="Tasks"
+            tasks={tasks}
+            setTasks={setTasks}
+            deleteTask={deleteTask}
+          />
+        </DragDropContext>
+      </div>
     </div>
   );
 };
