@@ -5,16 +5,16 @@ const Task = ({ index, task, deleteTask }) => {
     <Draggable draggableId={task.id} index={index}>
       {(provided) => (
         <div
-          className="flex justify-between items-center p-4 bg-white border border-slate-200 rounded-lg shadow-sm hover:shadow-md transition-shadow w-full"
+          className="flex justify-between items-center bg-white border border-slate-200 rounded-lg shadow-sm hover:shadow-md transition-shadow w-full"
           ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
         >
-          <div className="text-gray-800 font-medium break-words w-full pr-4">
+          <div className="text-gray-800 font-medium break-words w-full px-2">
             {task.content}
           </div>
           <button
-            className="bg-red-500 text-white p-2 rounded-lg w-[45px] flex-shrink-0 hover:bg-red-600 transition-colors"
+            className="bg-red-500 text-white rounded-lg w-[45px] flex-shrink-0 hover:bg-red-600 transition-colors"
             onClick={() => deleteTask(task.id)}
           >
             X
