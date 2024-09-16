@@ -46,7 +46,7 @@ const Landing = () => {
         </h1>
         <Agenda sessions={sessions} />
       </div>
-      <div className="mt-10 flex-grow pb-10 bg-red-200">
+      <div className="mt-10 flex-grow pb-10">
         <DragDropContext onDragEnd={onDragEnd}>
           <TodoColumn
             title="Tasks"
