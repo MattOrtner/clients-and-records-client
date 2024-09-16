@@ -14,7 +14,7 @@ const Task = ({ index, task, deleteTask }) => {
             {task.content}
           </div>
           <button
-            className="bg-red-500 text-white rounded-lg w-[45px] flex-shrink-0 hover:bg-red-600 transition-colors"
+            className="text-red-500 border border-solid border-red-500 rounded-lg w-[45px] flex-shrink-0 hover:bg-red-600 transition-colors"
             onClick={() => deleteTask(task.id)}
           >
             X
