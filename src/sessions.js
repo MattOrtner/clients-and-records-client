@@ -77,6 +77,20 @@ export async function getTodaysSessions() {
     return todaysSessions;
   }
 }
+export async function getUnpaidSessions() {
+  let contacts = await localforage.getItem("contacts");
+  if (contacts) {
+    const unpaidSessions = [];
+    for (const contact of contacts) {
+      for (const session of contact.sessions) {
+        if (session.paid === "") {
+          unpaidSessions.push(session);
+        }
+      }
+    }
+    return unpaidSessions;
+  }
+}
 // let fakeCache = {};
 // async function fakeNetwork(key) {
 //   if (!key) {
