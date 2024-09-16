@@ -44,7 +44,7 @@ import { action as deleteSession } from "./routes/deleteSession";
 import Login from "./routes/login";
 import Landing, { loader as landingPageLoader } from "./routes/landing";
 import Calendar from "./routes/calendar";
-import Payments from "./routes/payments";
+import Payments, { loader as paymentsLoader } from "./routes/payments";
 
 const router = createBrowserRouter([
   {
@@ -67,6 +67,7 @@ const router = createBrowserRouter([
       {
         path: "payments",
         element: <Payments />,
+        loader: paymentsLoader,
       },
       {
         path: "contacts",
