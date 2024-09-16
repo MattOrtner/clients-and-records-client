@@ -1,21 +1,13 @@
-import CurrentDay from "../../../currentDay";
 import AgendaSession from "./AgendaSession";
 
 const Agenda = ({ sessions }) => {
   return (
     <div className="bg-white p-6 rounded-lg shadow-md">
-      {/* Title */}
-      <h1 className="text-3xl text-center font-bold text-gray-800 mb-6">
-        Happy {CurrentDay}
-      </h1>
-
-      {/* Agenda Section */}
       <div>
         <h2 className="text-xl font-semibold text-gray-700 mb-4">
           Today's Agenda:
         </h2>
-
-        <ul className="flex flex-col gap-3">
+        <ul className="flex flex-col gap-2">
           {sessions && sessions.length ? (
             sessions.map((session) => (
               <AgendaSession session={session} key={session.id} />

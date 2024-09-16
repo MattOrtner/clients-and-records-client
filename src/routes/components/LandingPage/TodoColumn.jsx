@@ -27,10 +27,7 @@ const TodoColumn = ({ title, tasks, setTasks, deleteTask }) => {
 
   return (
     <div className="p-4 bg-white rounded-lg shadow-md border border-slate-200">
-      {/* Column Header */}
       <h3 className="text-xl font-semibold text-gray-700 mb-4">{title}</h3>
-
-      {/* Input Form */}
       <div className="flex items-center gap-2 mb-4">
         <input
           type="text"
@@ -42,13 +39,11 @@ const TodoColumn = ({ title, tasks, setTasks, deleteTask }) => {
         />
         <button
           onClick={handleAddTask}
-          className="bg-blue-500 hover:bg-blue-600 text-white rounded-md p-2 flex items-center justify-center transition-colors"
+          className="bg-blue-500 hover:bg-blue-600 text-white rounded-lg p-2 flex items-center justify-center transition-colors"
         >
           <Icon path={mdiPlus} size={1.1} />
         </button>
       </div>
-
-      {/* Task List */}
       <Droppable droppableId="main">
         {(provided) => (
           <div

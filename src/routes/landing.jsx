@@ -4,6 +4,7 @@ import { DragDropContext } from "react-beautiful-dnd";
 import { getTodaysSessions } from "../sessions";
 import { useLoaderData } from "react-router-dom";
 import Agenda from "./components/LandingPage/Agenda";
+import CurrentDay from "../currentDay";
 
 export async function loader({ params }) {
   const sessions = await getTodaysSessions();
@@ -38,11 +39,14 @@ const Landing = () => {
   };
 
   return (
-    <div className="flex flex-col h-full w-full bg-gray-50 p-4">
-      <div className="sticky top-0 z-10">
+    <div className="flex flex-col h-full w-full bg-gray-50 p-4  overflow-y-auto">
+      <div className="">
+        <h1 className="text-5xl text-gray-800 font-serif mb-10">
+          Happy {CurrentDay}
+        </h1>
         <Agenda sessions={sessions} />
       </div>
-      <div className="mt-10 flex-grow overflow-y-auto">
+      <div className="mt-10 flex-grow pb-10 bg-red-200">
         <DragDropContext onDragEnd={onDragEnd}>
           <TodoColumn
             title="Tasks"
