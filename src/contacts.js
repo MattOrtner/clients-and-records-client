@@ -2,14 +2,27 @@ import localforage from "localforage";
 import { matchSorter } from "match-sorter";
 import sortBy from "sort-by";
 
-export async function getContacts(query) {
-  // await fakeNetwork(`getContacts:${query}`);
-  let contacts = await localforage.getItem("contacts");
-  if (!contacts) contacts = [];
-  if (query) {
-    contacts = matchSorter(contacts, query, { keys: ["first", "last"] });
-  }
-  return contacts.sort(sortBy("last", "createdAt"));
+async function getContactsApi(userId) {
+  return await fetch(`http://localhost:3001/${userId}/clients`, {
+    method: "GET",
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((error) => {
+      console.error("client: getCliensApi(): ", error);
+    });
+}
+
+export async function getContacts(userId) {
+  const response = await getContactsApi(userId);
+  return response;
+  // logic for search in current data
+  // let contacts = await localforage.getItem("contacts");
+  // if (query) {
+  //   contacts = matchSorter(contacts, query, { keys: ["first", "last"] });
+  // }
+  // return contacts.sort(sortBy("last", "createdAt"));
 }
 
 export async function createContact() {
@@ -40,12 +53,18 @@ export async function cancelContact(id) {
   return false;
 }
 
-export async function getContact(id) {
-  // await fakeNetwork(`contact:${id}`);
-  let contacts = await localforage.getItem("contacts");
-  let contact = contacts.find((contact) => contact.id === id);
-  return contact ?? null;
+export async function getContact(clientId) {
+  return await fetch(`http://localhost:3001/2/clients/${clientId}`, {
+    method: "GET",
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((error) => {
+      console.error("client: getCliensApi(): ", error);
+    });
 }
+
 export async function getInfoForContactPage(id) {
   // await fakeNetwork(`contact:${id}`);
   let contacts = await localforage.getItem("contacts");
@@ -69,7 +88,7 @@ export async function getInfoForContactPage(id) {
 
 async function createContactAPI(updates) {
   const { first, last, email, rate, occurrence, phone_number } = updates;
-  const phonenumber = phone_number;
+
   fetch("http://localhost:3001/clients", {
     method: "POST",
     headers: {
@@ -81,7 +100,7 @@ async function createContactAPI(updates) {
       email,
       rate,
       occurrence,
-      phonenumber,
+      phone_number,
     }),
   })
     .then((response) => {
@@ -97,6 +116,8 @@ async function createContactAPI(updates) {
 
 export async function updateContact(id, updates) {
   console.log("updates: ", updates);
+  const response = await createContactAPI(updates);
+  console.log("response from PG:", response);
   // const apiResponse = await createContactAPI(updates);
   // console.log("apiResponse: ", apiResponse);
   let contacts = await localforage.getItem("contacts");

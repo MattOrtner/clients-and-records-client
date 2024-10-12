@@ -9,26 +9,28 @@ import {
 import Icon from "@mdi/react";
 import { mdiPlus } from "@mdi/js";
 import { getContacts, createContact } from "../contacts";
-
 import { hasLocalPassord } from "../auth";
 
-export async function loader({ request }) {
-  const url = new URL(request.url);
-  const q = url.searchParams.get("q");
-  const contacts = await getContacts(q);
-  return { contacts, q };
+export async function loader({ request, userId }) {
+  // const url = new URL(request.request.url);
+  // const q = url.searchParams.get("q");
+  const clients = await getContacts(userId);
+  // return { clients, q };
+  return { clients };
 }
 export async function action() {
   const contact = await createContact();
   return redirect(`/contacts/${contact.id}/edit`);
 }
 export default function ContactList() {
-  const { contacts, q } = useLoaderData();
+  const { clients, q } = useLoaderData();
+  const [apiClients, setApiContacts] = useState(clients || []);
 
   const submit = useSubmit();
   useEffect(() => {
     document.getElementById("q").value = q;
   }, [q]);
+
   return (
     <>
       <div className="w-full">
@@ -55,17 +57,17 @@ export default function ContactList() {
           </Form>
         </span>
         <nav className="w-full flex flex-col items-center  gap-4">
-          {contacts.length ? (
+          {apiClients.length ? (
             <ul className="w-full">
-              {contacts.map((contact) => (
-                <li key={contact.id}>
+              {apiClients.map((client) => (
+                <li key={client.id}>
                   <NavLink
-                    to={`${contact.id}`}
+                    to={`${client.id}`}
                     className="flex justify-center items-center w-full rounded-lg"
                   >
-                    {contact.first || contact.last ? (
+                    {client.first || client.last ? (
                       <div className="text-xl w-[90%] text-center border-gray-200 border-2 rounded-lg py-1 mb-2">
-                        {contact.first} {contact.last}
+                        {client.first} {client.last}
                       </div>
                     ) : (
                       <i>No Name</i>

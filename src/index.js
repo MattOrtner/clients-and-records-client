@@ -46,6 +46,8 @@ import Landing, { loader as landingPageLoader } from "./routes/landing";
 import Calendar from "./routes/calendar";
 import Payments, { loader as paymentsLoader } from "./routes/payments";
 
+const userId = 2;
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -70,14 +72,15 @@ const router = createBrowserRouter([
         loader: paymentsLoader,
       },
       {
-        path: "contacts",
+        path: "clients",
         element: <ContactList />,
-        loader: contactListLoader,
+        loader: (request) => contactListLoader({ request, userId }),
+        // loader: contactListLoader,
         action: contactListAction,
       },
 
       {
-        path: "contacts/:contactId",
+        path: "clients/:clientId",
         element: <Contact />,
         loader: contactLoader,
         action: createAction,
@@ -119,10 +122,10 @@ const router = createBrowserRouter([
         path: "*",
         element: <ErrorPage />,
       },
-      // {
-      //   path: "/login",
-      //   element: <Login />,
-      // },
+      {
+        path: "/login",
+        element: <Login />,
+      },
     ],
   },
 ]);

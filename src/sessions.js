@@ -41,10 +41,17 @@ export async function deleteSession(params) {
   }
 }
 
-export async function getSessions(id) {
-  let contacts = await localforage.getItem("contacts");
-  let contact = contacts.find((contact) => contact.id === id);
-  return contact.sessions ?? null;
+export async function getClientSessions(clientId) {
+  // organize the sessions by date first
+  return await fetch(`http://localhost:3001/2/clients/${clientId}`, {
+    method: "GET",
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((error) => {
+      console.error("ERROR-getClientSessions", error);
+    });
 }
 
 export async function updateSession(contactId, sessionId, updates) {

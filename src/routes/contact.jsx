@@ -10,20 +10,29 @@ import {
 import Session from "./components/ContactPage/session";
 import { Form, NavLink, redirect, useLoaderData } from "react-router-dom";
 import { getContact } from "../contacts";
-import { createSession } from "../sessions";
+import { createSession, getClientSessions } from "../sessions";
 
 import NavBackButton from "./components/NavBackButton";
 import ContactProfileNavButton from "./components/ContactPage/contactProfileNavButton";
 
 export async function loader({ params }) {
-  const contact = await getContact(params.contactId);
-  return { contact };
+  try {
+    // is it cheaper to send all the data at once with fewer requests
+    // or only request the data when you need it?
+    //  every company is different... but what is your prefference?
+
+    const clientData = await getContact(params.clientId);
+    const clientSessions = await getClientSessions(params.clientId);
+    return { clientData, clientSessions };
+  } catch (e) {
+    console.error("error loader", e);
+  }
 }
 
 export async function action({ request, params }) {
   switch (request.method) {
     case "GET": {
-      return redirect(`/contacts/${params.contactId}/profile`);
+      return redirect(`/clients/${params.contactId}/profile`);
     }
     case "POST": {
       const sessionId = await createSession(params.contactId);
@@ -38,17 +47,25 @@ export async function action({ request, params }) {
 }
 
 export default function Contact() {
-  const { contact } = useLoaderData();
+  const { clientData, clientSessions } = useLoaderData();
+  const client = clientData[0];
+  console.log("client: ", client);
+  const sessions = clientSessions[0];
+
+  // build a loading element here ...
+  if (clientData[0] === undefined) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div id="contact">
       <div className="flex flex-col justify-center items-center gap-4 my-8">
-        <NavBackButton route={"/contacts"} />
+        <NavBackButton route={"/clients"} />
         <div className="mb-4">
-          {contact.first || contact.last ? (
+          {client.first || client.last ? (
             <>
               <h1>
-                {contact.first} {contact.last}
+                {client.first} {client.last}
               </h1>
             </>
           ) : (
@@ -56,8 +73,8 @@ export default function Contact() {
           )}
         </div>
         <div className="flex w-full  justify-center gap-6 items-center mb-2">
-          {contact.phonenumber ? (
-            <a href={`tel:${contact.phonenumber}`}>
+          {client.phonenumber ? (
+            <a href={`tel:${client.phonenumber}`}>
               <button>
                 <Icon path={mdiPhone} color="rgb(59 130 246)" size={1.4} />
               </button>
@@ -67,8 +84,8 @@ export default function Contact() {
               <Icon path={mdiPhoneOff} color="gray" size={1.4} />
             </button>
           )}
-          {contact.email ? (
-            <a href={`mailto:${contact.email}`}>
+          {client.email ? (
+            <a href={`mailto:${client.email}`}>
               <button>
                 <Icon
                   path={mdiEmailOutline}
@@ -82,17 +99,13 @@ export default function Contact() {
               <Icon path={mdiEmailOffOutline} color="gray" size={1.4} />
             </button>
           )}
-          <ContactProfileNavButton contactId={contact.id} size={1.4} />
+          <ContactProfileNavButton contactId={client.id} size={1.4} />
         </div>
       </div>
       <div className="flex flex-col items-center w-full h-[560px] gap-4 overflow-scroll">
-        {contact.sessions.length ? (
-          contact.sessions.map((session) => (
-            <Session
-              key={session.id}
-              session={session}
-              contactId={contact.id}
-            />
+        {sessions.length ? (
+          sessions.map((session) => (
+            <Session key={session.id} session={session} contactId={client.id} />
           ))
         ) : (
           <div className="flex items-center m-auto">
