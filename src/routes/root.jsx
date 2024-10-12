@@ -23,7 +23,7 @@ export default function Root() {
       <Outlet />
       <nav id="nav-bar">
         <NavBarTab route={"/"} svg={mdiHomeOutline} />
-        <NavBarTab route={"contacts"} svg={mdiAccountMultipleOutline} />
+        <NavBarTab route={"clients"} svg={mdiAccountMultipleOutline} />
         {/* <NavBarTab route={"calendar"} svg={mdiCalendarMultiselectOutline} /> */}
         <NavBarTab route={"payments"} svg={mdiCurrencyUsd} />
       </nav>
