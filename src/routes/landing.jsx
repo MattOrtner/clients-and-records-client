@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import TodoColumn from "./components/LandingPage/TodoColumn";
 import { DragDropContext } from "react-beautiful-dnd";
 import { getTodaysSessions } from "../sessions";
