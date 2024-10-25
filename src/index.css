@@ -74,10 +74,14 @@ button {
   line-height: 1.5;
   margin: 0;
 }
-/* button {
-  color: #3992ff;
-  font-weight: 500;
-} */
+.login {
+  background: rgb(92, 205, 163);
+  background: linear-gradient(
+    90deg,
+    rgba(92, 205, 163, 0.46262254901960786) 0%,
+    rgba(0, 212, 255, 1) 100%
+  );
+}
 
 textarea:hover,
 input:hover,
