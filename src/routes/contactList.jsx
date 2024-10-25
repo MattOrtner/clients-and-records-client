@@ -9,7 +9,6 @@ import {
 import Icon from "@mdi/react";
 import { mdiPlus } from "@mdi/js";
 import { getContacts, createContact } from "../contacts";
-import { hasLocalPassord } from "../auth";
 
 export async function loader({ request, userId }) {
   // const url = new URL(request.request.url);

@@ -1,10 +1,18 @@
 import localforage from "localforage";
-import { useState } from "react";
-// console.log("createTimeString", createTimeString);
 
-export async function createPassword(pass) {
-  await localforage.setItem("pass");
-  return "Password created";
+export async function loginAttempt(email, pass) {
+  return await fetch(`http://localhost:3001/login`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email: email, pass: pass }),
+  })
+    .then((response) => {
+      console.log("response auth.js: ", response);
+      return response.json();
+    })
+    .catch((error) => {
+      console.error("client: loginAttempt(): ", error);
+    });
 }
 
 export async function hasLocalPassord() {
