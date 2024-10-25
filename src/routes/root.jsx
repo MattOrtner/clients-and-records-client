@@ -13,12 +13,12 @@ export const AuthContext = createContext();
 
 export default function Root() {
   const hasEmail = useLoaderData();
-
   const [user, setUser] = useState({});
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
 
   const handleInput = (e) => {
+  const handleLoginInput = (e) => {
     e.preventDefault();
     const name = e.target.name;
     const value = e.target.value;
@@ -29,22 +29,23 @@ export default function Root() {
     }
   };
 
-  const handleSubmit = async (e) => {
+  const handleLoginSubmit = async (e) => {
     e.preventDefault();
     const loginResponse = await loginAttempt(email, pass);
     console.log("loginResponse HANDLESUBMIT: ", loginResponse);
-    return null;
+    redirect("/landing");
+    setUser(loginResponse);
   };
 
   return (
     <AuthContext.Provider value={{ user, setUser }}>
       {Object.keys(user).length === 0 ? (
         <Login
-          handleInput={handleInput}
+          handleLoginInput={handleLoginInput}
           email={email}
           pass={pass}
           hasEmail={hasEmail}
-          handleSubmit={handleSubmit}
+          handleLoginSubmit={handleLoginSubmit}
         />
       ) : (
         <div className="flex flex-col items-center w-full">

@@ -41,8 +41,11 @@ import SessionPage, {
 import { action as deleteContact } from "./routes/deleteContact";
 import { action as deleteSession } from "./routes/deleteSession";
 
-import Login from "./routes/login";
-import Landing, { loader as landingPageLoader } from "./routes/landing";
+import Landing, {
+  loader as landingPageLoader,
+  action as landingPageAction,
+} from "./routes/landing";
+
 import Calendar from "./routes/calendar";
 import Payments, { loader as paymentsLoader } from "./routes/payments";
 
@@ -53,13 +56,11 @@ const router = createBrowserRouter([
     path: "/",
     element: <Root />,
     errorElement: <ErrorPage />,
-    // loader: rootLoader,
-    // action: rootAction,
     children: [
       {
-        path: "/",
-        index: true,
+        path: "landing",
         element: <Landing />,
+        action: landingPageAction,
         loader: landingPageLoader,
       },
       {
@@ -121,10 +122,6 @@ const router = createBrowserRouter([
         // create a error boundary route for all routes that do not match
         path: "*",
         element: <ErrorPage />,
-      },
-      {
-        path: "/login",
-        element: <Login />,
       },
     ],
   },
