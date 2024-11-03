@@ -2,9 +2,13 @@ import { Droppable } from "react-beautiful-dnd";
 import Task from "./Task";
 import Icon from "@mdi/react";
 import { mdiPlus } from "@mdi/js";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
+import { createTodo } from "../../../todos";
+import { useOutletContext } from "react-router-dom";
 
-const TodoColumn = ({ title, tasks, setTasks, deleteTask }) => {
+const TodoColumn = ({ title, todos, setTodos, deleteTask }) => {
+  const [user, setUser] = useOutletContext();
   const [task, setTask] = useState("");
 
   const handleTaskInput = (e) => {
@@ -12,16 +16,19 @@ const TodoColumn = ({ title, tasks, setTasks, deleteTask }) => {
     setTask(e.target.value);
   };
 
-  const handleAddTask = (e) => {
+  const handleAddTask = async (e) => {
     e.preventDefault();
     if (!task) return;
-    setTasks([
-      ...tasks,
-      {
-        id: `task-${tasks.length + Math.round(Math.random() * 8)}`,
-        content: task,
-      },
-    ]);
+    const id = uuidv4();
+    const newTodo = {
+      id,
+      content: task,
+      index: todos.length,
+      userId: user.id,
+    };
+    const response = await createTodo(newTodo);
+    console.log("response: ", response);
+    setTodos([...todos, newTodo]);
     setTask("");
   };
 
@@ -51,18 +58,18 @@ const TodoColumn = ({ title, tasks, setTasks, deleteTask }) => {
             {...provided.droppableProps}
             className="space-y-2"
           >
-            {tasks.length ? (
-              tasks.map((task, i) => (
+            {todos.length ? (
+              todos.map((task) => (
                 <Task
                   key={task.id}
-                  index={i}
+                  index={task.index}
                   task={task}
                   deleteTask={deleteTask}
                 />
               ))
             ) : (
               <div className="text-center text-slate-400 font-semibold py-4">
-                No tasks available
+                No todos available
               </div>
             )}
             {provided.placeholder}
