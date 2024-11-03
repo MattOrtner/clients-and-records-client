@@ -75,11 +75,11 @@ button {
   margin: 0;
 }
 .login {
-  background: rgb(92, 205, 163);
+  background: rgba(162, 246, 249, 1);
   background: linear-gradient(
-    90deg,
-    rgba(92, 205, 163, 0.46262254901960786) 0%,
-    rgba(0, 212, 255, 1) 100%
+    135deg,
+    rgba(162, 246, 249, 1),
+    rgba(18, 154, 216, 1)
   );
 }
 
@@ -164,9 +164,9 @@ form[action$="delete"] button {
   display: flex;
   width: 100%;
 }
-#nav-bar a.active {
+/* #nav-bar a.active {
   border-top: 4px rgb(76, 205, 249) solid;
-}
+} */
 /* #sidebar nav a {
   padding: 0.75rem;
 }

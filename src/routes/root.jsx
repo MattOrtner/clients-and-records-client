@@ -1,23 +1,23 @@
+// thinking, to being, to doing
+
 import { createContext, useState } from "react";
-import { Navigate, Outlet, redirect, useLoaderData } from "react-router-dom";
+import { Navigate, Outlet, redirect } from "react-router-dom";
 import NavBarTab from "./components/navBarTab";
 import {
   mdiAccountMultipleOutline,
   mdiCurrencyUsd,
   mdiHomeOutline,
+  // mdiCalendarMultiselectOutline,
 } from "@mdi/js";
 import Login from "./login";
-import { hasLocalEmail, loginAttempt } from "../auth";
-
+import { attemptLogin } from "../auth";
 export const AuthContext = createContext();
 
 export default function Root() {
-  const hasEmail = useLoaderData();
   const [user, setUser] = useState({});
-  const [email, setEmail] = useState("");
-  const [pass, setPass] = useState("");
+  const [email, setEmail] = useState("mail@mail.com");
+  const [pass, setPass] = useState("password");
 
-  const handleInput = (e) => {
   const handleLoginInput = (e) => {
     e.preventDefault();
     const name = e.target.name;
@@ -31,33 +31,32 @@ export default function Root() {
 
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
-    const loginResponse = await loginAttempt(email, pass);
-    console.log("loginResponse HANDLESUBMIT: ", loginResponse);
-    redirect("/landing");
-    setUser(loginResponse);
+    const { status, id, first } = await attemptLogin(email, pass);
+    setUser({ id, first });
   };
 
+  if (Object.keys(user).length === 0) {
+    return (
+      <Login
+        handleLoginInput={handleLoginInput}
+        email={email}
+        pass={pass}
+        handleLoginSubmit={handleLoginSubmit}
+      />
+    );
+  }
+
   return (
-    <AuthContext.Provider value={{ user, setUser }}>
-      {Object.keys(user).length === 0 ? (
-        <Login
-          handleLoginInput={handleLoginInput}
-          email={email}
-          pass={pass}
-          hasEmail={hasEmail}
-          handleLoginSubmit={handleLoginSubmit}
-        />
-      ) : (
-        <div className="flex flex-col items-center w-full">
-          <Outlet />
-          <nav id="nav-bar">
-            <NavBarTab route={"/landing"} svg={mdiHomeOutline} />
-            <NavBarTab route={"clients"} svg={mdiAccountMultipleOutline} />
-            {/* <NavBarTab route={"calendar"} svg={mdiCalendarMultiselectOutline} /> */}
-            <NavBarTab route={"payments"} svg={mdiCurrencyUsd} />
-          </nav>
-        </div>
-      )}
-    </AuthContext.Provider>
+    // <AuthContext.Provider value={{ user, setUser }}>
+    <div className="flex flex-col items-center w-full">
+      <Outlet context={[user, setUser]} />
+      <nav id="nav-bar">
+        <NavBarTab route={`/`} svg={mdiHomeOutline} />
+        <NavBarTab route="clients" svg={mdiAccountMultipleOutline} />
+        {/* <NavBarTab route={"calendar"} svg={mdiCalendarMultiselectOutline} /> */}
+        <NavBarTab route="payments" svg={mdiCurrencyUsd} />
+      </nav>
+    </div>
+    // </AuthContext.Provider>
   );
 }

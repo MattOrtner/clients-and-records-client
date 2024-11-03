@@ -41,15 +41,12 @@ import SessionPage, {
 import { action as deleteContact } from "./routes/deleteContact";
 import { action as deleteSession } from "./routes/deleteSession";
 
-import Landing, {
-  loader as landingPageLoader,
-  action as landingPageAction,
-} from "./routes/landing";
+import Landing from //   loader as landingPageLoader,
+//   action as landingPageAction,
+"./routes/landing";
 
 import Calendar from "./routes/calendar";
 import Payments, { loader as paymentsLoader } from "./routes/payments";
-
-const userId = 2;
 
 const router = createBrowserRouter([
   {
@@ -58,10 +55,10 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        path: "landing",
+        index: true,
         element: <Landing />,
-        action: landingPageAction,
-        loader: landingPageLoader,
+        // action: landingPageAction,
+        // loader: landingPageLoader,
       },
       {
         path: "calendar",
@@ -75,8 +72,7 @@ const router = createBrowserRouter([
       {
         path: "clients",
         element: <ContactList />,
-        loader: (request) => contactListLoader({ request, userId }),
-        // loader: contactListLoader,
+        loader: contactListLoader,
         action: contactListAction,
       },
 
