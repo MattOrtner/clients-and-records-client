@@ -4,10 +4,7 @@ import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Root, {
-  loader as rootLoader,
-  action as rootAction,
-} from "./routes/root";
+import Root from "./routes/root";
 
 import Contact, {
   loader as contactLoader,
@@ -41,9 +38,7 @@ import SessionPage, {
 import { action as deleteContact } from "./routes/deleteContact";
 import { action as deleteSession } from "./routes/deleteSession";
 
-import Landing from //   loader as landingPageLoader,
-//   action as landingPageAction,
-"./routes/landing";
+import Landing from "./routes/landing"; //   action as landingPageAction, //   loader as landingPageLoader,
 
 import Calendar from "./routes/calendar";
 import Payments, { loader as paymentsLoader } from "./routes/payments";
@@ -57,8 +52,6 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Landing />,
-        // action: landingPageAction,
-        // loader: landingPageLoader,
       },
       {
         path: "calendar",
@@ -115,7 +108,6 @@ const router = createBrowserRouter([
         action: deleteSession,
       },
       {
-        // create a error boundary route for all routes that do not match
         path: "*",
         element: <ErrorPage />,
       },

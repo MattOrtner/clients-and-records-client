@@ -5,7 +5,7 @@ import TodoColumn from "./components/LandingPage/TodoColumn";
 import Agenda from "./components/LandingPage/Agenda";
 import CurrentDay from "../currentDay";
 import { getTodaysSessions } from "../sessions";
-import { getTodaysTodos } from "../todos";
+import { getTodaysTodos, deleteTodo } from "../todos";
 
 const Landing = () => {
   const [user, setUser] = useOutletContext();
@@ -31,14 +31,12 @@ const Landing = () => {
     setTodos(updatedTasks);
   };
 
-  const deleteTask = (taskId) => {
+  const deleteTask = async (taskId) => {
+    const response = await deleteTodo(taskId);
+    console.log("response", response);
+
     setTodos(todos.filter((task) => task.id !== taskId));
   };
-
-  /**
-   * uuid is created cclient side
-   * uuid is sent to server as the id for the task that was just added
-   */
 
   return (
     <div className="flex flex-col h-full w-full bg-gray-50 p-4  overflow-y-auto">

@@ -27,9 +27,10 @@ const TodoColumn = ({ title, todos, setTodos, deleteTask }) => {
       userId: user.id,
     };
     const response = await createTodo(newTodo);
-    console.log("response: ", response);
-    setTodos([...todos, newTodo]);
-    setTask("");
+    if (response.status === 200) {
+      setTodos((todos) => [...todos, newTodo]);
+      setTask("");
+    }
   };
 
   return (

@@ -1,5 +1,3 @@
-// thinking, to being, to doing
-
 import { createContext, useState } from "react";
 import { Navigate, Outlet, redirect } from "react-router-dom";
 import NavBarTab from "./components/navBarTab";
@@ -11,7 +9,6 @@ import {
 } from "@mdi/js";
 import Login from "./login";
 import { attemptLogin } from "../auth";
-export const AuthContext = createContext();
 
 export default function Root() {
   const [user, setUser] = useState({});
@@ -47,7 +44,6 @@ export default function Root() {
   }
 
   return (
-    // <AuthContext.Provider value={{ user, setUser }}>
     <div className="flex flex-col items-center w-full">
       <Outlet context={[user, setUser]} />
       <nav id="nav-bar">
@@ -57,6 +53,5 @@ export default function Root() {
         <NavBarTab route="payments" svg={mdiCurrencyUsd} />
       </nav>
     </div>
-    // </AuthContext.Provider>
   );
 }
