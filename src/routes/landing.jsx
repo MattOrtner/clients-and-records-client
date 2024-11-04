@@ -1,41 +1,41 @@
-import { useState } from "react";
-import TodoColumn from "./components/LandingPage/TodoColumn";
+import { useState, useContext, useEffect } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
-import { getTodaysSessions } from "../sessions";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useOutletContext } from "react-router-dom";
+import TodoColumn from "./components/LandingPage/TodoColumn";
 import Agenda from "./components/LandingPage/Agenda";
 import CurrentDay from "../currentDay";
-
-export async function loader({ params }) {
-  const sessions = await getTodaysSessions();
-  return { sessions };
-}
-
-export async function action({ request, params }) {
-  return {};
-}
+import { getTodaysSessions } from "../sessions";
+import { getTodaysTodos, deleteTodo } from "../todos";
 
 const Landing = () => {
-  const { sessions } = useLoaderData();
-  const [tasks, setTasks] = useState([
-    { id: "task-1", content: "Follow up with Michelle" },
-    { id: "task-2", content: "ORDER LUNCH 🍕🍕🍕" },
-    { id: "task-3", content: "Plan weekend retreat" },
-    { id: "task-4", content: "Call mom 💅" },
-  ]);
+  const [user, setUser] = useOutletContext();
+
+  const [todos, setTodos] = useState([]);
+  useEffect(() => {
+    const fetchTodaysTodos = async () => {
+      const todos = await getTodaysTodos(user.id);
+      setTodos(todos);
+    };
+    fetchTodaysTodos();
+  }, [user]);
+
+  const sessions = [];
 
   const onDragEnd = (result) => {
     const { source, destination } = result;
     if (!destination) return;
     if (destination.index === source.index) return;
-    const updatedTasks = Array.from(tasks);
+    const updatedTasks = Array.from(todos);
     const [removedTask] = updatedTasks.splice(source.index, 1);
     updatedTasks.splice(destination.index, 0, removedTask);
-    setTasks(updatedTasks);
+    setTodos(updatedTasks);
   };
 
-  const deleteTask = (taskId) => {
-    setTasks(tasks.filter((task) => task.id !== taskId));
+  const deleteTask = async (taskId) => {
+    const response = await deleteTodo(taskId);
+    console.log("response", response);
+
+    setTodos(todos.filter((task) => task.id !== taskId));
   };
 
   return (
@@ -49,9 +49,9 @@ const Landing = () => {
       <div className="mt-10 flex-grow pb-10">
         <DragDropContext onDragEnd={onDragEnd}>
           <TodoColumn
-            title="Tasks"
-            tasks={tasks}
-            setTasks={setTasks}
+            title="todos"
+            todos={todos}
+            setTodos={setTodos}
             deleteTask={deleteTask}
           />
         </DragDropContext>

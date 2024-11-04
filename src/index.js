@@ -4,10 +4,7 @@ import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Root, {
-  loader as rootLoader,
-  action as rootAction,
-} from "./routes/root";
+import Root from "./routes/root";
 
 import Contact, {
   loader as contactLoader,
@@ -41,8 +38,8 @@ import SessionPage, {
 import { action as deleteContact } from "./routes/deleteContact";
 import { action as deleteSession } from "./routes/deleteSession";
 
-import Login from "./routes/login";
-import Landing, { loader as landingPageLoader } from "./routes/landing";
+import Landing from "./routes/landing"; //   action as landingPageAction, //   loader as landingPageLoader,
+
 import Calendar from "./routes/calendar";
 import Payments, { loader as paymentsLoader } from "./routes/payments";
 
@@ -51,14 +48,10 @@ const router = createBrowserRouter([
     path: "/",
     element: <Root />,
     errorElement: <ErrorPage />,
-    // loader: rootLoader,
-    // action: rootAction,
     children: [
       {
-        path: "/",
         index: true,
         element: <Landing />,
-        loader: landingPageLoader,
       },
       {
         path: "calendar",
@@ -70,14 +63,14 @@ const router = createBrowserRouter([
         loader: paymentsLoader,
       },
       {
-        path: "contacts",
+        path: "clients",
         element: <ContactList />,
         loader: contactListLoader,
         action: contactListAction,
       },
 
       {
-        path: "contacts/:contactId",
+        path: "clients/:clientId",
         element: <Contact />,
         loader: contactLoader,
         action: createAction,
@@ -115,14 +108,9 @@ const router = createBrowserRouter([
         action: deleteSession,
       },
       {
-        // create a error boundary route for all routes that do not match
         path: "*",
         element: <ErrorPage />,
       },
-      // {
-      //   path: "/login",
-      //   element: <Login />,
-      // },
     ],
   },
 ]);

@@ -74,10 +74,10 @@ button {
   line-height: 1.5;
   margin: 0;
 }
-/* button {
-  color: #3992ff;
-  font-weight: 500;
-} */
+.login {
+  background: rgba(162, 246, 249, 1);
+  background: linear-gradient(90deg, rgba(162, 246, 249, 1), rgb(18, 124, 216));
+}
 
 textarea:hover,
 input:hover,
@@ -160,9 +160,9 @@ form[action$="delete"] button {
   display: flex;
   width: 100%;
 }
-#nav-bar a.active {
+/* #nav-bar a.active {
   border-top: 4px rgb(76, 205, 249) solid;
-}
+} */
 /* #sidebar nav a {
   padding: 0.75rem;
 }
