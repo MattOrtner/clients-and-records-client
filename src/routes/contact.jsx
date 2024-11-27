@@ -8,7 +8,13 @@ import {
 } from "@mdi/js";
 
 import Session from "./components/ContactPage/session";
-import { Form, NavLink, redirect, useLoaderData } from "react-router-dom";
+import {
+  Form,
+  NavLink,
+  redirect,
+  useLoaderData,
+  useOutletContext,
+} from "react-router-dom";
 import { getContact } from "../contacts";
 import { createSession, getClientSessions } from "../sessions";
 
@@ -17,10 +23,6 @@ import ContactProfileNavButton from "./components/ContactPage/contactProfileNavB
 
 export async function loader({ params }) {
   try {
-    // is it cheaper to send all the data at once with fewer requests
-    // or only request the data when you need it?
-    //  every company is different... but what is your prefference?
-
     const clientData = await getContact(params.clientId);
     const clientSessions = await getClientSessions(params.clientId);
     return { clientData, clientSessions };
@@ -51,16 +53,16 @@ export default function Contact() {
   const client = clientData[0];
   console.log("client: ", client);
   const sessions = clientSessions[0];
+  const [user, _] = useOutletContext();
 
   // build a loading element here ...
   if (clientData[0] === undefined) {
     return <div>Loading...</div>;
   }
-
   return (
     <div id="contact">
       <div className="flex flex-col justify-center items-center gap-4 my-8">
-        <NavBackButton route={"/clients"} />
+        <NavBackButton route={`/${user.id}/clients`} />
         <div className="mb-4">
           {client.first || client.last ? (
             <>

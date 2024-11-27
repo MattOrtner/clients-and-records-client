@@ -75,8 +75,12 @@ button {
   margin: 0;
 }
 .login {
-  background: rgba(162, 246, 249, 1);
-  background: linear-gradient(90deg, rgba(162, 246, 249, 1), rgb(18, 124, 216));
+  /* background: rgba(100, 2, 150); */
+  background: linear-gradient(
+    85deg,
+    rgba(246, 246, 246, 0.486),
+    rgba(100, 2, 150)
+  );
 }
 
 textarea:hover,

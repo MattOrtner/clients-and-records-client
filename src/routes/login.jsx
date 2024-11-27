@@ -33,7 +33,6 @@ export default function Login({
           >
             Login
           </button>
-          <button>Forgot password?</button>
         </Form>
       </div>
     </div>

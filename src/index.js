@@ -54,8 +54,9 @@ const router = createBrowserRouter([
         element: <Landing />,
       },
       {
-        path: "calendar",
-        element: <Calendar />,
+        path: ":userId/clients",
+        element: <ContactList />,
+        action: contactListAction,
       },
       {
         path: "payments",
@@ -63,22 +64,19 @@ const router = createBrowserRouter([
         loader: paymentsLoader,
       },
       {
-        path: "clients",
-        element: <ContactList />,
-        loader: contactListLoader,
-        action: contactListAction,
+        path: "calendar",
+        element: <Calendar />,
       },
-
       {
-        path: "clients/:clientId",
+        path: ":userId/clients/:clientId",
         element: <Contact />,
         loader: contactLoader,
         action: createAction,
       },
       {
-        path: "contacts/:contactId/edit",
+        path: ":userId/clients/create",
         element: <EditContact />,
-        loader: contactLoader,
+        // loader: contactLoader,
         action: editAction,
       },
       {

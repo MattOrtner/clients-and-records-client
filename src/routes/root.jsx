@@ -48,7 +48,10 @@ export default function Root() {
       <Outlet context={[user, setUser]} />
       <nav id="nav-bar">
         <NavBarTab route={`/`} svg={mdiHomeOutline} />
-        <NavBarTab route="clients" svg={mdiAccountMultipleOutline} />
+        <NavBarTab
+          route={`${user.id}/clients`}
+          svg={mdiAccountMultipleOutline}
+        />
         {/* <NavBarTab route={"calendar"} svg={mdiCalendarMultiselectOutline} /> */}
         <NavBarTab route="payments" svg={mdiCurrencyUsd} />
       </nav>
