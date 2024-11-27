@@ -5,60 +5,43 @@ import {
   Form,
   useSubmit,
   redirect,
+  useOutletContext,
 } from "react-router-dom";
 import Icon from "@mdi/react";
 import { mdiPlus } from "@mdi/js";
 import { getContacts, createContact } from "../contacts";
 
-export async function loader({ request, userId }) {
-  // const url = new URL(request.request.url);
-  // const q = url.searchParams.get("q");
-  const clients = await getContacts(userId);
-  // return { clients, q };
-  return { clients };
+export async function action(req) {
+  return redirect(`/${req.params.userId}/clients/create`);
 }
-export async function action() {
-  const contact = await createContact();
-  return redirect(`/contacts/${contact.id}/edit`);
-}
-export default function ContactList() {
-  const { clients, q } = useLoaderData();
-  const [apiClients, setApiContacts] = useState(clients || []);
 
-  const submit = useSubmit();
+export default function ContactList() {
+  const [user, setUser] = useOutletContext();
+
   useEffect(() => {
-    document.getElementById("q").value = q;
-  }, [q]);
+    const fetchClients = async () => {
+      const clients = await getContacts(user.id);
+      if (clients.length > 0) setUser((user) => ({ ...user, clients }));
+    };
+    fetchClients();
+  }, []);
+
+  console.log("user", user);
 
   return (
     <>
       <div className="w-full">
-        <span className="flex w-full p-2">
-          <Form id="search-form" role="search">
-            <input
-              id="q"
-              aria-label="Search contacts"
-              placeholder="Search"
-              type="search"
-              name="q"
-              autoComplete="off"
-              defaultValue={q}
-              onChange={(event) => {
-                const isFirstSearch = q == null;
-                submit(event.currentTarget.form, { replace: !isFirstSearch });
-              }}
-            />
-          </Form>
+        <span className="flex w-full justify-end p-2">
           <Form method="post">
-            <button className="bg-blue-500 text-white my-8" type="submit">
+            <button className="bg-blue-500 text-white my-8 mx-4" type="submit">
               <Icon path={mdiPlus} size={1} />
             </button>
           </Form>
         </span>
-        <nav className="w-full flex flex-col items-center  gap-4">
-          {apiClients.length ? (
-            <ul className="w-full">
-              {apiClients.map((client) => (
+        <nav className="w-full flex flex-col items-center  gap-4 overflow-scroll">
+          {user.clients ? (
+            <ul className="w-full overflow-scroll">
+              {user.clients.map((client) => (
                 <li key={client.id}>
                   <NavLink
                     to={`${client.id}`}
