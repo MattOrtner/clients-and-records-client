@@ -1,22 +1,21 @@
 import { Form, useLoaderData, redirect } from "react-router-dom";
-import { updateContact, deleteContact } from "../contacts";
+import { createContact } from "../contacts";
 
 export async function action({ request, params }) {
   let formData = await request.formData();
   let intent = formData.get("intent");
   if (intent === "save") {
-    const updates = Object.fromEntries(formData);
-    await updateContact(params.contactId, updates);
-    return redirect(`/contacts/${params.contactId}`);
+    const clientData = Object.fromEntries(formData);
+    const response = await createContact(params.userId, clientData);
+    const parsed = JSON.parse(response);
+    return redirect(`/${params.userId}/clients/${parsed.id}`);
   } else {
-    console.log("deleting contact in action and not route");
-    await deleteContact(params.contactId);
-    return redirect(`/contacts`);
+    return redirect(`/${params.userId}/clients`);
   }
 }
 
 export default function EditContact() {
-  const { contact } = useLoaderData();
+  // const { contact } = useLoaderData();
   return (
     <Form method="post" id="contact-form">
       <p className="flex flex-col gap-2 font-light">
@@ -27,14 +26,14 @@ export default function EditContact() {
           aria-label="First name"
           type="text"
           name="first"
-          defaultValue={contact.first}
+          // defaultValue={contact.first}
         />
         <input
           placeholder="Last"
           aria-label="Last name"
           type="text"
           name="last"
-          defaultValue={contact.last}
+          // defaultValue={contact.last}
         />
         <label className="flex flex-col">
           <span>Email</span>
@@ -43,7 +42,7 @@ export default function EditContact() {
             aria-label="email"
             type="email"
             name="email"
-            defaultValue={contact.email}
+            // defaultValue={contact.email}
           />
         </label>
         <label className="flex flex-col">
@@ -53,7 +52,7 @@ export default function EditContact() {
             placeholder="000-000-0000"
             type="phone"
             name="phonenumber"
-            defaultValue={contact.phone_number}
+            // defaultValue={contact.phone_number}
           />
         </label>
         <span>Rate</span>
@@ -64,7 +63,7 @@ export default function EditContact() {
             placeholder="75"
             type="number"
             name="rate"
-            defaultValue={contact.rate}
+            // defaultValue={contact.rate}
             className="w-full"
           />
         </div>
@@ -75,7 +74,7 @@ export default function EditContact() {
             placeholder="1"
             type="text"
             name="occurrence"
-            defaultValue="1"
+            // defaultValue="1"
           />
         </label>
       </p>
