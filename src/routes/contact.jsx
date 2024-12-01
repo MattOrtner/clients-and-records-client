@@ -24,7 +24,8 @@ import ContactProfileNavButton from "./components/ContactPage/contactProfileNavB
 export async function loader({ params }) {
   try {
     const clientData = await getContact(params.clientId);
-    const clientSessions = await getClientSessions(params.clientId);
+    const clientSessions = await getClientSessions(params);
+    console.log("clientSessions", clientSessions);
     return { clientData, clientSessions };
   } catch (e) {
     console.error("error loader", e);
@@ -50,15 +51,11 @@ export async function action({ request, params }) {
 
 export default function Contact() {
   const { clientData, clientSessions } = useLoaderData();
-  const client = clientData[0];
-  console.log("client: ", client);
-  const sessions = clientSessions[0];
+
+  const client = clientData.length ? clientData[0] : {};
+  const sessions = clientSessions.length > 0 ? clientSessions : [];
   const [user, _] = useOutletContext();
 
-  // build a loading element here ...
-  if (clientData[0] === undefined) {
-    return <div>Loading...</div>;
-  }
   return (
     <div id="contact">
       <div className="flex flex-col justify-center items-center gap-4 my-8">
@@ -75,8 +72,8 @@ export default function Contact() {
           )}
         </div>
         <div className="flex w-full  justify-center gap-6 items-center mb-2">
-          {client.phonenumber ? (
-            <a href={`tel:${client.phonenumber}`}>
+          {client.phone_number ? (
+            <a href={`tel:${client.phone_number}`}>
               <button>
                 <Icon path={mdiPhone} color="rgb(59 130 246)" size={1.4} />
               </button>
@@ -111,7 +108,7 @@ export default function Contact() {
           ))
         ) : (
           <div className="flex items-center m-auto">
-            <div className="text-2xl pt-10">Schedule a session.</div>
+            <div className="text-2xl pt-10">Schedule a session below</div>
           </div>
         )}
       </div>

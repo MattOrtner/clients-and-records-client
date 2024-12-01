@@ -11,7 +11,6 @@ export async function getContacts(userId) {
 }
 
 export async function createContact(userId, clientData) {
-  console.log("clientData", clientData);
   return await fetch(`http://localhost:3001/${userId}/clients`, {
     method: "POST",
     headers: {
@@ -30,12 +29,12 @@ export async function createContact(userId, clientData) {
 export async function cancelContact(id) {}
 
 export async function getContact(clientId) {
-  return await fetch(`http://localhost:3001/2/clients/${clientId}`, {
+  return await fetch(`http://localhost:3001/clients/${clientId}`, {
     method: "GET",
   })
     .then((response) => {
-      // return response.json();
-      return response.text();
+      return response.json();
+      // return response.text();
     })
     .catch((error) => {
       console.error("client: getCliensApi(): ", error);

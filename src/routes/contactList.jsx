@@ -27,7 +27,6 @@ export default function ContactList() {
   }, []);
 
   console.log("user", user);
-
   return (
     <>
       <div className="w-full">
@@ -44,7 +43,7 @@ export default function ContactList() {
               {user.clients.map((client) => (
                 <li key={client.id}>
                   <NavLink
-                    to={`${client.id}`}
+                    to={`/${user.id}/clients/${client.id}`}
                     className="flex justify-center items-center w-full rounded-lg"
                   >
                     {client.first || client.last ? (
