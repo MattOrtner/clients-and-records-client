@@ -1,21 +1,21 @@
 import localforage from "localforage";
 import dateAsString from "../src/currentDateString";
 
-export async function createSession(contactId) {
-  let contacts = await localforage.getItem("contacts");
-  let contact = contacts.find((contact) => contact.id === contactId);
-  if (!contact) throw new Error("No contact found for", contactId);
-  if (!contact.sessions) contact.sessions = [];
-  let session = {
-    id: Math.random().toString(36).substring(2, 9),
-    notes: "",
-    paid: false,
-    date: undefined,
-  };
-  contact.sessions.unshift(session);
-  console.log("create session");
-  await set(contacts);
-  return session.id;
+export async function createSession(clientId, sessionInfo) {
+  return fetch(`http://localhost:3001/sessions/create-session/${clientId}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(sessionInfo),
+  })
+    .then((response) => {
+      console.log("response", response);
+      return response.json();
+    })
+    .catch((error) => {
+      console.error("ERROR-createSession", error);
+    });
 }
 
 export async function getSession(params) {

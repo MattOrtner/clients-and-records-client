@@ -4,7 +4,8 @@ import { NavLink } from "react-router-dom";
 import reverseDate from "../../../reverseDate";
 
 function Session({ session, contactId }) {
-  const reversedDate = reverseDate(session.date);
+  const slicedDate = session.date.slice(0, 10);
+  const reversedDate = reverseDate(slicedDate);
   const sessionId = session.id;
   return (
     <NavLink

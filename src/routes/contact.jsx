@@ -38,7 +38,9 @@ export async function action({ request, params }) {
     }
     case "POST": {
       // const sessionId = await createSession(params.contactId);
-      return redirect(`/clients/${params.clientId}/create-session`);
+      return redirect(
+        `/${params.userId}/clients/${params.clientId}/create-session`
+      );
     }
     default: {
       throw new Response("", { status: 405 });

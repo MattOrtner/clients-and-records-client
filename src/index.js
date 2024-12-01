@@ -80,7 +80,7 @@ const router = createBrowserRouter([
         action: editAction,
       },
       {
-        path: "contacts/:contactId/create-session/:sessionId",
+        path: ":userId/clients/:clientId/create-session",
         element: <CreateSession />,
         loader: sessionLoader,
         action: saveSession,
