@@ -41,11 +41,14 @@ export async function deleteSession(params) {
   }
 }
 
-export async function getClientSessions(clientId) {
+export async function getClientSessions({ userId, clientId }) {
   // organize the sessions by date first
-  return await fetch(`http://localhost:3001/2/clients/${clientId}`, {
-    method: "GET",
-  })
+  return await fetch(
+    `http://localhost:3001/${userId}/clients/sessions/${clientId}`,
+    {
+      method: "GET",
+    }
+  )
     .then((response) => {
       return response.json();
     })
