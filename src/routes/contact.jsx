@@ -10,13 +10,12 @@ import {
 import Session from "./components/ContactPage/session";
 import {
   Form,
-  NavLink,
   redirect,
   useLoaderData,
   useOutletContext,
 } from "react-router-dom";
 import { getContact } from "../contacts";
-import { createSession, getClientSessions } from "../sessions";
+import { getClientSessions } from "../sessions";
 
 import NavBackButton from "./components/NavBackButton";
 import ContactProfileNavButton from "./components/ContactPage/contactProfileNavButton";
@@ -38,9 +37,9 @@ export async function action({ request, params }) {
       return redirect(`/clients/${params.contactId}/profile`);
     }
     case "POST": {
-      const sessionId = await createSession(params.contactId);
+      // const sessionId = await createSession(params.contactId);
       return redirect(
-        `/contacts/${params.contactId}/create-session/${sessionId}`
+        `/${params.userId}/clients/${params.clientId}/create-session`
       );
     }
     default: {
