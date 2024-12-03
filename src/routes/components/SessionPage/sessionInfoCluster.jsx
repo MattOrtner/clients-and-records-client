@@ -2,13 +2,14 @@ import { useState } from "react";
 import { Form } from "react-router-dom";
 import Icon from "@mdi/react";
 import { mdiCheckCircleOutline, mdiMinusCircleOutline } from "@mdi/js";
+import sliceDate from "../../../slicedDate";
 
 function SessionInfoCluster({ date, time, paid, handleSave }) {
-  const [selectedDate, setSelectedDate] = useState(date);
+  const slicedDate = sliceDate(date);
+  const [selectedDate, setSelectedDate] = useState(slicedDate);
   const [selectedTime, setSelectedTime] = useState(time);
   const [isSessionPaid, setIsSessionPaid] = useState(paid);
   const [isDelete, setisDelete] = useState(false);
-
   const handlePaid = () => {
     setIsSessionPaid(!isSessionPaid);
     if (isSessionPaid) {

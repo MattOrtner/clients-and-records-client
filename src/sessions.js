@@ -19,11 +19,19 @@ export async function createSession(clientId, sessionInfo) {
 }
 
 export async function getSession(params) {
-  let { contactId, sessionId } = params;
-  const contacts = await localforage.getItem("contacts");
-  const contact = contacts.find((contact) => contact.id === contactId);
-  if (!contact) throw new Error("No contact found for", contactId);
-  return contact.sessions.find((session) => session.id === sessionId);
+  return await fetch(
+    `http://localhost:3001/${params.userId}/clients/${params.clientId}/sessions/${params.sessionId}`,
+    {
+      method: "GET",
+    }
+  )
+    .then((response) => {
+      return response.json();
+      // return response.text();
+    })
+    .catch((error) => {
+      console.error("client: getCliensApi(): ", error);
+    });
 }
 
 export async function deleteSession(params) {
