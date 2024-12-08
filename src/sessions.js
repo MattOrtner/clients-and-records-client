@@ -50,7 +50,6 @@ export async function deleteSession(params) {
 }
 
 export async function getClientSessions({ userId, clientId }) {
-  // organize the sessions by date first
   return await fetch(
     `http://localhost:3001/${userId}/clients/sessions/${clientId}`,
     {
@@ -65,13 +64,15 @@ export async function getClientSessions({ userId, clientId }) {
     });
 }
 
-export async function updateSession(contactId, sessionId, updates) {
-  let contacts = await localforage.getItem("contacts");
-  let contact = contacts.find((contact) => contact.id === contactId);
-  let session = contact.sessions.find((session) => session.id === sessionId);
-  Object.assign(session, updates);
-  await set(contacts);
-  return session;
+export async function updateSession(clientId, sessionId, updates) {
+  return await fetch(
+    `http://localhost:3001/${clientId}/sessions/${sessionId}`,
+    {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(updates),
+    }
+  );
 }
 
 function set(contacts) {

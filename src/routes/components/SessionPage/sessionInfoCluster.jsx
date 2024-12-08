@@ -7,9 +7,11 @@ import sliceDate from "../../../slicedDate";
 function SessionInfoCluster({ date, time, paid, handleSave }) {
   const slicedDate = sliceDate(date);
   const [selectedDate, setSelectedDate] = useState(slicedDate);
+
   const [selectedTime, setSelectedTime] = useState(time);
   const [isSessionPaid, setIsSessionPaid] = useState(paid);
   const [isDelete, setisDelete] = useState(false);
+
   const handlePaid = () => {
     setIsSessionPaid(!isSessionPaid);
     if (isSessionPaid) {

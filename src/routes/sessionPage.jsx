@@ -10,11 +10,10 @@ export async function loader({ params }) {
   return { session };
 }
 export async function action({ request, params }) {
-  const { contactId, sessionId } = params;
+  const { clientId, sessionId } = params;
   const formData = await request.formData();
   const updatedData = Object.fromEntries(formData);
-  console.log("updatedData", updatedData);
-  const updatedSession = await updateSession(contactId, sessionId, updatedData);
+  const updatedSession = await updateSession(clientId, sessionId, updatedData);
   return updatedSession;
 }
 
@@ -23,7 +22,6 @@ export default function SessionPage() {
   const { session } = useLoaderData();
   const { date, time, paid, notes } = session;
   const [sessionNotes, setSessionNotes] = useState(notes || "");
-
   const handleSave = ({ key, value }) => {
     submit({ [key]: value }, { method: "post" });
   };
