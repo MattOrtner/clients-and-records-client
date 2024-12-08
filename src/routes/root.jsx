@@ -12,8 +12,8 @@ import { attemptLogin } from "../auth";
 
 export default function Root() {
   const [user, setUser] = useState({});
-  const [email, setEmail] = useState("mail@mail.com");
-  const [pass, setPass] = useState("password");
+  const [email, setEmail] = useState("eeemail@mail.com");
+  const [pass, setPass] = useState("characters");
 
   const handleLoginInput = (e) => {
     e.preventDefault();

@@ -19,11 +19,19 @@ export async function createSession(clientId, sessionInfo) {
 }
 
 export async function getSession(params) {
-  let { contactId, sessionId } = params;
-  const contacts = await localforage.getItem("contacts");
-  const contact = contacts.find((contact) => contact.id === contactId);
-  if (!contact) throw new Error("No contact found for", contactId);
-  return contact.sessions.find((session) => session.id === sessionId);
+  return await fetch(
+    `http://localhost:3001/${params.userId}/clients/${params.clientId}/sessions/${params.sessionId}`,
+    {
+      method: "GET",
+    }
+  )
+    .then((response) => {
+      return response.json();
+      // return response.text();
+    })
+    .catch((error) => {
+      console.error("client: getCliensApi(): ", error);
+    });
 }
 
 export async function deleteSession(params) {
@@ -42,7 +50,6 @@ export async function deleteSession(params) {
 }
 
 export async function getClientSessions({ userId, clientId }) {
-  // organize the sessions by date first
   return await fetch(
     `http://localhost:3001/${userId}/clients/sessions/${clientId}`,
     {
@@ -57,13 +64,15 @@ export async function getClientSessions({ userId, clientId }) {
     });
 }
 
-export async function updateSession(contactId, sessionId, updates) {
-  let contacts = await localforage.getItem("contacts");
-  let contact = contacts.find((contact) => contact.id === contactId);
-  let session = contact.sessions.find((session) => session.id === sessionId);
-  Object.assign(session, updates);
-  await set(contacts);
-  return session;
+export async function updateSession(clientId, sessionId, updates) {
+  return await fetch(
+    `http://localhost:3001/${clientId}/sessions/${sessionId}`,
+    {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(updates),
+    }
+  );
 }
 
 function set(contacts) {

@@ -24,7 +24,6 @@ export async function loader({ params }) {
   try {
     const clientData = await getContact(params.clientId);
     const clientSessions = await getClientSessions(params);
-    console.log("clientSessions", clientSessions);
     return { clientData, clientSessions };
   } catch (e) {
     console.error("error loader", e);
@@ -37,7 +36,6 @@ export async function action({ request, params }) {
       return redirect(`/clients/${params.contactId}/profile`);
     }
     case "POST": {
-      // const sessionId = await createSession(params.contactId);
       return redirect(
         `/${params.userId}/clients/${params.clientId}/create-session`
       );

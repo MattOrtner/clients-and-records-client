@@ -86,7 +86,7 @@ const router = createBrowserRouter([
         action: saveSession,
       },
       {
-        path: "contacts/:contactId/sessions/:sessionId",
+        path: ":userId/clients/:clientId/sessions/:sessionId",
         element: <SessionPage />,
         loader: sessionPageLoader,
         action: updateSession,
