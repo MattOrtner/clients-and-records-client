@@ -5,9 +5,16 @@ export async function attemptLogin(email, pass) {
     body: JSON.stringify({ email, pass }),
   })
     .then((response) => {
-      return response.json();
+      console.log("response", response);
+      if (response.ok) {
+        return response.json();
+      } else {
+        return { status: response.status };
+      }
     })
     .catch((error) => {
+      console.log("error", error);
+
       console.error("client: loginAttempt(): ", error);
     });
 }
