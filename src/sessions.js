@@ -77,10 +77,6 @@ export async function updateSession(clientId, sessionId, updates) {
   );
 }
 
-function set(contacts) {
-  return localforage.setItem("contacts", contacts);
-}
-
 export async function getTodaysSessions() {
   let contacts = await localforage.getItem("contacts");
   if (contacts) {
@@ -112,18 +108,3 @@ export async function getUnpaidSessions() {
     return unpaidSessions;
   }
 }
-// let fakeCache = {};
-// async function fakeNetwork(key) {
-//   if (!key) {
-//     fakeCache = {};
-//   }
-
-//   if (fakeCache[key]) {
-//     return;
-//   }
-
-//   fakeCache[key] = true;
-//   return new Promise((res) => {
-//     setTimeout(res, Math.random() * 800);
-//   });
-// }
