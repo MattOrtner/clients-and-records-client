@@ -2,9 +2,9 @@ import { mdiAccountCircleOutline } from "@mdi/js";
 import Icon from "@mdi/react";
 import { NavLink } from "react-router-dom";
 
-function ContactProfileNavButton({ contactId, size }) {
+function ClientProfileNavButton({ clientId }) {
   return (
-    <NavLink to={`/contacts/${contactId}/profile`}>
+    <NavLink to={`/clients/${clientId}/profile`}>
       <button
         name="client-profile"
         aria-label="client-profile"
@@ -13,10 +13,10 @@ function ContactProfileNavButton({ contactId, size }) {
         <Icon
           path={mdiAccountCircleOutline}
           color="rgb(59 130 246)"
-          size={size}
+          size={1.4}
         />
       </button>
     </NavLink>
   );
 }
-export default ContactProfileNavButton;
+export default ClientProfileNavButton;

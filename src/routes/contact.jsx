@@ -18,7 +18,7 @@ import { getContact } from "../contacts";
 import { getClientSessions } from "../sessions";
 
 import NavBackButton from "./components/NavBackButton";
-import ContactProfileNavButton from "./components/ContactPage/contactProfileNavButton";
+import ClientProfileNavButton from "./components/ContactPage/clientProfileNavButton";
 
 export async function loader({ params }) {
   try {
@@ -95,7 +95,7 @@ export default function Contact() {
               <Icon path={mdiEmailOffOutline} color="gray" size={1.4} />
             </button>
           )}
-          <ContactProfileNavButton contactId={client.id} size={1.4} />
+          <ClientProfileNavButton clientId={client.id} />
         </div>
       </div>
       <div className="flex flex-col items-center w-full h-[560px] gap-4 overflow-scroll">

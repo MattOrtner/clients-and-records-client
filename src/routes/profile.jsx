@@ -1,5 +1,5 @@
 import { Form, useLoaderData } from "react-router-dom";
-import { getContact, deleteContact } from "../contacts";
+import { getProfile, deleteContact } from "../contacts";
 import { useState } from "react";
 import NavBackButton from "./components/NavBackButton";
 import ProfileDataRow from "./components/ProfilePage/profileDataRow";
@@ -14,7 +14,7 @@ import {
 } from "@mdi/js";
 
 export async function loader({ params }) {
-  const contact = await getContact(params.contactId);
+  const contact = await getProfile(params.clientId);
   return { contact };
 }
 
@@ -22,20 +22,17 @@ export async function action({ request, params }) {}
 
 export default function Profile() {
   const { contact } = useLoaderData();
-
-  const [isBlurPhone, setIsBlurPhone] = useState("blur-sm");
   const [isDeleting, setIsDeleting] = useState(false);
 
-  const { first, last, email, phonenumber, occurance, rate, emergencyContact } =
-    contact;
-
-  const tax = rate * 0.2;
-
-  const handlePhoneBlur = () => {
-    setIsBlurPhone((isBlur) =>
-      isBlur === "blur-[3px]" ? "blur-none" : "blur-[3px]"
-    );
-  };
+  const {
+    first,
+    last,
+    email,
+    phone_number,
+    occurance,
+    rate,
+    emergencyContact,
+  } = contact[0];
 
   return (
     <div id="contact">
@@ -54,8 +51,8 @@ export default function Profile() {
           )}
         </div>
         <div className="flex w-full  justify-center gap-6 items-center mb-2">
-          {phonenumber ? (
-            <a href={`tel:${phonenumber}`}>
+          {phone_number ? (
+            <a href={`tel:${phone_number}`}>
               <button>
                 <Icon path={mdiPhone} color="rgb(59 130 246)" size={1.4} />
               </button>
@@ -98,10 +95,9 @@ export default function Profile() {
         </div>
       </div>
       <div className="flex flex-col items-center gap-4">
-        <ProfileDataRow label={"Phone"} data={phonenumber} />
+        <ProfileDataRow label={"Phone"} data={phone_number} />
         <ProfileDataRow label={"Rate"} data={rate} />
         <ProfileDataRow label={"Occurance"} data={occurance} />
-        <ProfileDataRow label={"Tax"} data={tax} />
       </div>
       {emergencyContact && (
         <div className="flex flex-col gap-4">

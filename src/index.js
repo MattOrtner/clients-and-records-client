@@ -92,7 +92,7 @@ const router = createBrowserRouter([
         action: updateSession,
       },
       {
-        path: "contacts/:contactId/profile",
+        path: "clients/:clientId/profile",
         element: <Profile />,
         loader: profileLoader,
         action: profileAction,
