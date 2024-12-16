@@ -102,7 +102,7 @@ const router = createBrowserRouter([
         action: deleteContact,
       },
       {
-        path: "contacts/:contactId/sessions/:sessionId/delete",
+        path: ":userId/clients/:clientId/sessions/:sessionId/delete",
         action: deleteSession,
       },
       {
