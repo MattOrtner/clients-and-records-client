@@ -35,18 +35,20 @@ export async function getSession(params) {
 }
 
 export async function deleteSession(params) {
-  let { contactId, sessionId } = params;
-  let contacts = await localforage.getItem("contacts");
-  let contact = contacts.find((contact) => contact.id === contactId);
-  let index = contact.sessions.findIndex((session) => session.id === sessionId);
-  console.log("deleted session");
-  if (index > -1) {
-    contact.sessions.splice(index, 1);
-    await set(contacts);
-    return true;
-  } else {
-    return false;
-  }
+  let { clientId, sessionId } = params;
+  return await fetch(
+    `http://localhost:3001/${clientId}/sessions/${sessionId}`,
+    {
+      method: "DELETE",
+    }
+  )
+    .then((response) => {
+      console.log("response: ", response);
+      return response.json();
+    })
+    .catch((error) => {
+      console.error("ERROR-getClientSessions", error);
+    });
 }
 
 export async function getClientSessions({ userId, clientId }) {
@@ -73,10 +75,6 @@ export async function updateSession(clientId, sessionId, updates) {
       body: JSON.stringify(updates),
     }
   );
-}
-
-function set(contacts) {
-  return localforage.setItem("contacts", contacts);
 }
 
 export async function getTodaysSessions() {
@@ -110,18 +108,3 @@ export async function getUnpaidSessions() {
     return unpaidSessions;
   }
 }
-// let fakeCache = {};
-// async function fakeNetwork(key) {
-//   if (!key) {
-//     fakeCache = {};
-//   }
-
-//   if (fakeCache[key]) {
-//     return;
-//   }
-
-//   fakeCache[key] = true;
-//   return new Promise((res) => {
-//     setTimeout(res, Math.random() * 800);
-//   });
-// }
