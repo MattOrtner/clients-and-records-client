@@ -28,8 +28,12 @@ export default function Root() {
 
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
-    const { status, id, first } = await attemptLogin(email, pass);
-    setUser({ id, first });
+    const response = await attemptLogin(email, pass);
+    if (response.status > 200) {
+      alert("Invalid email/pass combination");
+    } else {
+      setUser({ id: response.id, first: response.first });
+    }
   };
 
   if (Object.keys(user).length === 0) {
