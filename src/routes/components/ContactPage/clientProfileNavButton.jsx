@@ -2,9 +2,9 @@ import { mdiAccountCircleOutline } from "@mdi/js";
 import Icon from "@mdi/react";
 import { NavLink } from "react-router-dom";
 
-function ClientProfileNavButton({ clientId }) {
+function ClientProfileNavButton({ userId, clientId }) {
   return (
-    <NavLink to={`/clients/${clientId}/profile`}>
+    <NavLink to={`/${userId}/clients/${clientId}/profile`}>
       <button
         name="client-profile"
         aria-label="client-profile"

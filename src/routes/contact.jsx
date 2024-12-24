@@ -33,7 +33,7 @@ export async function loader({ params }) {
 export async function action({ request, params }) {
   switch (request.method) {
     case "GET": {
-      return redirect(`/clients/${params.contactId}/profile`);
+      return redirect(`/${params.userId}/clients/${params.clientId}/profile`);
     }
     case "POST": {
       return redirect(
@@ -95,7 +95,7 @@ export default function Contact() {
               <Icon path={mdiEmailOffOutline} color="gray" size={1.4} />
             </button>
           )}
-          <ClientProfileNavButton clientId={client.id} />
+          <ClientProfileNavButton userId={user.id} clientId={client.id} />
         </div>
       </div>
       <div className="flex flex-col items-center w-full h-[560px] gap-4 overflow-scroll">

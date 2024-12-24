@@ -58,7 +58,7 @@ export default function ContactList() {
               ))}
             </ul>
           ) : (
-            <p className="text-2xl">Add a contact</p>
+            <p className="text-2xl mt-28">Add a contact</p>
           )}
         </nav>
       </div>

@@ -33,9 +33,7 @@ export async function getProfile(clientId) {
     method: "GET",
   })
     .then((response) => {
-      console.log("response", response);
       return response.json();
-      // return response.text();
     })
     .catch((error) => {
       console.error("client: getCliensApi(): ", error);
@@ -58,4 +56,16 @@ export async function getInfoForContactPage(id) {}
 
 export async function updateContact(id, updates) {}
 
-export async function deleteContact(id) {}
+export async function deleteClient(userId, clientId) {
+  // write a fetch request to delete a contact
+  return await fetch(`http://localhost:3001/${userId}/clients/${clientId}`, {
+    method: "DELETE",
+  })
+    .then((response) => {
+      console.log("response", response);
+      return response.text();
+    })
+    .catch((error) => {
+      console.error("client: deleteClient(): ", error);
+    });
+}
