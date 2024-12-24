@@ -5,7 +5,6 @@ export async function attemptLogin(email, pass) {
     body: JSON.stringify({ email, pass }),
   })
     .then((response) => {
-      console.log("response", response);
       if (response.ok) {
         return response.json();
       } else {
