@@ -14,9 +14,9 @@ function Session({ session, contactId }) {
     <NavLink
       to={`/${user.id}/clients/${contactId}/sessions/${sessionId}`}
       className="flex justify-evenly items-center w-[90%]
-      h-12 rounded-md border border-gray-300 gap-4 font-verdana"
+      h-12 rounded-md border border-gray-300 gap-4"
     >
-      <div className="py-2 px-4 rounded-md">
+      <div className="py-2 px-4  font-verdana">
         <p>{reversedDate}</p>
       </div>
       <p>
