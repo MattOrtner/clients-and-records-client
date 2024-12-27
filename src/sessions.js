@@ -10,7 +10,6 @@ export async function createSession(clientId, sessionInfo) {
     body: JSON.stringify(sessionInfo),
   })
     .then((response) => {
-      console.log("response", response);
       return response.json();
     })
     .catch((error) => {
@@ -27,7 +26,6 @@ export async function getSession(params) {
   )
     .then((response) => {
       return response.json();
-      // return response.text();
     })
     .catch((error) => {
       console.error("client: getCliensApi(): ", error);
