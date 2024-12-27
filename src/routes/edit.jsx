@@ -18,7 +18,7 @@ export default function EditContact() {
   // const { contact } = useLoaderData();
   return (
     <Form method="post" id="contact-form">
-      <p className="flex flex-col gap-2 font-light">
+      <div className="flex flex-col gap-2 font-light">
         <span className="text-2xl">New Client</span>
         <span>Name</span>
         <input
@@ -77,7 +77,7 @@ export default function EditContact() {
             // defaultValue="1"
           />
         </label>
-      </p>
+      </div>
       <p className="font-light">
         <label className="flex gap-2 font-light">
           {/* <span className="text-2xl pt-4">Emergency Contact</span>
