@@ -3,6 +3,7 @@ export async function getTodaysTodos(userId) {
     method: "GET",
   })
     .then((response) => {
+      console.log("response: ", response);
       return response.json();
     })
     .catch((error) => {
