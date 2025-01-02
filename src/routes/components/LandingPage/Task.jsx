@@ -1,6 +1,6 @@
 import { Draggable } from "react-beautiful-dnd";
 
-const Task = ({ index, task, deleteTask }) => {
+const Task = ({ index, task, handleDelete }) => {
   return (
     <Draggable draggableId={task.id} index={index}>
       {(provided) => (
@@ -15,7 +15,7 @@ const Task = ({ index, task, deleteTask }) => {
           </div>
           <button
             className="text-red-500 border border-solid border-red-500 rounded-lg w-[45px] flex-shrink-0 hover:bg-red-600 transition-colors"
-            onClick={() => deleteTask(task.id)}
+            onClick={() => handleDelete(task.id)}
           >
             X
           </button>

@@ -1,22 +1,22 @@
 import { useState, useContext, useEffect } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import { useLoaderData, useOutletContext } from "react-router-dom";
-import TodoColumn from "./components/LandingPage/TodoColumn";
+import TaskColumn from "./components/LandingPage/TaskColumn";
 import Agenda from "./components/LandingPage/Agenda";
 import CurrentDay from "../currentDay";
 import { getTodaysSessions } from "../sessions";
-import { getTodaysTodos, deleteTodo } from "../todos";
+import { getTodaysTasks, deleteTask } from "../tasks";
 
 const Landing = () => {
   const [user, setUser] = useOutletContext();
 
-  const [todos, setTodos] = useState([]);
+  const [tasks, setTasks] = useState([]);
   useEffect(() => {
     const fetchTodaysTodos = async () => {
-      const todos = await getTodaysTodos(user.id);
-      setTodos(todos);
+      const tasks = await getTodaysTasks(user.id);
+      setTasks(tasks);
     };
-    fetchTodaysTodos();
+    // fetchTodaysTodos();
   }, [user]);
 
   const sessions = [];
@@ -25,17 +25,16 @@ const Landing = () => {
     const { source, destination } = result;
     if (!destination) return;
     if (destination.index === source.index) return;
-    const updatedTasks = Array.from(todos);
+    const updatedTasks = Array.from(tasks);
     const [removedTask] = updatedTasks.splice(source.index, 1);
     updatedTasks.splice(destination.index, 0, removedTask);
-    setTodos(updatedTasks);
+    setTasks(updatedTasks);
   };
 
-  const deleteTask = async (taskId) => {
-    const response = await deleteTodo(taskId);
+  const handleDelete = async (taskId) => {
+    const response = await deleteTask(taskId);
     console.log("response", response);
-
-    setTodos(todos.filter((task) => task.id !== taskId));
+    setTasks(tasks.filter((task) => task.id !== taskId));
   };
 
   return (
@@ -48,11 +47,11 @@ const Landing = () => {
       </div>
       <div className="mt-10 flex-grow pb-10">
         <DragDropContext onDragEnd={onDragEnd}>
-          <TodoColumn
-            title="todos"
-            todos={todos}
-            setTodos={setTodos}
-            deleteTask={deleteTask}
+          <TaskColumn
+            title="tasks"
+            tasks={tasks}
+            setTasks={setTasks}
+            handleDelete={handleDelete}
           />
         </DragDropContext>
       </div>

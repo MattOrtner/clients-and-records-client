@@ -4,10 +4,10 @@ import Icon from "@mdi/react";
 import { mdiPlus } from "@mdi/js";
 import { useContext, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { createTodo } from "../../../todos";
+import { createTask } from "../../../tasks";
 import { useOutletContext } from "react-router-dom";
 
-const TodoColumn = ({ title, todos, setTodos, deleteTask }) => {
+const TaskColumn = ({ title, tasks, setTasks, handleDelete }) => {
   const [user, setUser] = useOutletContext();
   const [task, setTask] = useState("");
 
@@ -23,12 +23,12 @@ const TodoColumn = ({ title, todos, setTodos, deleteTask }) => {
     const newTodo = {
       id,
       content: task,
-      index: todos.length,
+      index: tasks.length,
       userId: user.id,
     };
-    const response = await createTodo(newTodo);
+    const response = await createTask(newTodo);
     if (response.status === 200) {
-      setTodos((todos) => [...todos, newTodo]);
+      setTasks((tasks) => [...tasks, newTodo]);
       setTask("");
     }
   };
@@ -59,18 +59,18 @@ const TodoColumn = ({ title, todos, setTodos, deleteTask }) => {
             {...provided.droppableProps}
             className="space-y-2"
           >
-            {todos.length ? (
-              todos.map((task) => (
+            {tasks.length ? (
+              tasks.map((task) => (
                 <Task
                   key={task.id}
                   index={task.index}
                   task={task}
-                  deleteTask={deleteTask}
+                  handleDelete={handleDelete}
                 />
               ))
             ) : (
               <div className="text-center text-slate-400 font-semibold py-4">
-                No todos available
+                No tasks available
               </div>
             )}
             {provided.placeholder}
@@ -81,4 +81,4 @@ const TodoColumn = ({ title, todos, setTodos, deleteTask }) => {
   );
 };
 
-export default TodoColumn;
+export default TaskColumn;
