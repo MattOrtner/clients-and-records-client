@@ -5,7 +5,7 @@ import TaskColumn from "./components/LandingPage/TaskColumn";
 import Agenda from "./components/LandingPage/Agenda";
 import CurrentDay from "../currentDay";
 import { getTodaysSessions } from "../sessions";
-import { getTodaysTasks, deleteTask } from "../tasks";
+import { deleteTask } from "../tasks";
 
 const Landing = () => {
   const [user, setUser] = useOutletContext();
@@ -23,7 +23,7 @@ const Landing = () => {
 
   const testAPICall = async () => {
     const getTodaysTasks = async () => {
-      return await fetch(`${process.env.REACT_APP_API}`, {
+      await fetch(`${process.env.REACT_APP_API}`, {
         method: "GET",
       })
         .then((response) => {
@@ -31,11 +31,17 @@ const Landing = () => {
           return response.json();
         })
         .catch((error) => {
-          console.error("client: getCliensApi(): ", error);
-        })();
+          console.error("client: getClientsApi(): ", error);
+        });
     };
-    const result = getTodaysTasks();
-    console.log("result", result);
+    const result = await getTodaysTasks();
+    if (result) {
+      // Handle the result, e.g., update the state or show a notification
+      setTasks(result);
+    } else {
+      // Handle the error, e.g., show an error message to the user
+      console.error("Failed to fetch tasks");
+    }
   };
 
   const sessions = [];
