@@ -5,7 +5,7 @@ import TaskColumn from "./components/LandingPage/TaskColumn";
 import Agenda from "./components/LandingPage/Agenda";
 import CurrentDay from "../currentDay";
 import { getTodaysSessions } from "../sessions";
-import { deleteTask } from "../tasks";
+import { getTodaysTasks, deleteTask } from "../tasks";
 
 const Landing = () => {
   const [user, setUser] = useOutletContext();
@@ -20,29 +20,6 @@ const Landing = () => {
   }, [user]);
 
   console.log("user", user);
-
-  const testAPICall = async () => {
-    const getTodaysTasks = async () => {
-      await fetch(`${process.env.REACT_APP_API}`, {
-        method: "GET",
-      })
-        .then((response) => {
-          console.log("response", response);
-          return response.json();
-        })
-        .catch((error) => {
-          console.error("client: getClientsApi(): ", error);
-        });
-    };
-    const result = await getTodaysTasks();
-    if (result) {
-      // Handle the result, e.g., update the state or show a notification
-      setTasks(result);
-    } else {
-      // Handle the error, e.g., show an error message to the user
-      console.error("Failed to fetch tasks");
-    }
-  };
 
   const sessions = [];
 
@@ -64,13 +41,7 @@ const Landing = () => {
 
   return (
     <div className="flex flex-col h-full w-full p-4 overflow-y-auto">
-      <button
-        className="bg-blue-500 text-white px-4 py-2 rounded"
-        onClick={testAPICall}
-      >
-        Test API Call
-      </button>
-      <div className="">
+      <div>
         <h1 className="text-5xl text-gray-800 font-serif mb-10">
           Happy {CurrentDay}
         </h1>
