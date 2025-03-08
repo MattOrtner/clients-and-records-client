@@ -12,12 +12,31 @@ const Landing = () => {
 
   const [tasks, setTasks] = useState([]);
   useEffect(() => {
-    const fetchTodaysTodos = async () => {
-      const tasks = await getTodaysTasks(user.id);
-      setTasks(tasks);
-    };
-    // fetchTodaysTodos();
+    // const fetchTasks = async () => {
+    //   const tasks = await getTodaysTasks(user.id);
+    //   setTasks(tasks);
+    // };
+    // fetchTasks();
   }, [user]);
+
+  console.log("user", user);
+
+  const testAPICall = async () => {
+    const getTodaysTasks = async () => {
+      return await fetch(`${process.env.REACT_APP_API}/`, {
+        method: "GET",
+      })
+        .then((response) => {
+          console.log("response", response);
+          return response.json();
+        })
+        .catch((error) => {
+          console.error("client: getCliensApi(): ", error);
+        })();
+    };
+    const result = getTodaysTasks();
+    console.log("result", result);
+  };
 
   const sessions = [];
 
@@ -38,17 +57,23 @@ const Landing = () => {
   };
 
   return (
-    <div className="flex flex-col h-full w-full bg-gray-50 p-4  overflow-y-auto">
+    <div className="flex flex-col h-full w-full p-4 overflow-y-auto">
+      <button
+        className="bg-blue-500 text-white px-4 py-2 rounded"
+        onClick={testAPICall}
+      >
+        Test API Call
+      </button>
       <div className="">
         <h1 className="text-5xl text-gray-800 font-serif mb-10">
           Happy {CurrentDay}
         </h1>
         <Agenda sessions={sessions} />
       </div>
-      <div className="mt-10 flex-grow pb-10">
+      <div className="mt-5 flex-grow pb-10">
         <DragDropContext onDragEnd={onDragEnd}>
           <TaskColumn
-            title="tasks"
+            title="To Do"
             tasks={tasks}
             setTasks={setTasks}
             handleDelete={handleDelete}
