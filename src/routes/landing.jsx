@@ -23,7 +23,7 @@ const Landing = () => {
 
   const testAPICall = async () => {
     const getTodaysTasks = async () => {
-      return await fetch(`${process.env.REACT_APP_API}/`, {
+      return await fetch(`${process.env.REACT_APP_API}`, {
         method: "GET",
       })
         .then((response) => {
