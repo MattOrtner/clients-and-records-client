@@ -1,18 +1,17 @@
 export async function getTodaysTasks(userId) {
-  return await fetch(`http://localhost:3001/${userId}/tasks`, {
+  return await fetch(`${process.env.REACT_APP_API}${userId}/tasks`, {
     method: "GET",
   })
     .then((response) => {
-      console.log("response: ", response);
       return response.json();
     })
     .catch((error) => {
-      console.error("client: getCliensApi(): ", error);
+      console.error("client: getClientsApi(): ", error);
     });
 }
 
 export async function createTask(newTask) {
-  return await fetch("http://localhost:3001/tasks", {
+  return await fetch(`${process.env.REACT_APP_API}tasks`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(newTask),
@@ -20,7 +19,7 @@ export async function createTask(newTask) {
 }
 
 export async function deleteTask(id) {
-  return await fetch(`http://localhost:3001/tasks`, {
+  return await fetch(`${process.env.REACT_APP_API}tasks`, {
     method: "DELETE",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ id }),
