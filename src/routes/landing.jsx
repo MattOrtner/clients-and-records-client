@@ -1,23 +1,42 @@
 import { useState, useContext, useEffect } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import { useLoaderData, useOutletContext } from "react-router-dom";
-import TodoColumn from "./components/LandingPage/TodoColumn";
+import TaskColumn from "./components/LandingPage/TaskColumn";
 import Agenda from "./components/LandingPage/Agenda";
 import CurrentDay from "../currentDay";
 import { getTodaysSessions } from "../sessions";
-import { getTodaysTodos, deleteTodo } from "../todos";
+import { getTodaysTasks, deleteTask } from "../tasks";
 
 const Landing = () => {
   const [user, setUser] = useOutletContext();
 
-  const [todos, setTodos] = useState([]);
+  const [tasks, setTasks] = useState([]);
   useEffect(() => {
-    const fetchTodaysTodos = async () => {
-      const todos = await getTodaysTodos(user.id);
-      setTodos(todos);
-    };
-    fetchTodaysTodos();
+    // const fetchTasks = async () => {
+    //   const tasks = await getTodaysTasks(user.id);
+    //   setTasks(tasks);
+    // };
+    // fetchTasks();
   }, [user]);
+
+  console.log("user", user);
+
+  const testAPICall = async () => {
+    const getTodaysTasks = async () => {
+      return await fetch(`${process.env.REACT_APP_API}/`, {
+        method: "GET",
+      })
+        .then((response) => {
+          console.log("response", response);
+          return response.json();
+        })
+        .catch((error) => {
+          console.error("client: getCliensApi(): ", error);
+        })();
+    };
+    const result = getTodaysTasks();
+    console.log("result", result);
+  };
 
   const sessions = [];
 
@@ -25,34 +44,39 @@ const Landing = () => {
     const { source, destination } = result;
     if (!destination) return;
     if (destination.index === source.index) return;
-    const updatedTasks = Array.from(todos);
+    const updatedTasks = Array.from(tasks);
     const [removedTask] = updatedTasks.splice(source.index, 1);
     updatedTasks.splice(destination.index, 0, removedTask);
-    setTodos(updatedTasks);
+    setTasks(updatedTasks);
   };
 
-  const deleteTask = async (taskId) => {
-    const response = await deleteTodo(taskId);
+  const handleDelete = async (taskId) => {
+    const response = await deleteTask(taskId);
     console.log("response", response);
-
-    setTodos(todos.filter((task) => task.id !== taskId));
+    setTasks(tasks.filter((task) => task.id !== taskId));
   };
 
   return (
-    <div className="flex flex-col h-full w-full bg-gray-50 p-4  overflow-y-auto">
+    <div className="flex flex-col h-full w-full p-4 overflow-y-auto">
+      <button
+        className="bg-blue-500 text-white px-4 py-2 rounded"
+        onClick={testAPICall}
+      >
+        Test API Call
+      </button>
       <div className="">
         <h1 className="text-5xl text-gray-800 font-serif mb-10">
           Happy {CurrentDay}
         </h1>
         <Agenda sessions={sessions} />
       </div>
-      <div className="mt-10 flex-grow pb-10">
+      <div className="mt-5 flex-grow pb-10">
         <DragDropContext onDragEnd={onDragEnd}>
-          <TodoColumn
-            title="todos"
-            todos={todos}
-            setTodos={setTodos}
-            deleteTask={deleteTask}
+          <TaskColumn
+            title="To Do"
+            tasks={tasks}
+            setTasks={setTasks}
+            handleDelete={handleDelete}
           />
         </DragDropContext>
       </div>

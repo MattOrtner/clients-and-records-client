@@ -1,8 +1,9 @@
-export async function getTodaysTodos(userId) {
-  return await fetch(`http://localhost:3001/${userId}/todos`, {
+export async function getTodaysTasks(userId) {
+  return await fetch(`http://localhost:3001/${userId}/tasks`, {
     method: "GET",
   })
     .then((response) => {
+      console.log("response: ", response);
       return response.json();
     })
     .catch((error) => {
@@ -10,16 +11,16 @@ export async function getTodaysTodos(userId) {
     });
 }
 
-export async function createTodo(newTodo) {
-  return await fetch("http://localhost:3001/todos", {
+export async function createTask(newTask) {
+  return await fetch("http://localhost:3001/tasks", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(newTodo),
+    body: JSON.stringify(newTask),
   });
 }
 
-export async function deleteTodo(id) {
-  return await fetch(`http://localhost:3001/todos`, {
+export async function deleteTask(id) {
+  return await fetch(`http://localhost:3001/tasks`, {
     method: "DELETE",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ id }),
@@ -29,13 +30,13 @@ export async function deleteTodo(id) {
         return response;
       } else {
         console.error(
-          `Failed to delete todo: ${response.status} ${response.statusText}`
+          `Failed to delete task: ${response.status} ${response.statusText}`
         );
       }
     })
     .catch((error) => {
       console.error(
-        "client: deleteTodo(): Error deleting todo with id",
+        "client: deleteTask(): Error deleting task with id",
         id,
         error
       );
