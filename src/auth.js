@@ -2,6 +2,7 @@ export async function attemptLogin(email, pass) {
   return await fetch(`${process.env.REACT_APP_API}login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
+    credentials: "include",
     body: JSON.stringify({ email, pass }),
   })
     .then((response) => {
