@@ -36,16 +36,16 @@ export default function Root() {
     }
   };
 
-  // if (Object.keys(user).length === 0) {
-  //   return (
-  //     <Login
-  //       handleLoginInput={handleLoginInput}
-  //       email={email}
-  //       pass={pass}
-  //       handleLoginSubmit={handleLoginSubmit}
-  //     />
-  //   );
-  // }
+  if (Object.keys(user).length === 0) {
+    return (
+      <Login
+        handleLoginInput={handleLoginInput}
+        email={email}
+        pass={pass}
+        handleLoginSubmit={handleLoginSubmit}
+      />
+    );
+  }
 
   return (
     <div className="flex flex-col items-center w-full">
