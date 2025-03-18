@@ -1,5 +1,7 @@
 export async function attemptLogin(email, pass) {
-  return await fetch(`${process.env.REACT_APP_API}login`, {
+  const apiUrl = process.env.REACT_APP_API;
+  console.log("apiUrl: ", apiUrl);
+  return await fetch(`${apiUrl}login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     credentials: "include",
@@ -13,8 +15,7 @@ export async function attemptLogin(email, pass) {
       }
     })
     .catch((error) => {
-      console.log("error", error);
-
-      console.error("client: loginAttempt(): ", error);
+      console.log("client catch: ", error);
+      return { error: error.message };
     });
 }
