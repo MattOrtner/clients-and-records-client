@@ -1,5 +1,6 @@
 export async function attemptLogin(email, pass) {
   const apiUrl = process.env.REACT_APP_API;
+  console.log("apiUrl: ", apiUrl);
   return await fetch(`${apiUrl}login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
