@@ -18,7 +18,9 @@ const TaskColumn = ({ title, tasks, setTasks, handleDelete }) => {
   const handleAddTask = async (e) => {
     e.preventDefault();
     if (!task) return;
+    const id = Date.now().toString().slice(-8);
     const newTask = {
+      id,
       content: task,
       index: tasks.length,
       userId: user.id,

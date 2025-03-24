@@ -9,17 +9,18 @@ import { getTodaysTasks, deleteTask } from "../tasks";
 
 const Landing = () => {
   const [user, setUser] = useOutletContext();
-
   const [tasks, setTasks] = useState([]);
-  useEffect(() => {
-    // const fetchTasks = async () => {
-    //   const tasks = await getTodaysTasks(user.id);
-    //   setTasks(tasks);
-    // };
-    // fetchTasks();
-  }, [user]);
+  const [sessions, setSessions] = useState([]);
 
-  const sessions = [];
+  useEffect(() => {
+    const fetchTasks = async () => {
+      const tasks = await getTodaysTasks(user.id);
+      if (tasks) {
+        setTasks(tasks);
+      }
+    };
+    fetchTasks();
+  }, [user]);
 
   const onDragEnd = (result) => {
     const { source, destination } = result;
@@ -33,7 +34,13 @@ const Landing = () => {
 
   const handleDelete = async (taskId) => {
     const response = await deleteTask(taskId);
-    console.log("response", response);
+    if (response.status !== 200) {
+      alert(
+        `Error deleting task, please try again. Status Code: ${response.statusText}`
+      );
+      console.error("Error deleting task:", response.statusText);
+      return;
+    }
     setTasks(tasks.filter((task) => task.id !== taskId));
   };
 
