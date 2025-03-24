@@ -26,7 +26,6 @@ export default function ContactList() {
     fetchClients();
   }, []);
 
-  console.log("user", user);
   return (
     <>
       <div className="w-full">

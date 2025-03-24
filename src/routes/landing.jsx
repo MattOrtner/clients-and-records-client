@@ -19,8 +19,6 @@ const Landing = () => {
     // fetchTasks();
   }, [user]);
 
-  console.log("user", user);
-
   const sessions = [];
 
   const onDragEnd = (result) => {

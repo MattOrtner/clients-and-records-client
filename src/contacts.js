@@ -3,7 +3,6 @@ export async function getContacts(userId) {
     method: "GET",
   })
     .then((response) => {
-      console.log("response get contacts", response);
       return response.json();
     })
     .catch((error) => {
