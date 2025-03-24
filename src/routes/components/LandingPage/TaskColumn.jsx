@@ -69,7 +69,7 @@ const TaskColumn = ({ title, tasks, setTasks, handleDelete }) => {
               ))
             ) : (
               <div className="text-center text-slate-400 font-semibold py-4">
-                You have no pressing tasks at the moment.
+                Nothing pressing at the moment...
               </div>
             )}
             {provided.placeholder}
