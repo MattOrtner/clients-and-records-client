@@ -2,7 +2,7 @@ import { Draggable } from "react-beautiful-dnd";
 
 const Task = ({ index, task, handleDelete }) => {
   return (
-    <Draggable draggableId={task.id} index={index}>
+    <Draggable draggableId={`${task.id}`} index={index}>
       {(provided) => (
         <div
           className="flex justify-between items-center bg-white border border-slate-200 rounded-lg shadow-sm hover:shadow-md transition-shadow w-full"
@@ -14,7 +14,7 @@ const Task = ({ index, task, handleDelete }) => {
             {task.content}
           </div>
           <button
-            className="text-red-500 border border-solid border-red-500 rounded-lg w-[45px] flex-shrink-0 hover:bg-red-600 transition-colors"
+            className="text-red-500 border border-solid border-red-500 rounded-lg w-[45px] flex-shrink-0"
             onClick={() => handleDelete(task.id)}
           >
             X
