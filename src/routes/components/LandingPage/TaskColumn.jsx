@@ -2,13 +2,12 @@ import { Droppable } from "react-beautiful-dnd";
 import Task from "./Task";
 import Icon from "@mdi/react";
 import { mdiPlus } from "@mdi/js";
-import { useContext, useState } from "react";
-import { v4 as uuidv4 } from "uuid";
+import { useState } from "react";
 import { createTask } from "../../../tasks";
 import { useOutletContext } from "react-router-dom";
 
 const TaskColumn = ({ title, tasks, setTasks, handleDelete }) => {
-  const [user, setUser] = useOutletContext();
+  const [user, _] = useOutletContext();
   const [task, setTask] = useState("");
 
   const handleTaskInput = (e) => {
@@ -19,16 +18,14 @@ const TaskColumn = ({ title, tasks, setTasks, handleDelete }) => {
   const handleAddTask = async (e) => {
     e.preventDefault();
     if (!task) return;
-    const id = uuidv4();
-    const newTodo = {
-      id,
+    const newTask = {
       content: task,
       index: tasks.length,
       userId: user.id,
     };
-    const response = await createTask(newTodo);
+    const response = await createTask(newTask);
     if (response.status === 200) {
-      setTasks((tasks) => [...tasks, newTodo]);
+      setTasks((tasks) => [...tasks, newTask]);
       setTask("");
     }
   };

@@ -2,7 +2,7 @@ import AgendaSession from "./AgendaSession";
 
 const Agenda = ({ sessions }) => {
   return (
-    <div className="bg-white p-6 rounded-lg shadow-md">
+    <div className="bg-white p-6 rounded-lg shadow-md border border-slate-200">
       <div>
         <h2 className="text-xl font-semibold text-gray-700 mb-4">
           Today's Agenda:
