@@ -44,11 +44,10 @@ export async function deleteSession(params) {
     }
   )
     .then((response) => {
-      console.log("response: ", response);
       return response.json();
     })
     .catch((error) => {
-      console.error("ERROR-getClientSessions", error);
+      console.error("ERROR-deleteSession", error);
     });
 }
 
@@ -95,12 +94,12 @@ export async function getTodaysSessions() {
     return todaysSessions;
   }
 }
+
 export async function getUnpaidSessions(userId) {
   return await fetch(`${process.env.REACT_APP_API}${userId}/sessions/unpaid`, {
     method: "GET",
   })
     .then((response) => {
-      console.log("response", response);
       return response.json();
     })
     .catch((error) => {
