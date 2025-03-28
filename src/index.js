@@ -59,7 +59,7 @@ const router = createBrowserRouter([
         action: contactListAction,
       },
       {
-        path: "payments",
+        path: ":userId/payments",
         element: <Payments />,
         loader: paymentsLoader,
       },
