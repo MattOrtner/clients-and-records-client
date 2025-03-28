@@ -11,6 +11,7 @@ export async function action({ request, params }) {
     return redirect(`/${params.userId}/clients`);
   } else {
     const sessionInfo = Object.fromEntries(formData);
+    if (!sessionInfo.paid) sessionInfo.paid = false;
     await createSession(clientId, sessionInfo);
     return redirect(`/${userId}/clients/${clientId}`);
   }
