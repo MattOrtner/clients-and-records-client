@@ -57,7 +57,7 @@ export default function Root() {
           svg={mdiAccountMultipleOutline}
         />
         {/* <NavBarTab route={"calendar"} svg={mdiCalendarMultiselectOutline} /> */}
-        <NavBarTab route="payments" svg={mdiCurrencyUsd} />
+        <NavBarTab route={`${user.id}/payments`} svg={mdiCurrencyUsd} />
       </nav>
     </div>
   );
