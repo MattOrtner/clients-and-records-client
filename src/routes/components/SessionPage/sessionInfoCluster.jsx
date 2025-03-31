@@ -15,9 +15,9 @@ function SessionInfoCluster({ date, time, paid, handleSave }) {
   const handlePaid = () => {
     setIsSessionPaid(!isSessionPaid);
     if (isSessionPaid) {
-      handleSave({ key: "paid", value: "" });
+      handleSave({ key: "paid", value: "false" });
     } else {
-      handleSave({ key: "paid", value: "on" });
+      handleSave({ key: "paid", value: "true" });
     }
   };
 
