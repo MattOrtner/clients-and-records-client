@@ -7,7 +7,7 @@ import SessionInfoCluster from "./components/SessionPage/sessionInfoCluster";
 
 export async function loader({ params }) {
   const [session] = await getSession(params);
-  return { session };
+  return session;
 }
 export async function action({ request, params }) {
   const { clientId, sessionId } = params;
@@ -19,7 +19,7 @@ export async function action({ request, params }) {
 
 export default function SessionPage() {
   const submit = useSubmit();
-  const { session } = useLoaderData();
+  const session = useLoaderData();
   const { date, time, paid, notes } = session;
   const [sessionNotes, setSessionNotes] = useState(notes || "");
   const handleSave = ({ key, value }) => {
