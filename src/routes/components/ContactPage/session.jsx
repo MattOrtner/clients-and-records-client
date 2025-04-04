@@ -13,25 +13,22 @@ function Session({ session, contactId }) {
   const [user, _] = useOutletContext();
 
   return (
-    <>
-      <NavLink
-        to={`/${user.id}/clients/${contactId}/sessions/${sessionId}`}
-        className="flex justify-evenly items-center w-[90%]
-      h-12 rounded-md border border-gray-300 gap-4"
-      >
-        <div className="font-verdana">{sessionDate}</div>
-        <div className="font-verdana">
-          <p>{sessionTime}</p>
-        </div>
-        <p>
-          {session.paid ? (
-            <Icon path={mdiCheckCircleOutline} size={1.25} color="green" />
-          ) : (
-            <Icon path={mdiEmoticonFrownOutline} size={1.25} color="red" />
-          )}
-        </p>
-      </NavLink>
-    </>
+    <NavLink
+      to={`/${user.id}/clients/${contactId}/sessions/${sessionId}`}
+      className="flex justify-evenly items-center w-[90%] h-12 rounded-md border border-gray-300 gap-4"
+    >
+      <div className="font-verdana">{sessionDate}</div>
+      <div className="font-verdana">
+        <p>{sessionTime}</p>
+      </div>
+      <>
+        {session.paid ? (
+          <Icon path={mdiCheckCircleOutline} size={1.25} color="green" />
+        ) : (
+          <Icon path={mdiEmoticonFrownOutline} size={1.25} color="red" />
+        )}
+      </>
+    </NavLink>
   );
 }
 
