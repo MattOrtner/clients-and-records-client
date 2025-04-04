@@ -20,11 +20,10 @@ const Payments = () => {
 
   return (
     <div className="h-full w-full p-4">
-      <h1 className="text-3xl flex justify-between text-gray-800 font-serif mb-10">
-        <p>Unpaid Sessions</p>
-        <p>{sessions.length}</p>
+      <h1 className="text-4xl flex justify-between text-gray-800 font-serif mb-10">
+        Unpaid Sessions
       </h1>
-      <div className="flex flex-col">
+      <div className="flex flex-col h-[85%] overflow-scroll">
         {sessions.length > 0 ? (
           sessions.map((session) => (
             <Link
@@ -41,11 +40,11 @@ const Payments = () => {
             </Link>
           ))
         ) : (
-          <h2 className="text-4xl w-full flex justify-center gap-8">
+          <div className="text-4xl w-full h-full flex justify-center items-center gap-8">
             <div>🎉</div>
             <div>🥳</div>
             <div>🎊</div>
-          </h2>
+          </div>
         )}
       </div>
     </div>

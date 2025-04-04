@@ -47,7 +47,7 @@ const Landing = () => {
   return (
     <div className="flex flex-col h-full w-full p-4 overflow-y-auto">
       <div>
-        <h1 className="text-5xl text-gray-800 font-serif mb-10">
+        <h1 className="text-4xl text-gray-800 font-serif mb-10">
           Happy {CurrentDay}
         </h1>
         <Agenda sessions={sessions} />

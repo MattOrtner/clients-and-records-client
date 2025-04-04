@@ -8,5 +8,5 @@ export default function formatSessionTime(scheduledTime) {
   } else {
     scheduledTime = `${hour}:${minute} am`;
   }
-  return scheduledTime.replace(/:00/g, "");
+  return scheduledTime;
 }
