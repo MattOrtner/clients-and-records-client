@@ -23,7 +23,7 @@ const Payments = () => {
       <h1 className="text-4xl flex justify-between text-gray-800 font-serif mb-10">
         Unpaid Sessions
       </h1>
-      <div className="flex flex-col h-[75%]">
+      <div className="flex flex-col h-[85%] overflow-scroll">
         {sessions.length > 0 ? (
           sessions.map((session) => (
             <Link
