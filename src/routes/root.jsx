@@ -28,6 +28,10 @@ export default function Root() {
 
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
+    if (!email || !pass) {
+      alert("Ensure that both the email and password fields are not empty.");
+      return;
+    }
     const response = await attemptLogin(email, pass);
     if (response.status !== 200) {
       alert("Invalid email/pass combination");
