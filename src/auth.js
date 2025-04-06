@@ -14,7 +14,6 @@ export async function attemptLogin(email, pass) {
       }
     })
     .catch((error) => {
-      console.log("client catch: ", error);
       return { error: error.message };
     });
 }
