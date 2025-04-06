@@ -12,6 +12,9 @@ html,
 body {
   width: 100%;
   height: 100%;
+  margin: 0;
+  line-height: 1.5;
+  color: #121212;
 }
 body {
   margin: 0;
@@ -38,14 +41,6 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
-}
-
-html,
-body {
-  height: 100%;
-  margin: 0;
-  line-height: 1.5;
-  color: #121212;
 }
 
 textarea {
@@ -209,4 +204,14 @@ form[action$="delete"] button {
 }
 #search-form > * {
   width: 95%;
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 }
