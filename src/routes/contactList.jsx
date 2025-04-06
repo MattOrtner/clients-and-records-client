@@ -1,15 +1,8 @@
-import { useEffect, useState } from "react";
-import {
-  NavLink,
-  useLoaderData,
-  Form,
-  useSubmit,
-  redirect,
-  useOutletContext,
-} from "react-router-dom";
+import { useEffect } from "react";
+import { NavLink, Form, redirect, useOutletContext } from "react-router-dom";
 import Icon from "@mdi/react";
 import { mdiPlus } from "@mdi/js";
-import { getContacts, createContact } from "../contacts";
+import { getContacts } from "../contacts";
 
 export async function action(req) {
   return redirect(`/${req.params.userId}/clients/create`);
@@ -36,24 +29,23 @@ export default function ContactList() {
             </button>
           </Form>
         </span>
-        <nav className="w-full flex flex-col items-center  gap-4 overflow-scroll">
+        <nav className="w-full flex flex-col items-center">
           {user.clients ? (
-            <ul className="w-full overflow-scroll">
+            <ul className="w-full p-2 flex flex-col gap-1 items-center overflow-scroll no-scrollbar">
               {user.clients.map((client) => (
-                <li key={client.id}>
-                  <NavLink
-                    to={`/${user.id}/clients/${client.id}`}
-                    className="flex justify-center items-center w-full rounded-lg"
-                  >
-                    {client.first || client.last ? (
-                      <div className="text-xl w-[90%] text-center border-gray-200 border-2 rounded-lg py-1 mb-2">
-                        {client.first} {client.last}
-                      </div>
-                    ) : (
-                      <i>No Name</i>
-                    )}
-                  </NavLink>
-                </li>
+                <NavLink
+                  key={client.id}
+                  to={`/${user.id}/clients/${client.id}`}
+                  className="flex justify-center items-center w-full border-gray-300 border rounded-lg py-2"
+                >
+                  {client.first || client.last ? (
+                    <div className="text-xl w-[90%] text-center">
+                      {client.first} {client.last}
+                    </div>
+                  ) : (
+                    <i>No Name</i>
+                  )}
+                </NavLink>
               ))}
             </ul>
           ) : (
