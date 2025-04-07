@@ -22,17 +22,11 @@ const WelcomeModal = () => {
     <div>
       {isOpen && (
         <div
-          className="fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-50 flex justify-center items-center"
+          className="fixed top-0 left-0 w-screen h-screen flex justify-center items-center"
           onClick={handleCloseModal}
         >
-          <div className="bg-white p-4 rounded-md shadow-md">
-            <ModalMessage />
-            <button
-              className="bg-blue-500 text-white p-2 rounded-md mt-4"
-              onClick={handleModal}
-            >
-              Close
-            </button>
+          <div className="bg-white max-w-[500px] p-4 rounded-md shadow-md">
+            <ModalMessage handleModal={handleModal} />
           </div>
         </div>
       )}
