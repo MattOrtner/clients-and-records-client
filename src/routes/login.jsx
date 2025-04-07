@@ -8,10 +8,10 @@ export default function Login({
   handleLoginSubmit,
 }) {
   return (
-    <div className="w-screen h-screen flex flex-col justify-center items-center login">
+    <div className="w-screen h-screen flex flex-col justify-center items-center b-orange">
       <WelcomeModal />
       <div className="h-[50%] w-[300px] flex flex-col justify-center items-center gap-8">
-        <h1 className="text-4xl font-serif w-full ">Login</h1>
+        <h1 className="text-4xl font-serif w-full ">Welcome</h1>
         <Form method="POST" className="flex flex-col gap-4 self-end w-full">
           <input
             type="text"
