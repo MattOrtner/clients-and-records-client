@@ -1,4 +1,5 @@
 import { Form } from "react-router-dom";
+import WelcomeModal from "./components/WelcomeModal/WelcomeModal";
 
 export default function Login({
   handleLoginInput,
@@ -7,8 +8,9 @@ export default function Login({
   handleLoginSubmit,
 }) {
   return (
-    <div className="w-screen h-screen flex justify-center items-center login">
-      <div className="w-[300px] flex flex-col justify-center items-center gap-8">
+    <div className="w-screen h-screen flex flex-col justify-center items-center login">
+      <WelcomeModal />
+      <div className="h-[50%] w-[300px] flex flex-col justify-center items-center gap-8">
         <h1 className="text-4xl font-serif w-full ">Login</h1>
         <Form method="POST" className="flex flex-col gap-4 self-end w-full">
           <input
