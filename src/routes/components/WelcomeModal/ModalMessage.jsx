@@ -1,7 +1,7 @@
 const ModalMessage = ({ handleModal }) => {
   return (
-    <div className=" bg-gray-100  max-w-[500px] p-4 rounded-md shadow-md max-h-screen overflow-y-auto pb-10">
-      <div className="w-full flex  justify-end rounded-md">
+    <div className=" bg-gray-100 max-w-[500px] p-4 rounded-md shadow-md max-h-screen overflow-y-auto pb-16">
+      <div className="w-full flex justify-end rounded-md">
         <button
           type="button"
           onClick={handleModal}
