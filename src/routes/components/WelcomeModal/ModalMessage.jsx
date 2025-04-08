@@ -1,6 +1,6 @@
 const ModalMessage = ({ handleModal }) => {
   return (
-    <div className=" bg-gray-100 p-4 rounded-md shadow-md overflow-auto">
+    <div className=" bg-gray-100  max-w-[500px] p-4 rounded-md shadow-md max-h-screen overflow-y-auto">
       <div className="w-full flex  justify-end rounded-md">
         <button
           type="button"
@@ -50,15 +50,17 @@ const ModalMessage = ({ handleModal }) => {
         <b>FOR BEST RESULTS PLEASE VIEW THROUGH MOBILE VIEW</b>
         <p className="text-center">~~ Now you can close this Modal ~~</p>
       </div>
-      Reach out here:{" "}
-      <a
-        className="underline text-blue-500"
-        target="_blank"
-        rel="noopener noreferrer"
-        href="http://www.linkedin.com/in/matthewortner"
-      >
-        Matthew's LinkedIn
-      </a>
+      <p className="text-center">
+        Reach out here:{" "}
+        <a
+          className="underline text-blue-500"
+          target="_blank"
+          rel="noopener noreferrer"
+          href="http://www.linkedin.com/in/matthewortner"
+        >
+          Matthew's LinkedIn
+        </a>
+      </p>
     </div>
   );
 };
