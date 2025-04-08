@@ -67,7 +67,7 @@ export default function EditContact() {
             className="w-full"
           />
         </div>
-        <label>
+        {/* <label>
           <span className="pr-4">Occurrence</span>
           <input
             aria-label="occurrence"
@@ -76,7 +76,7 @@ export default function EditContact() {
             name="occurrence"
             // defaultValue="1"
           />
-        </label>
+        </label> */}
       </div>
       <p className="font-light">
         <label className="flex gap-2 font-light">
