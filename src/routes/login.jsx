@@ -20,12 +20,14 @@ export default function Login({
 
   return (
     <div className="w-screen h-screen flex flex-col justify-center items-center b-orange">
-      <WelcomeModal
-        isOpen={isOpen}
-        handleCloseModal={handleCloseModal}
-        handleModal={handleModal}
-      />
-      <div className="h-[50%] w-[300px] flex flex-col justify-center items-center gap-8">
+      {isOpen && (
+        <WelcomeModal
+          isOpen={isOpen}
+          handleCloseModal={handleCloseModal}
+          handleModal={handleModal}
+        />
+      )}
+      <div className="w-[300px] flex flex-col justify-center items-center gap-8">
         <h1 className="text-4xl font-serif w-full ">Welcome</h1>
         <Form method="POST" className="flex flex-col gap-4 self-end w-full">
           <input
