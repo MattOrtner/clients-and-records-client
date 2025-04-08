@@ -1,6 +1,11 @@
 import CloseButton from "../LandingPage/CloseButton";
 
 const ModalMessage = ({ handleModal }) => {
+  const isMobile = (
+    <div className="w-full flex justify-end rounded-md mt-4">
+      <CloseButton handleModal={handleModal} />
+    </div>
+  );
   return (
     <div className=" bg-gray-100 max-w-[500px] p-4 rounded-md shadow-md max-h-screen overflow-y-auto pb-16 sm:pb-0">
       <div className="w-full flex justify-end rounded-md">
@@ -47,9 +52,7 @@ const ModalMessage = ({ handleModal }) => {
           Matthew's LinkedIn
         </a>
       </p>
-      <div className="w-full flex justify-end rounded-md mt-4">
-        <CloseButton handleModal={handleModal} />
-      </div>
+      {window.innerWidth < 400 && isMobile}
     </div>
   );
 };
