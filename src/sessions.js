@@ -1,4 +1,3 @@
-import localforage from "localforage";
 import dateAsString from "../src/currentDateString";
 
 export async function createSession(clientId, sessionInfo) {
@@ -78,7 +77,7 @@ export async function updateSession(clientId, sessionId, updates) {
 }
 
 export async function getTodaysSessions() {
-  let contacts = await localforage.getItem("contacts");
+  const contacts = [];
   if (contacts) {
     const todaysSessions = [];
     for (const contact of contacts) {
