@@ -15,13 +15,13 @@ const ModalMessage = ({ handleModal }) => {
         <span className="text-2xl font-bold mb-2">Clients & Records App</span>
         <p className="text-lg font-bold mb-2">Here's the story...</p>
         <p className="mb-2">
-          <b>TLDR: </b> Therapist friend wanted an app that could do it all on
-          her phone!
+          <b>TLDR: </b> Therapist friend wanted an app that could do it all, and
+          on her phone!
         </p>
         <p className="mb-2">
-          RIGHT NOW she can CRUD her clients, create therapy sessions for those
-          clients, and manage if they paid for that specific therapy session or
-          not. With a few other bells and whistles.
+          RIGHT NOW she can CRUD clients (name, email, phone...), CRUD therapy
+          sessions (notes, date, time...) for those clients, and manage if the
+          session was paid for. With a few other bells and whistles.
         </p>
         <p className="mb-2">
           This is a work in progress, but hey,{" "}
