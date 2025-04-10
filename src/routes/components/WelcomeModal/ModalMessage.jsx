@@ -15,27 +15,24 @@ const ModalMessage = ({ handleModal }) => {
         <span className="text-2xl font-bold mb-2">Clients & Records App</span>
         <p className="text-lg font-bold mb-2">Here's the story...</p>
         <p className="mb-2">
-          I have a therapist friend that wanted to seperate her work life from
-          her phone. Remove clients from her contacts, remove all the jumbled
-          notes out of her default phone app, and get organized. So I got to
-          work!
+          <b>TLDR: </b> Therapist friend wanted an app that could do it all on
+          her phone!
         </p>
         <p className="mb-2">
-          The user can create, read, update, and delete new clients, as well as
-          therapy session info (keeping all their notes and info organized
-          together). Additionally, users can track payments. This is a work in
-          progress, but hey, <b className="text-lg">she's using it!</b>
+          RIGHT NOW she can CRUD her clients, create therapy sessions for those
+          clients, and manage if they paid for that specific therapy session or
+          not. With a few other bells and whistles.
         </p>
         <p className="mb-2">
-          This application is built using modern web technologies:{" "}
-          <b> React, React Router, TailwindCSS, Express and PostgresDB.</b> The
-          Client App, Express REST API, and PostgresDB are all hosted on Vercel.
-          Both the Client App and Express API are being pushed to GITHUB, but
-          only the client app has CI/CD through Vercel. I update the API using
-          Vercels CLI, mostly for the experience.
+          This is a work in progress, but hey,{" "}
+          <b className="text-lg">she's using it!</b>
+        </p>
+        <p className="mb-8">
+          <b>Built using:</b> React, React Router, TailwindCSS, Express,
+          PostgresDB, GitHub Actions, and Vercel.
         </p>
         <p className="mb-2">
-          To get started, type the guest placeholder email into the password
+          <b>How to:</b> copy/paste the email placeholder into the password
           field. Very very sneaky.
         </p>
         <b>FOR BEST RESULTS PLEASE VIEW THROUGH MOBILE VIEW</b>
