@@ -57,6 +57,7 @@ const router = createBrowserRouter([
         path: ":userId/clients",
         element: <ContactList />,
         action: contactListAction,
+        loader: contactListLoader,
       },
       {
         path: ":userId/payments",

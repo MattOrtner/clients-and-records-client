@@ -69,7 +69,6 @@ export async function deleteClient(userId, clientId) {
     }
   )
     .then((response) => {
-      console.log("response", response);
       return response.text();
     })
     .catch((error) => {

@@ -1,5 +1,11 @@
 import { useEffect } from "react";
-import { NavLink, Form, redirect, useOutletContext } from "react-router-dom";
+import {
+  NavLink,
+  Form,
+  redirect,
+  useOutletContext,
+  useLoaderData,
+} from "react-router-dom";
 import Icon from "@mdi/react";
 import { mdiPlus } from "@mdi/js";
 import { getContacts } from "../contacts";
@@ -7,17 +13,14 @@ import { getContacts } from "../contacts";
 export async function action(req) {
   return redirect(`/${req.params.userId}/clients/create`);
 }
+export async function loader({ params }) {
+  const clients = await getContacts(params.userId);
+  return clients;
+}
 
 export default function ContactList() {
-  const [user, setUser] = useOutletContext();
-
-  useEffect(() => {
-    const fetchClients = async () => {
-      const clients = await getContacts(user.id);
-      if (clients.length > 0) setUser((user) => ({ ...user, clients }));
-    };
-    fetchClients();
-  }, []);
+  const [user, _] = useOutletContext();
+  const clients = useLoaderData();
 
   return (
     <>
@@ -30,9 +33,9 @@ export default function ContactList() {
           </Form>
         </span>
         <nav className="w-full flex flex-col items-center">
-          {user.clients ? (
+          {clients.length > 0 ? (
             <ul className="w-full p-2 flex flex-col gap-1 items-center overflow-scroll no-scrollbar">
-              {user.clients.map((client) => (
+              {clients.map((client) => (
                 <NavLink
                   key={client.id}
                   to={`/${user.id}/clients/${client.id}`}
