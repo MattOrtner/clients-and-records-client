@@ -24,6 +24,7 @@ export async function action({ request, params }) {}
 export default function Profile() {
   const { contact } = useLoaderData();
   const [isDeleting, setIsDeleting] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
 
   const {
     first,
@@ -35,6 +36,14 @@ export default function Profile() {
     emergencyContact,
   } = contact[0];
 
+  const handleIsEditing = () => {
+    setIsEditing(true);
+  };
+
+  const handleSave = () => {
+    setIsEditing(false);
+  };
+
   return (
     <div id="contact">
       <NavBackButton />
@@ -43,7 +52,22 @@ export default function Profile() {
         <div className="flex justify-center items-center">
           <ClientsName first={first} last={last} />
         </div>
-        <button className="absolute top-10 right-5">Edit</button>
+        {isEditing ? (
+          <button
+            onClick={handleSave}
+            type="submit"
+            className="absolute top-10 right-5 text-blue-500 font-semibold py-[.25rem]"
+          >
+            Save
+          </button>
+        ) : (
+          <button
+            onClick={handleIsEditing}
+            className="absolute top-10 right-5 text-blue-500 font-semibold py-[.25rem]"
+          >
+            Edit
+          </button>
+        )}
         <div className="flex w-full justify-center gap-6 items-center mb-4">
           {phone_number ? (
             <a href={`tel:${phone_number}`}>
