@@ -19,6 +19,7 @@ import { getClientSessions } from "../sessions";
 
 import NavBackButton from "./components/NavBackButton";
 import ClientProfileNavButton from "./components/ContactPage/clientProfileNavButton";
+import ClientsName from "./components/ClientsName";
 
 export async function loader({ params }) {
   try {
@@ -57,17 +58,7 @@ export default function Contact() {
     <div id="contact">
       <div className="flex flex-col justify-center items-center gap-4 my-8">
         <NavBackButton route={`/${user.id}/clients`} />
-        <div className="mb-4">
-          {client.first || client.last ? (
-            <>
-              <h1>
-                {client.first} {client.last}
-              </h1>
-            </>
-          ) : (
-            <i>No Name</i>
-          )}
-        </div>
+        <ClientsName first={client.first} last={client.last} />
         <div className="flex w-full  justify-center gap-6 items-center mb-2">
           {client.phone_number ? (
             <a href={`tel:${client.phone_number}`}>

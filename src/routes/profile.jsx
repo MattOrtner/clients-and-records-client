@@ -1,8 +1,9 @@
+import { useState } from "react";
 import { Form, useLoaderData } from "react-router-dom";
 import { getProfile, deleteContact } from "../contacts";
-import { useState } from "react";
 import NavBackButton from "./components/NavBackButton";
 import ProfileDataRow from "./components/ProfilePage/profileDataRow";
+import ClientsName from "./components/ClientsName";
 import Icon from "@mdi/react";
 import {
   mdiPhone,
@@ -39,18 +40,11 @@ export default function Profile() {
       <NavBackButton />
       <div className="flex flex-col justify-center items-center gap-4 my-8">
         <NavBackButton />
-        <div className="mb-4">
-          {first || last ? (
-            <>
-              <h1>
-                {first} {last}
-              </h1>
-            </>
-          ) : (
-            <i>No Name</i>
-          )}
+        <div className="flex justify-center items-center">
+          <ClientsName first={first} last={last} />
         </div>
-        <div className="flex w-full  justify-center gap-6 items-center mb-2">
+        <button className="absolute top-10 right-5">Edit</button>
+        <div className="flex w-full justify-center gap-6 items-center mb-4">
           {phone_number ? (
             <a href={`tel:${phone_number}`}>
               <button>
