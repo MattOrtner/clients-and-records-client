@@ -1,8 +1,9 @@
+import { useState } from "react";
 import { Form, useLoaderData } from "react-router-dom";
 import { getProfile, deleteContact } from "../contacts";
-import { useState } from "react";
 import NavBackButton from "./components/NavBackButton";
 import ProfileDataRow from "./components/ProfilePage/profileDataRow";
+import ClientsName from "./components/ClientsName";
 import Icon from "@mdi/react";
 import {
   mdiPhone,
@@ -23,6 +24,7 @@ export async function action({ request, params }) {}
 export default function Profile() {
   const { contact } = useLoaderData();
   const [isDeleting, setIsDeleting] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
 
   const {
     first,
@@ -34,23 +36,39 @@ export default function Profile() {
     emergencyContact,
   } = contact[0];
 
+  const handleIsEditing = () => {
+    setIsEditing(true);
+  };
+
+  const handleSave = () => {
+    setIsEditing(false);
+  };
+
   return (
     <div id="contact">
       <NavBackButton />
       <div className="flex flex-col justify-center items-center gap-4 my-8">
         <NavBackButton />
-        <div className="mb-4">
-          {first || last ? (
-            <>
-              <h1>
-                {first} {last}
-              </h1>
-            </>
-          ) : (
-            <i>No Name</i>
-          )}
+        <div className="flex justify-center items-center">
+          <ClientsName first={first} last={last} />
         </div>
-        <div className="flex w-full  justify-center gap-6 items-center mb-2">
+        {isEditing ? (
+          <button
+            onClick={handleSave}
+            type="submit"
+            className="absolute top-10 right-5 text-blue-500 font-semibold py-[.25rem]"
+          >
+            Save
+          </button>
+        ) : (
+          <button
+            onClick={handleIsEditing}
+            className="absolute top-10 right-5 text-blue-500 font-semibold py-[.25rem]"
+          >
+            Edit
+          </button>
+        )}
+        <div className="flex w-full justify-center gap-6 items-center mb-4">
           {phone_number ? (
             <a href={`tel:${phone_number}`}>
               <button>
