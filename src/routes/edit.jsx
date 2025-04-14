@@ -112,7 +112,12 @@ export default function EditContact() {
         <button type="submit" name="intent" value="cancel">
           Cancel
         </button>
-        <button type="submit" name="intent" value="save">
+        <button
+          type="submit"
+          name="intent"
+          value="save"
+          className="bg-blue-300"
+        >
           Save
         </button>
       </p>
