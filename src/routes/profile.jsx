@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Form, useLoaderData } from "react-router-dom";
-import { getProfile, deleteContact } from "../contacts";
+import { getProfile } from "../contacts";
 import NavBackButton from "./components/NavBackButton";
 import ProfileDataRow from "./components/ProfilePage/profileDataRow";
 import ClientsName from "./components/ClientsName";
@@ -18,8 +18,6 @@ export async function loader({ params }) {
   const contact = await getProfile(params.clientId);
   return { contact };
 }
-
-export async function action({ request, params }) {}
 
 export default function Profile() {
   const { contact } = useLoaderData();
