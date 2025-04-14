@@ -1,4 +1,4 @@
-import { mdiCheckCircleOutline, mdiEmoticonFrownOutline } from "@mdi/js";
+import { mdiCheckCircleOutline, mdiCurrencyUsdOff } from "@mdi/js";
 import Icon from "@mdi/react";
 import { NavLink, useOutletContext } from "react-router-dom";
 import reverseDate from "../../../reverseDate";
@@ -25,7 +25,7 @@ function Session({ session, contactId }) {
         {session.paid ? (
           <Icon path={mdiCheckCircleOutline} size={1.25} color="green" />
         ) : (
-          <Icon path={mdiEmoticonFrownOutline} size={1.25} color="red" />
+          <Icon path={mdiCurrencyUsdOff} size={1.25} color="red" />
         )}
       </>
     </NavLink>

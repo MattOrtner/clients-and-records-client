@@ -8,7 +8,7 @@ export async function action({ request, params }) {
 
   if (intent === "cancel") {
     // await deleteSession(params);
-    return redirect(`/${params.userId}/clients`);
+    return redirect(`/${params.userId}/clients/${params.clientId}`);
   } else {
     const sessionInfo = Object.fromEntries(formData);
     if (!sessionInfo.paid) sessionInfo.paid = false;
