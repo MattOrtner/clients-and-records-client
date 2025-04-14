@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Form, useLoaderData } from "react-router-dom";
-import { getProfile, deleteContact } from "../contacts";
+import { getProfile } from "../contacts";
 import NavBackButton from "./components/NavBackButton";
 import ProfileDataRow from "./components/ProfilePage/profileDataRow";
 import ClientsName from "./components/ClientsName";
@@ -19,22 +19,13 @@ export async function loader({ params }) {
   return { contact };
 }
 
-export async function action({ request, params }) {}
-
 export default function Profile() {
   const { contact } = useLoaderData();
   const [isDeleting, setIsDeleting] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
 
-  const {
-    first,
-    last,
-    email,
-    phone_number,
-    occurance,
-    rate,
-    emergencyContact,
-  } = contact[0];
+  const { first, last, email, phone_number, rate, emergencyContact } =
+    contact[0];
 
   const handleIsEditing = () => {
     setIsEditing(true);
@@ -114,8 +105,8 @@ export default function Profile() {
       </div>
       <div className="flex flex-col items-center gap-4">
         <ProfileDataRow label={"Phone"} data={phone_number} />
+        <ProfileDataRow label={"Email"} data={email} />
         <ProfileDataRow label={"Rate"} data={rate} />
-        <ProfileDataRow label={"Occurance"} data={occurance} />
       </div>
       {emergencyContact && (
         <div className="flex flex-col gap-4">
