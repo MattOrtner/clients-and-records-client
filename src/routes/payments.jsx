@@ -1,5 +1,5 @@
 import { Link, useLoaderData, useOutletContext } from "react-router-dom";
-import { getUnpaidSessions } from "../sessions";
+import { getUnpaidSessions, updateSession } from "../sessions";
 import sliceDate from "../slicedDate";
 import reverseDate from "../reverseDate";
 import formatSessionTime from "../formatSessionTime";
@@ -11,12 +11,22 @@ export async function loader({ params }) {
     session.date = reverseDate(session.date);
     session.time = formatSessionTime(session.time);
   });
-  return sessions;
+
+  const sessionsGroupedByClient = sessions.reduce((acc, session) => {
+    const client_id = session.client_id;
+    if (!acc[client_id]) {
+      acc[client_id] = [];
+    }
+    acc[client_id].push(session);
+    return acc;
+  }, {});
+  return { sessions, sessionsGroupedByClient };
 }
 
 const Payments = () => {
   const [user, _] = useOutletContext();
-  const sessions = useLoaderData();
+  const { sessions, sessionsGroupedByClient } = useLoaderData();
+  console.log("sessionsGroupedByClient", sessionsGroupedByClient);
 
   return (
     <div className="h-full w-full p-4">
@@ -25,17 +35,22 @@ const Payments = () => {
       </h1>
       <div className="flex flex-col h-[85%] gap-2 overflow-scroll">
         {sessions.length > 0 ? (
-          sessions.map((session) => (
-            <Link
-              to={`/${user.id}/clients/${session.client_id}`}
-              key={session.session_id}
-            >
+          Object.keys(sessionsGroupedByClient).map((clientId) => (
+            <Link to={`/${user.id}/clients/${clientId}`} key={clientId}>
               <div className="flex flex-col gap-2 p-4 bg-white rounded-lg shadow-md border border-slate-200">
-                <h2 className="text-lg font-bold">{`${session.first} ${session.last}`}</h2>
-                <div className="flex justify-between px-2">
-                  <h2 className="text-lg">{session.date}</h2>
-                  <h2 className="text-lg">{session.time}</h2>
-                </div>
+                <h2 className="text-lg font-bold">
+                  {sessionsGroupedByClient[clientId][0].first}{" "}
+                  {sessionsGroupedByClient[clientId][0].last}
+                </h2>
+                {sessionsGroupedByClient[clientId].map((session) => (
+                  <div
+                    key={session.session_id}
+                    className="flex justify-between items-center"
+                  >
+                    <h2 className="text-lg">{session.date}</h2>
+                    <h2 className="text-lg">{session.time}</h2>
+                  </div>
+                ))}
               </div>
             </Link>
           ))
