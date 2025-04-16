@@ -26,7 +26,6 @@ export async function loader({ params }) {
 const Payments = () => {
   const [user, _] = useOutletContext();
   const { sessions, sessionsGroupedByClient } = useLoaderData();
-  console.log("sessionsGroupedByClient", sessionsGroupedByClient);
 
   return (
     <div className="h-full w-full p-4">
