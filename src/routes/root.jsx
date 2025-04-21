@@ -11,7 +11,7 @@ import Login from "./login";
 import { attemptLogin } from "../auth";
 
 export default function Root() {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState({ first: "Matt", id: 5 });
   const [email, setEmail] = useState("default@mail.com");
   const [pass, setPass] = useState("");
 
