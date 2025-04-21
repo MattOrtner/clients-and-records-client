@@ -58,7 +58,16 @@ export async function getContact(clientId) {
 
 export async function getInfoForContactPage(id) {}
 
-export async function updateContact(id, updates) {}
+export async function updateClient(userId, clientId, updates) {
+  return await fetch(
+    `${process.env.REACT_APP_API}${userId}/clients/${clientId}/profile/update`,
+    {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(updates),
+    }
+  );
+}
 
 export async function deleteClient(userId, clientId) {
   // write a fetch request to delete a contact

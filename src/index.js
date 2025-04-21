@@ -20,7 +20,10 @@ import ContactList, {
 
 import ErrorPage from "./routes/error-page";
 
-import Profile, { loader as profileLoader } from "./routes/profile";
+import Profile, {
+  loader as profileLoader,
+  action as profileAction,
+} from "./routes/profile";
 
 import CreateSession, {
   action as saveSession,
@@ -93,6 +96,7 @@ const router = createBrowserRouter([
         path: ":userId/clients/:clientId/profile",
         element: <Profile />,
         loader: profileLoader,
+        action: profileAction,
       },
       {
         path: ":userId/clients/:clientId/profile/delete",

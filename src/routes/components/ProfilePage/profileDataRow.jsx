@@ -1,10 +1,23 @@
-const ProfileDataRow = ({ label, data }) => {
+const ProfileDataRow = ({ label, data, type, name, isEditing, onChange }) => {
   return (
-    <div className="flex justify-between gap-2 px-4 py-2 border-[1px] border-gray-200 rounded-lg w-[90%]">
-      <h2 className="text-xl font-medium">{label}</h2>
-      <p className="color-blue-600 text-xl ">
+    <div
+      className={`flex justify-between align-center gap-2 px-4 py-2 border-gray-200 rounded-lg w-[90%]`}
+    >
+      <label
+        aria-label={`label for ${label}`}
+        className="text-lg flex items-center"
+      >
+        {label}:
+      </label>
+      <p>
         {label === "Rate" && "$ "}
-        {data}
+        <input
+          type={type}
+          name={name}
+          disabled={isEditing ? false : true}
+          defaultValue={data}
+          onChange={onChange}
+        />
         {label === "Tax" && " %"}
       </p>
     </div>
