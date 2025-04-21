@@ -23,5 +23,4 @@ const ProfileDataRow = ({ label, data, type, name, isEditing, onChange }) => {
     </div>
   );
 };
-
 export default ProfileDataRow;

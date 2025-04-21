@@ -4,7 +4,7 @@ import { getProfile } from "../contacts";
 import { updateClient } from "../contacts";
 import NavBackButton from "./components/NavBackButton";
 import ClientsName from "./components/ClientsName";
-import ProfileDataRow from "./components/ProfilePage/ProfileDataRow";
+import ProfileDataRow from "./components/ProfilePage/profileDataRow";
 
 import Icon from "@mdi/react";
 import { mdiDeleteForeverOutline, mdiDeleteForever } from "@mdi/js";
