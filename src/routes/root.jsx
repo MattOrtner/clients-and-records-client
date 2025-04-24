@@ -5,7 +5,6 @@ import {
   mdiAccountMultipleOutline,
   mdiCurrencyUsd,
   mdiHomeOutline,
-  // mdiCalendarMultiselectOutline,
 } from "@mdi/js";
 import Login from "./login";
 import { attemptLogin } from "../auth";
@@ -40,29 +39,28 @@ export default function Root() {
     }
   };
 
-  if (Object.keys(user).length === 0) {
-    return (
-      <Login
-        handleLoginInput={handleLoginInput}
-        email={email}
-        pass={pass}
-        handleLoginSubmit={handleLoginSubmit}
-      />
-    );
-  }
-
   return (
     <div className="flex flex-col items-center w-full">
-      <Outlet context={[user, setUser]} />
-      <nav id="nav-bar">
-        <NavBarTab route={`/`} svg={mdiHomeOutline} />
-        <NavBarTab
-          route={`${user.id}/clients`}
-          svg={mdiAccountMultipleOutline}
+      {Object.keys(user).length === 0 ? (
+        <Login
+          handleLoginInput={handleLoginInput}
+          email={email}
+          pass={pass}
+          handleLoginSubmit={handleLoginSubmit}
         />
-        {/* <NavBarTab route={"calendar"} svg={mdiCalendarMultiselectOutline} /> */}
-        <NavBarTab route={`${user.id}/payments`} svg={mdiCurrencyUsd} />
-      </nav>
+      ) : (
+        <>
+          <Outlet context={[user, setUser]} />
+          <nav id="nav-bar">
+            <NavBarTab route={`/`} svg={mdiHomeOutline} />
+            <NavBarTab
+              route={`${user.id}/clients`}
+              svg={mdiAccountMultipleOutline}
+            />
+            <NavBarTab route={`${user.id}/payments`} svg={mdiCurrencyUsd} />
+          </nav>
+        </>
+      )}
     </div>
   );
 }
