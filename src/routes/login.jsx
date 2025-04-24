@@ -7,10 +7,23 @@ export default function Login({
   handleLoginSubmit,
 }) {
   return (
-    <div className="w-screen h-screen flex flex-col justify-center items-center b-orange">
-      <div className="w-[300px] flex flex-col justify-center items-center gap-8">
-        <h1 className="text-4xl font-serif w-full ">Welcome</h1>
-        <Form method="POST" className="flex flex-col gap-4 self-end w-full">
+    <div className="absolute top-0 bottom-0 left-0 w-screen h-screen flex justify-center items-center bg-green-100">
+      <div className="w-[800px] h-1/3 flex flex-col items-center justify-evenly p-10 max-w-[800px] mr-4 rounded-lg">
+        <div>
+          <h1 className="text-4xl font-serif mb-4">
+            Welcome to Contacts & Clients
+          </h1>
+          <h3 className="text-2xl font-serif">
+            An app to seemlessly manage your clients and session journals.
+          </h3>
+        </div>
+        <h3 className="text-2xl font-serif rounded-lg text-end w-4/5 py-2">
+          created by Matthew Ortner
+        </h3>
+      </div>
+      <div className="w-[300px] flex flex-col justify-center items-center gap-8 bg-orange-200 p-10 py-16 rounded-md">
+        <h1 className="text-3xl font-serif w-full ">Login</h1>
+        <Form method="POST" className="flex flex-col gap-4 w-full">
           <input
             type="text"
             name="email"
@@ -28,10 +41,10 @@ export default function Login({
             onChange={handleLoginInput}
           />
           <button
-            className="bg-blue-500 text-white p-2 rounded-md"
+            className="bg-blue-300 p-2 rounded-md font-serif text-lg hover:bg-blue-500 transition-all duration-300"
             onClick={handleLoginSubmit}
           >
-            Login
+            Submit
           </button>
         </Form>
       </div>
