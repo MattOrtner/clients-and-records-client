@@ -1,13 +1,10 @@
 import { Form } from "react-router-dom";
-import WelcomeModal from "./components/WelcomeModal/WelcomeModal";
 import { useState } from "react";
 import { attemptLogin } from "../auth";
-import { useOutletContext } from "react-router-dom";
 
 export default function Login() {
   const [email, setEmail] = useState("default@mail.com");
   const [pass, setPass] = useState("");
-  // const [user, setUser] = useOutletContext();
 
   const handleLoginInput = (e) => {
     e.preventDefault();
