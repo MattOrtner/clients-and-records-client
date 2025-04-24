@@ -13,7 +13,7 @@ import { attemptLogin } from "../auth";
 export default function Root() {
   const [user, setUser] = useState({});
   const [email, setEmail] = useState("default@mail.com");
-  const [pass, setPass] = useState("");
+  const [pass, setPass] = useState("default@mail.com");
 
   const handleLoginInput = (e) => {
     e.preventDefault();
