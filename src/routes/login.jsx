@@ -1,41 +1,11 @@
 import { Form } from "react-router-dom";
-import WelcomeModal from "./components/WelcomeModal/WelcomeModal";
-import { useState } from "react";
-import { attemptLogin } from "../auth";
-import { useOutletContext } from "react-router-dom";
 
-export default function Login() {
-  const [email, setEmail] = useState("default@mail.com");
-  const [pass, setPass] = useState("");
-  // const [user, setUser] = useOutletContext();
-
-  const handleLoginInput = (e) => {
-    e.preventDefault();
-    const name = e.target.name;
-    const value = e.target.value;
-    if (name === "email") {
-      setEmail(value);
-    } else {
-      setPass(value);
-    }
-  };
-
-  const handleLoginSubmit = async (e) => {
-    e.preventDefault();
-    if (!email || !pass) {
-      alert("Ensure that both the email and password fields are not empty.");
-      return;
-    }
-    const response = await attemptLogin(email, pass);
-    if (response.status !== 200) {
-      alert("Invalid email/pass combination");
-    } else {
-      // setUser({ id: response.id, first: response.first });
-      setEmail("");
-      setPass("");
-    }
-  };
-
+export default function Login({
+  handleLoginInput,
+  email,
+  pass,
+  handleLoginSubmit,
+}) {
   return (
     <div className="w-screen h-screen flex flex-col justify-center items-center b-orange">
       <div className="w-[300px] flex flex-col justify-center items-center gap-8">
