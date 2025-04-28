@@ -13,9 +13,14 @@ export default function Login({
           <h1 className="text-4xl font-serif mb-4">
             Welcome to Contacts & Clients
           </h1>
-          <h3 className="text-2xl font-serif">
-            An app to seemlessly manage your clients and session journals.
+          <h3 className="text-xl font-serif">
+            Easily create and manage client profiles, schedule sessions, track
+            payments, and take notes.
           </h3>
+          <br />
+          <p className="font-serif text-xl">
+            Currently being used by therapists and physical trainers.
+          </p>
         </div>
         <h3 className="text-2xl font-serif rounded-lg text-end w-4/5 py-2">
           created by Matthew Ortner
