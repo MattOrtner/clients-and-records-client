@@ -46,7 +46,7 @@ export default function Login({
             onChange={handleLoginInput}
           />
           <button
-            className="bg-blue-300 p-2 rounded-md font-serif text-lg hover:bg-blue-500 transition-all duration-300"
+            className="bg-blue-100 p-2 rounded-md font-serif text-lg hover:bg-blue-300 transition-all duration-300"
             onClick={handleLoginSubmit}
           >
             Submit
