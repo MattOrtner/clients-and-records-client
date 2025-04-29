@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Outlet, redirect } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import NavBarTab from "./components/navBarTab";
 import {
   mdiAccountMultipleOutline,
@@ -10,6 +10,7 @@ import Login from "./login";
 import { attemptLogin } from "../auth";
 
 export default function Root() {
+  const navigate = useNavigate();
   const [user, setUser] = useState({});
   const [email, setEmail] = useState("default@mail.com");
   const [pass, setPass] = useState("default@mail.com");
@@ -36,6 +37,7 @@ export default function Root() {
       alert("Invalid email/pass combination");
     } else {
       setUser({ id: response.id, first: response.first });
+      return navigate(`/${response.id}/clients`);
     }
   };
 
@@ -52,7 +54,7 @@ export default function Root() {
         <>
           <Outlet context={[user, setUser]} />
           <nav id="nav-bar">
-            <NavBarTab route={`/`} svg={mdiHomeOutline} />
+            {/* <NavBarTab route={`/`} svg={mdiHomeOutline} /> */}
             <NavBarTab
               route={`${user.id}/clients`}
               svg={mdiAccountMultipleOutline}
