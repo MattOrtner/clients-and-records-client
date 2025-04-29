@@ -124,25 +124,29 @@ export default function Profile() {
       {isEditing ? (
         isDeleting ? (
           <Form method="delete" action="delete">
-            <button type="submit" className="delete-button">
-              <Icon
-                path={mdiDeleteForever}
-                color="red"
-                style={{ height: "100px", backgroundColor: "red" }}
-              />
-            </button>
+            <div className="text-red-500 font-semibold w-full flex justify-evenly items-center mt-4">
+              Are you sure you want to delete this contact?
+              <button
+                type="submit"
+                className="delete-button w-1/6 content-center flex justify-center items-center rounded-md p-2 text-red-500 font-semibold"
+              >
+                <Icon path={mdiDeleteForever} color="red" size={1.4} />
+              </button>
+            </div>
           </Form>
         ) : (
-          <button
-            onClick={() => setIsDeleting(true)}
-            className="w-full content-center flex justify-center items-center rounded-full p-2 text-red-500 font-semibold"
-          >
-            <Icon
-              path={mdiDeleteForeverOutline}
-              color="rgb(59 130 246)"
-              size={1.4}
-            />
-          </button>
+          <div className="w-full flex justify-end mr-10 mt-4">
+            <button
+              onClick={() => setIsDeleting(true)}
+              className="w-1/6 content-center flex justify-center items-center rounded-md p-2 text-red-500 font-semibold mr-10"
+            >
+              <Icon
+                path={mdiDeleteForeverOutline}
+                color="rgb(59 130 246)"
+                size={1.4}
+              />
+            </button>
+          </div>
         )
       ) : (
         ""
