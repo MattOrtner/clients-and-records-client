@@ -7,12 +7,10 @@ export default function Login({
   handleLoginSubmit,
 }) {
   return (
-    <div className="absolute top-0 bottom-0 left-0 w-screen h-screen flex justify-center items-center bg-green-100">
-      <div className="w-[800px] h-1/3 flex flex-col items-center justify-evenly p-10 max-w-[800px] mr-4 rounded-lg">
+    <div className="absolute top-0 bottom-0 left-0 w-full h-full flex flex-col md:flex-row justify-center items-center bg-green-100 overflow-scroll">
+      <div className="flex flex-col items-center justify-evenly p-10 max-w-[800px] mr-4 rounded-lg">
         <div>
-          <h1 className="text-4xl font-serif mb-4">
-            Welcome to Contacts & Clients
-          </h1>
+          <h1 className="text-4xl font-serif">Welcome to Contacts & Clients</h1>
           <h3 className="text-xl font-serif">
             Easily create and manage client profiles, schedule sessions, track
             payments, and take notes.
