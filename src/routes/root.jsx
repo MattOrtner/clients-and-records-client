@@ -53,13 +53,18 @@ export default function Root() {
       ) : (
         <>
           <Outlet context={[user, setUser]} />
-          <nav id="nav-bar">
+          <nav className="nav-bar sm:top-0 sm:left-0 sm:bg-gray-100 sm:flex-col sm:w-1/6 max-w-[400px]">
             {/* <NavBarTab route={`/`} svg={mdiHomeOutline} /> */}
             <NavBarTab
               route={`${user.id}/clients`}
               svg={mdiAccountMultipleOutline}
+              title={"Clients"}
             />
-            <NavBarTab route={`${user.id}/payments`} svg={mdiCurrencyUsd} />
+            <NavBarTab
+              route={`${user.id}/payments`}
+              svg={mdiCurrencyUsd}
+              title={"Payments"}
+            />
           </nav>
         </>
       )}
