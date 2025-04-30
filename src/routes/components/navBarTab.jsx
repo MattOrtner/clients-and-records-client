@@ -25,7 +25,7 @@ const NavBarTab = ({ route, svg, styles, title }) => {
         ].join(" ")
       }
     >
-      <Icon path={svg} size={1.25} />{" "}
+      <Icon path={svg} size={1.25} style={{ marginRight: "0.5rem" }} />
       {isDesktop && <h1 className="text-xl">{title}</h1>}
     </NavLink>
   );
