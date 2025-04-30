@@ -52,6 +52,9 @@ export default function Profile() {
     setIsEditing(false);
     setIsDeleting(false);
     const changes = createChangeObject();
+    if (Object.keys(changes).length === 0) {
+      return;
+    }
     submit(changes, { method: "post" });
     setChanges([]);
   };
