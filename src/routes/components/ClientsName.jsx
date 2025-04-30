@@ -1,12 +1,10 @@
-const ClientsName = ({ first, last }) => {
+const ClientsName = ({ first, last, containerStyle, contentStyle }) => {
   return (
-    <div>
+    <div className={`${containerStyle}`}>
       {first || last ? (
-        <>
-          <h1>
-            {first} {last}
-          </h1>
-        </>
+        <h1 className={`${contentStyle}`}>
+          {first} {last}
+        </h1>
       ) : (
         <i>No Name</i>
       )}

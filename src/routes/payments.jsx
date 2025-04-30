@@ -29,7 +29,7 @@ const Payments = () => {
 
   return (
     <div className="h-full w-full sm:w-1/2 p-4 max-w-[900px]">
-      <h1 className="text-3xl flex justify-between text-gray-800 font-serif mb-10 sm:text-5xl">
+      <h1 className="text-3xl text-gray-800 font-serif mb-6 sm:text-5xl">
         Unpaid Sessions
       </h1>
       <div className="flex flex-col h-[85%] gap-2 overflow-scroll">
