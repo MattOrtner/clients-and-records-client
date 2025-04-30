@@ -48,7 +48,7 @@ export default function ContactList() {
                 </NavLink>
               ))}
             </ul>
-            <div className="fixed bottom-24 right-4 flex w-full justify-end">
+            <div className="fixed bottom-24 right-4 sm:right-24 flex w-full justify-end">
               <Form method="post">
                 <button
                   className=" text-white my-4 mx-4 rounded-full"
