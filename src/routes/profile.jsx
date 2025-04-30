@@ -68,31 +68,32 @@ export default function Profile() {
   };
 
   return (
-    <div id="contact">
-      <div className="mx-auto my-8">
-        <NavBackButton />
-        <div className="flex w-full justify-center">
-          <ClientsName first={clientData.first} last={clientData.last} />
-          <div className="absolute top-10 right-8">
-            {isEditing ? (
-              <button
-                onClick={handleSave}
-                type="submit"
-                className="text-blue-500 font-semibold"
-              >
-                Save
-              </button>
-            ) : (
-              <div className="flex flex-end">
-                <button
-                  onClick={handleIsEditing}
-                  className=" text-blue-500 font-semibold"
-                >
-                  Edit
-                </button>
-              </div>
-            )}
-          </div>
+    <div id="contact" className="sm:w-1/2 w-full max-w-[900px]">
+      <NavBackButton />
+      <div className="flex flex-col justify-center items-center gap-4 my-8">
+        <ClientsName
+          containerStyle="flex justify-center items-center"
+          contentStyle="text-3xl"
+          first={clientData.first}
+          last={clientData.last}
+        />
+        <div className="flex w-1/4 justify-end gap-6 items-center mb-2">
+          {isEditing ? (
+            <button
+              onClick={handleSave}
+              type="submit"
+              className="text-blue-500 flex-none font-semibold"
+            >
+              Save
+            </button>
+          ) : (
+            <button
+              onClick={handleIsEditing}
+              className=" text-blue-500 font-semibold"
+            >
+              Edit
+            </button>
+          )}
         </div>
       </div>
       <Form
@@ -138,10 +139,10 @@ export default function Profile() {
             </div>
           </Form>
         ) : (
-          <div className="w-full flex justify-end mr-10 mt-4">
+          <div className="w-2/3 flex justify-end mt-4">
             <button
               onClick={() => setIsDeleting(true)}
-              className="w-1/6 content-center flex justify-center items-center rounded-md p-2 text-red-500 font-semibold mr-10"
+              className="w-1/6 content-center flex justify-center items-center rounded-md p-2 text-red-500"
             >
               <Icon
                 path={mdiDeleteForeverOutline}
