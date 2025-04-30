@@ -155,7 +155,7 @@ form[action$="delete"] button {
 }
 
 /* NavLinks */
-#nav-bar {
+.nav-bar {
   /* fixed bottom-0 flex w-full */
   position: fixed;
   bottom: 0;
