@@ -32,7 +32,7 @@ export default function SessionPage() {
   };
 
   return (
-    <div className="flex flex-col w-full gap-8 mt-8 h-full px-4 overflow-visible">
+    <div className="flex flex-col w-full h-full gap-8 mt-4 px-4 overflow-visible sm:w-1/2 sm:h-4/5 sm:justify-center max-w-[800px]">
       <NavBackButton />
       <SessionInfoCluster
         date={date}

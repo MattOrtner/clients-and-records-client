@@ -1,24 +1,32 @@
 import Icon from "@mdi/react";
 import { NavLink } from "react-router-dom";
 
-const NavBarTab = ({ route, svg }) => {
+const NavBarTab = ({ route, svg, styles, title }) => {
+  const screenWidth = window.innerWidth;
+  const isDesktop = screenWidth > 400;
   return (
     <NavLink
       to={route}
       className={({ isActive }) =>
         [
           "border-2",
-          "flex-1",
           "flex",
+          "w-full",
           "justify-center",
           "rounded-md",
           "p-2",
           "bg-white",
-          isActive ? "border-t-blue-300 border-y-4" : "",
+          `${styles}`,
+          isActive && isDesktop
+            ? "border-blue-300"
+            : isActive
+            ? "border-t-blue-300 border-y-4"
+            : "",
         ].join(" ")
       }
     >
-      <Icon path={svg} size={1.25} />
+      <Icon path={svg} size={1.25} style={{ marginRight: "0.5rem" }} />
+      {isDesktop && <h1 className="text-xl">{title}</h1>}
     </NavLink>
   );
 };

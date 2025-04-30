@@ -24,7 +24,7 @@ export default function ContactList() {
   const clients = useLoaderData();
 
   return (
-    <div className="w-full sm:w-1/2">
+    <div className="w-full sm:w-1/2 p-4 max-w-[900px]">
       <h1 className="text-4xl text-gray-800 font-serif p-8">
         Happy {CurrentDay} {user.first}!
       </h1>
@@ -48,7 +48,7 @@ export default function ContactList() {
                 </NavLink>
               ))}
             </ul>
-            <div className="fixed bottom-24 right-4 flex w-full justify-end">
+            <div className="fixed bottom-24 right-4 sm:right-24 flex w-full justify-end">
               <Form method="post">
                 <button
                   className=" text-white my-4 mx-4 rounded-full"
