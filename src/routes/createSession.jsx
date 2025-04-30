@@ -27,7 +27,7 @@ export default function CreateSession() {
   const { session } = useLoaderData();
 
   return (
-    <div className="w-[85%] h-full flex flex-col justify-center">
+    <div className="w-[85%] sm:w-1/6 h-full flex flex-col justify-center">
       <div className="text-3xl font-light mb-28">Book a Session</div>
       <Form method="POST">
         <p className="flex flex-col gap-4 font-light">
