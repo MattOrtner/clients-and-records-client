@@ -24,7 +24,7 @@ export default function ContactList() {
   const clients = useLoaderData();
 
   return (
-    <div className="w-full sm:w-1/2">
+    <div className="w-full sm:w-1/2 p-4 max-w-[900px]">
       <h1 className="text-4xl text-gray-800 font-serif p-8">
         Happy {CurrentDay} {user.first}!
       </h1>
