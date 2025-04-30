@@ -28,8 +28,8 @@ const Payments = () => {
   const { sessions, sessionsGroupedByClient } = useLoaderData();
 
   return (
-    <div className="h-full w-full p-4">
-      <h1 className="text-4xl flex justify-between text-gray-800 font-serif mb-10">
+    <div className="h-full w-full sm:w-1/2 p-4 max-w-[900px]">
+      <h1 className="text-3xl flex justify-between text-gray-800 font-serif mb-10 sm:text-5xl">
         Unpaid Sessions
       </h1>
       <div className="flex flex-col h-[85%] gap-2 overflow-scroll">
@@ -37,7 +37,7 @@ const Payments = () => {
           Object.keys(sessionsGroupedByClient).map((clientId) => (
             <Link to={`/${user.id}/clients/${clientId}`} key={clientId}>
               <div className="flex flex-col gap-2 p-4 bg-white rounded-lg shadow-md border border-slate-200">
-                <h2 className="text-lg font-bold">
+                <h2 className="text-lg font-bold sm:text-xl sm:font-semibold">
                   {sessionsGroupedByClient[clientId][0].first}{" "}
                   {sessionsGroupedByClient[clientId][0].last}
                 </h2>
