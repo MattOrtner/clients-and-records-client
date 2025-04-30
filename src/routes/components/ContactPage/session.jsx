@@ -15,7 +15,7 @@ function Session({ session, contactId }) {
   return (
     <NavLink
       to={`/${user.id}/clients/${contactId}/sessions/${sessionId}`}
-      className="flex justify-evenly items-center w-[90%] h-12 rounded-md border border-gray-300 gap-4"
+      className="flex justify-evenly items-center w-[90%] sm:w-[40%] max-w-[500px] h-12 rounded-md border border-gray-300 gap-4"
     >
       <div className="font-verdana">{sessionDate}</div>
       <div className="font-verdana">

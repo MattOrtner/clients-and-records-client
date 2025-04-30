@@ -59,7 +59,7 @@ export default function Contact() {
       <div className="flex flex-col justify-center items-center gap-4 my-8">
         <NavBackButton route={`/${user.id}/clients`} />
         <ClientsName first={client.first} last={client.last} />
-        <div className="flex w-full  justify-center gap-6 items-center mb-2">
+        <div className="flex w-full justify-center gap-6 items-center mb-2">
           {client.phone_number ? (
             <a href={`tel:${client.phone_number}`}>
               <button>
@@ -89,7 +89,7 @@ export default function Contact() {
           <ClientProfileNavButton userId={user.id} clientId={client.id} />
         </div>
       </div>
-      <div className="flex flex-col items-center w-full h-[560px] gap-4 overflow-scroll">
+      <div className="flex flex-col items-center h-full gap-4 overflow-scroll">
         {sessions.length ? (
           sessions.map((session) => (
             <Session key={session.id} session={session} contactId={client.id} />
@@ -101,7 +101,10 @@ export default function Contact() {
         )}
       </div>
       <Form method="POST">
-        <button className="fixed bottom-24 right-4 rounded-full" type="submit">
+        <button
+          className="fixed bottom-24 right-4 sm:right-24 rounded-full"
+          type="submit"
+        >
           <Icon path={mdiPlus} color="rgb(59 130 246)" size={2} />
         </button>
       </Form>
