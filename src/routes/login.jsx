@@ -10,7 +10,7 @@ export default function Login({
     <div className="absolute top-0 bottom-0 left-0 w-full h-full flex flex-col md:flex-row justify-center items-center bg-green-100 overflow-scroll">
       <div className="flex flex-col items-center justify-evenly p-10 max-w-[800px] mr-4 rounded-lg">
         <div>
-          <h1 className="text-4xl font-serif">Welcome to Contacts & Clients</h1>
+          <h1 className="text-4xl font-serif">Welcome to New Leaf</h1>
           <h3 className="text-xl font-serif">
             Easily create and manage client profiles, schedule sessions, track
             payments, and take notes.

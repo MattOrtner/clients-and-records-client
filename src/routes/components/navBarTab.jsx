@@ -18,9 +18,9 @@ const NavBarTab = ({ route, svg, styles, title }) => {
           "bg-white",
           `${styles}`,
           isActive && isDesktop
-            ? "border-blue-300"
+            ? "border-green-500"
             : isActive
-            ? "border-t-blue-300 border-y-4"
+            ? "border-t-green-500 border-y-4"
             : "",
         ].join(" ")
       }
