@@ -8,7 +8,7 @@ import {
 } from "@mdi/js";
 import Login from "./login";
 import { attemptLogin } from "../auth";
-import { Analytics } from "@vercel/analytics/next";
+import { Analytics } from "@vercel/analytics/react";
 
 export default function Root() {
   const navigate = useNavigate();
@@ -53,8 +53,8 @@ export default function Root() {
         />
       ) : (
         <>
-          <Analytics />
           <Outlet context={[user, setUser]} />
+          <Analytics />
           <nav className="nav-bar sm:top-0 sm:left-0 sm:bg-gray-100 sm:flex-col sm:w-1/6 max-w-[400px]">
             {/* <NavBarTab route={`/`} svg={mdiHomeOutline} /> */}
             <NavBarTab
