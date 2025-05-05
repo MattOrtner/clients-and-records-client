@@ -19,9 +19,8 @@ export async function action({ request, params }) {
 
 export default function SessionPage() {
   const submit = useSubmit();
-  const session = useLoaderData();
-  const { date, time, paid, notes } = session;
-  const [sessionNotes, setSessionNotes] = useState(notes || "");
+  const sessionData = useLoaderData();
+  const [sessionNotes, setSessionNotes] = useState(sessionData.notes || "");
   const handleSave = ({ key, value }) => {
     submit({ [key]: value }, { method: "post" });
   };
@@ -34,12 +33,10 @@ export default function SessionPage() {
   return (
     <div className="flex flex-col w-full h-full gap-8 mt-4 px-4 overflow-visible sm:w-1/2 sm:h-4/5 sm:justify-center max-w-[800px]">
       <NavBackButton />
-      <SessionInfoCluster
-        date={date}
-        time={time}
-        paid={paid}
-        handleSave={handleSave}
-      />
+      <div className="text-right sm:flex sm:gap-8 sm:mb-4">
+        <h2 className="text-3xl">{`${sessionData.first} ${sessionData.last}`}</h2>
+      </div>
+      <SessionInfoCluster sessionData={sessionData} handleSave={handleSave} />
       <Form method="post" className="h-[60%]">
         <div className="flex gap-8 mb-4">
           <h1 className="text-3xl">Notes</h1>
