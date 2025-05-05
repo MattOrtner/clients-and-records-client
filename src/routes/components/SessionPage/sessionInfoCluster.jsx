@@ -4,7 +4,8 @@ import Icon from "@mdi/react";
 import { mdiCheckCircleOutline, mdiMinusCircleOutline } from "@mdi/js";
 import sliceDate from "../../../slicedDate";
 
-function SessionInfoCluster({ date, time, paid, handleSave }) {
+function SessionInfoCluster({ sessionData, handleSave }) {
+  const { date, time, paid } = sessionData;
   const slicedDate = sliceDate(date);
   const [selectedDate, setSelectedDate] = useState(slicedDate);
 
