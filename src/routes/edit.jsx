@@ -17,7 +17,7 @@ export async function action({ request, params }) {
 export default function EditContact() {
   // const { contact } = useLoaderData();
   return (
-    <Form method="post" id="contact-form" className="sm:w-1/6">
+    <Form method="post" className="contact-form sm:w-1/3">
       <div className="flex flex-col gap-2 font-light">
         <span className="text-2xl">New Client</span>
         <span>Name</span>
