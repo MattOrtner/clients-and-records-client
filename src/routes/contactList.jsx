@@ -48,21 +48,18 @@ export default function ContactList() {
                 </NavLink>
               ))}
             </ul>
-            <div className="fixed bottom-24 right-4 sm:right-24 flex w-full justify-end">
-              <Form method="post">
-                <button
-                  className=" text-white my-4 mx-4 rounded-full"
-                  type="submit"
-                >
-                  <Icon path={mdiPlus} color="rgb(59 130 246)" size={2} />
-                </button>
-              </Form>
-            </div>
           </>
         ) : (
           <p className="text-2xl mt-28">Add a contact</p>
         )}
-      </nav>
+      </nav>{" "}
+      <div className="fixed bottom-24 right-24 sm:right-24 flex w-full justify-end">
+        <Form method="post">
+          <button className=" text-white my-4 mx-4 rounded-full" type="submit">
+            <Icon path={mdiPlus} color="rgb(59 130 246)" size={2} />
+          </button>
+        </Form>
+      </div>
     </div>
   );
 }
