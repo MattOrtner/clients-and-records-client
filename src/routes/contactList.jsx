@@ -26,7 +26,7 @@ export default function ContactList() {
   return (
     <div className="w-full p-2 sm:w-1/2 max-w-[900px]">
       <h1 className="w-full text-3xl text-center  p-2 text-gray-800 font-serif sm:text-4xl">
-        Happy {CurrentDay} {user.first}.
+        Happy {CurrentDay} {user.first}!
       </h1>
       <nav className="w-full flex flex-col items-center">
         {clients.length > 0 ? (
