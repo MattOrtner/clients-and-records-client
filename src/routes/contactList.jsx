@@ -25,8 +25,8 @@ export default function ContactList() {
 
   return (
     <div className="w-full p-2 sm:w-1/2 max-w-[900px]">
-      <h1 className="text-3xl w-full p-2 text-gray-800 font-serif sm:text-4xl">
-        Happy {CurrentDay} {user.first}.
+      <h1 className="w-full text-3xl text-center  p-2 text-gray-800 font-serif sm:text-4xl">
+        Happy {CurrentDay} {user.first}!
       </h1>
       <nav className="w-full flex flex-col items-center">
         {clients.length > 0 ? (
@@ -53,7 +53,7 @@ export default function ContactList() {
           <p className="text-2xl mt-28">Add a contact</p>
         )}
       </nav>{" "}
-      <div className="fixed bottom-24 right-24 sm:right-24 flex w-full justify-end">
+      <div className="fixed bottom-24 right-8 sm:right-24 flex w-full justify-end">
         <Form method="post">
           <button className=" text-white my-4 mx-4 rounded-full" type="submit">
             <Icon path={mdiPlus} color="rgb(59 130 246)" size={2} />
