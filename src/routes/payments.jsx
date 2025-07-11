@@ -6,6 +6,7 @@ import formatSessionTime from "../formatSessionTime";
 
 export async function loader({ params }) {
   const sessions = await getUnpaidSessions(params.userId);
+
   sessions.forEach((session) => {
     session.date = sliceDate(session.date);
     session.date = reverseDate(session.date);
@@ -29,7 +30,7 @@ const Payments = () => {
 
   return (
     <div className="h-full w-full sm:w-1/2 p-4 max-w-[900px]">
-      <h1 className="text-3xl text-gray-800 font-serif mb-6 sm:text-5xl">
+      <h1 className="text-3xl text-center text-gray-800 font-serif mb-6 sm:text-5xl">
         Unpaid Sessions
       </h1>
       <div className="flex flex-col h-[85%] gap-2 overflow-scroll">
@@ -54,10 +55,8 @@ const Payments = () => {
             </Link>
           ))
         ) : (
-          <div className="text-4xl w-full h-full flex justify-center items-center gap-8">
-            <div>🎉</div>
-            <div>🥳</div>
-            <div>🎊</div>
+          <div className="text-3xl font-serif w-full h-full flex justify-center items-center gap-8">
+            <div>Everyone is caught up 🥳</div>
           </div>
         )}
       </div>
