@@ -7,10 +7,13 @@ export async function action({ request, params }) {
   let intent = formData.get("intent");
 
   if (intent === "cancel") {
-    // await deleteSession(params);
     return redirect(`/${params.userId}/clients/${params.clientId}`);
   } else {
     const sessionInfo = Object.fromEntries(formData);
+    if (sessionInfo.time === "") {
+      alert("Please select a time for your session");
+      return null;
+    }
     if (!sessionInfo.paid) sessionInfo.paid = false;
     await createSession(clientId, sessionInfo);
     return redirect(`/${userId}/clients/${clientId}`);

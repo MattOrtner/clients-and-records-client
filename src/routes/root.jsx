@@ -15,6 +15,7 @@ export default function Root() {
   const [user, setUser] = useState({});
   const [email, setEmail] = useState("default@mail.com");
   const [pass, setPass] = useState("default@mail.com");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleLoginInput = (e) => {
     e.preventDefault();
@@ -28,20 +29,25 @@ export default function Root() {
   };
 
   const handleLoginSubmit = async (e) => {
+    setIsLoading(true);
     e.preventDefault();
     if (!email || !pass) {
       alert("Ensure that both the email and password fields are not empty.");
+      setIsLoading(false);
       return;
     }
     const response = await attemptLogin(email, pass);
     if (response.status !== 200) {
       alert("Invalid email/pass combination");
+      setIsLoading(false);
     } else {
+      setIsLoading(false);
+      setEmail("");
+      setPass("");
       setUser({ id: response.id, first: response.first });
       return navigate(`/${response.id}/clients`);
     }
   };
-
   return (
     <div className="flex flex-col items-center w-full">
       {Object.keys(user).length === 0 ? (
@@ -50,6 +56,7 @@ export default function Root() {
           email={email}
           pass={pass}
           handleLoginSubmit={handleLoginSubmit}
+          isLoading={isLoading}
         />
       ) : (
         <>

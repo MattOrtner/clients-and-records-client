@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 const NavBackButton = ({ route = -1 }) => {
   const navigate = useNavigate();
   return (
-    <div className="fixed top-8 left-4 flex justify-start items-center border-2 border-black rounded-full sm:left-72">
+    <div className="fixed top-8 left-4 flex justify-start items-center border-2 border-gray-800 rounded-full sm:left-72">
       <Icon
         onClick={() => {
           navigate(route);

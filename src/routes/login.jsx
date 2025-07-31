@@ -5,6 +5,7 @@ export default function Login({
   email,
   pass,
   handleLoginSubmit,
+  isLoading,
 }) {
   return (
     <div className="absolute top-0 bottom-0 left-0 w-full h-full flex flex-col md:flex-row justify-center items-center bg-green-100 overflow-scroll">
@@ -43,12 +44,22 @@ export default function Login({
             value={pass}
             onChange={handleLoginInput}
           />
-          <button
-            className="bg-blue-100 p-2 rounded-md font-serif text-lg hover:bg-blue-300 transition-all duration-300"
-            onClick={handleLoginSubmit}
-          >
-            Submit
-          </button>
+          {isLoading ? (
+            <button
+              className="bg-blue-100 p-2 rounded-md font-serif text-lg hover:bg-blue-300 transition-all duration-300"
+              disabled
+            >
+              Logging in...
+            </button>
+          ) : (
+            <button
+              className="bg-blue-100 p-2 rounded-md font-serif text-lg hover:bg-blue-300 transition-all duration-300"
+              onClick={handleLoginSubmit}
+              // type="submit"
+            >
+              Login
+            </button>
+          )}
         </Form>
       </div>
     </div>
