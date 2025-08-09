@@ -17,16 +17,13 @@ export default function Login({
             payments, and take notes.
           </h3>
           <br />
-          <p className="font-serif text-xl">
-            Currently being used by therapists and physical trainers.
-          </p>
         </div>
-        <h3 className="text-2xl font-serif rounded-lg text-end w-4/5 py-2">
-          created by Matthew Ortner
+        <h3 className="text-2xl font-serif rounded-lg text-end w-4/5">
+          All in one place.
         </h3>
       </div>
       <div className="w-[300px] flex flex-col justify-center items-center gap-8 bg-orange-200 p-10 py-16 rounded-md">
-        <h1 className="text-3xl font-serif w-full ">Login</h1>
+        <h1 className="text-xl font-serif w-full ">Login</h1>
         <Form method="POST" className="flex flex-col gap-4 w-full">
           <input
             type="text"
