@@ -43,10 +43,11 @@ export default function Login({
           />
           {isLoading ? (
             <button
-              className="bg-blue-100 p-2 rounded-md font-serif text-lg hover:bg-blue-300 transition-all duration-300"
+              className=" bg-blue-100 p-2 flex justify-center items-center rounded-md font-serif text-lg hover:bg-blue-300 transition-all duration-300"
               disabled
             >
-              Logging in...
+              Loading {""}
+              <div className="loader"></div>
             </button>
           ) : (
             <button
