@@ -5,6 +5,7 @@ export default function Login({
   email,
   pass,
   handleLoginSubmit,
+  isLoading,
 }) {
   return (
     <div className="absolute top-0 bottom-0 left-0 w-full h-full flex flex-col md:flex-row justify-center items-center bg-green-100 overflow-scroll">
@@ -16,16 +17,13 @@ export default function Login({
             payments, and take notes.
           </h3>
           <br />
-          <p className="font-serif text-xl">
-            Currently being used by therapists and physical trainers.
-          </p>
         </div>
-        <h3 className="text-2xl font-serif rounded-lg text-end w-4/5 py-2">
-          created by Matthew Ortner
+        <h3 className="text-2xl font-serif rounded-lg text-end w-4/5">
+          All in one place.
         </h3>
       </div>
       <div className="w-[300px] flex flex-col justify-center items-center gap-8 bg-orange-200 p-10 py-16 rounded-md">
-        <h1 className="text-3xl font-serif w-full ">Login</h1>
+        <h1 className="text-xl font-serif w-full ">Login</h1>
         <Form method="POST" className="flex flex-col gap-4 w-full">
           <input
             type="text"
@@ -43,12 +41,23 @@ export default function Login({
             value={pass}
             onChange={handleLoginInput}
           />
-          <button
-            className="bg-blue-100 p-2 rounded-md font-serif text-lg hover:bg-blue-300 transition-all duration-300"
-            onClick={handleLoginSubmit}
-          >
-            Submit
-          </button>
+          {isLoading ? (
+            <button
+              className=" bg-blue-100 p-2 flex justify-center items-center rounded-md font-serif text-lg hover:bg-blue-300 transition-all duration-300"
+              disabled
+            >
+              Loading {""}
+              <div className="loader"></div>
+            </button>
+          ) : (
+            <button
+              className="bg-blue-100 p-2 rounded-md font-serif text-lg hover:bg-blue-300 transition-all duration-300"
+              onClick={handleLoginSubmit}
+              // type="submit"
+            >
+              Login
+            </button>
+          )}
         </Form>
       </div>
     </div>
