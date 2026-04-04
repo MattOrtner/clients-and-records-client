@@ -7,7 +7,7 @@ import { createTask } from "../../../tasks";
 import { useOutletContext } from "react-router-dom";
 
 const TaskColumn = ({ title, tasks, setTasks, handleDelete }) => {
-  const [user, _] = useOutletContext();
+  const [user] = useOutletContext();
   const [task, setTask] = useState("");
 
   const handleTaskInput = (e) => {

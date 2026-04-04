@@ -1,11 +1,7 @@
 import { useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import NavBarTab from "./components/navBarTab";
-import {
-  mdiAccountMultipleOutline,
-  mdiCurrencyUsd,
-  mdiHomeOutline,
-} from "@mdi/js";
+import { mdiAccountMultipleOutline, mdiCurrencyUsd } from "@mdi/js";
 import Login from "./login";
 import { attemptLogin } from "../auth";
 import { Analytics } from "@vercel/analytics/react";

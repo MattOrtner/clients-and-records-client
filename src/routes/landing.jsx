@@ -1,16 +1,13 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
-import { useLoaderData, useOutletContext } from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
 import TaskColumn from "./components/LandingPage/TaskColumn";
-import Agenda from "./components/LandingPage/Agenda";
 import CurrentDay from "../currentDay";
-import { getTodaysSessions } from "../sessions";
 import { getTodaysTasks, deleteTask } from "../tasks";
 
 const Landing = () => {
-  const [user, setUser] = useOutletContext();
+  const [user] = useOutletContext();
   const [tasks, setTasks] = useState([]);
-  const [sessions, setSessions] = useState([]);
 
   useEffect(() => {
     const fetchTasks = async () => {
@@ -36,7 +33,7 @@ const Landing = () => {
     const response = await deleteTask(taskId);
     if (response.status !== 200) {
       alert(
-        `Error deleting task, please try again. Status Code: ${response.statusText}`
+        `Error deleting task, please try again. Status Code: ${response.statusText}`,
       );
       console.error("Error deleting task:", response.statusText);
       return;
@@ -49,7 +46,6 @@ const Landing = () => {
       <h1 className="text-4xl text-gray-800 font-serif mb-10 p-2">
         Happy {CurrentDay} {user.first}!
       </h1>
-      {/* <Agenda sessions={sessions} /> */}
       <div className="mt-5 flex-grow pb-10">
         <DragDropContext onDragEnd={onDragEnd}>
           <TaskColumn

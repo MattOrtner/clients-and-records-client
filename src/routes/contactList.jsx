@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import {
   NavLink,
   Form,
@@ -20,7 +19,7 @@ export async function loader({ params }) {
 }
 
 export default function ContactList() {
-  const [user, _] = useOutletContext();
+  const [user] = useOutletContext();
   const clients = useLoaderData();
 
   return (

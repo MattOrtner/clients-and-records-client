@@ -38,7 +38,7 @@ export async function action({ request, params }) {
     }
     case "POST": {
       return redirect(
-        `/${params.userId}/clients/${params.clientId}/create-session`
+        `/${params.userId}/clients/${params.clientId}/create-session`,
       );
     }
     default: {
@@ -52,7 +52,7 @@ export default function Contact() {
 
   const client = clientData.length ? clientData[0] : {};
   const sessions = clientSessions.length > 0 ? clientSessions : [];
-  const [user, _] = useOutletContext();
+  const [user] = useOutletContext();
 
   return (
     <div id="contact">

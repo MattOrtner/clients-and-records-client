@@ -10,7 +10,7 @@ function Session({ session, contactId }) {
   const sessionDate = reverseDate(slicedDate);
   const sessionId = session.id;
   const sessionTime = formatSessionTime(session.time);
-  const [user, _] = useOutletContext();
+  const [user] = useOutletContext();
 
   return (
     <NavLink

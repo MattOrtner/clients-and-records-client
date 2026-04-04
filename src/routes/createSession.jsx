@@ -1,4 +1,4 @@
-import { Form, redirect, useLoaderData } from "react-router-dom";
+import { Form, redirect } from "react-router-dom";
 import { createSession } from "../sessions";
 
 export async function action({ request, params }) {
@@ -21,14 +21,10 @@ export async function action({ request, params }) {
 }
 
 export async function loader({ params }) {
-  // const session = await getSession(params);
-  // return { session };
   return { session: {} };
 }
 
 export default function CreateSession() {
-  const { session } = useLoaderData();
-
   return (
     <div className="w-[85%] sm:w-1/6 h-full flex flex-col justify-center">
       <div className="text-3xl font-light mb-28">Book a Session</div>

@@ -1,5 +1,5 @@
 import { Link, useLoaderData, useOutletContext } from "react-router-dom";
-import { getUnpaidSessions, updateSession } from "../sessions";
+import { getUnpaidSessions } from "../sessions";
 import sliceDate from "../slicedDate";
 import reverseDate from "../reverseDate";
 import formatSessionTime from "../formatSessionTime";
@@ -25,7 +25,7 @@ export async function loader({ params }) {
 }
 
 const Payments = () => {
-  const [user, _] = useOutletContext();
+  const [user] = useOutletContext();
   const { sessions, sessionsGroupedByClient } = useLoaderData();
 
   return (
